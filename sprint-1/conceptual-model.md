@@ -14,8 +14,6 @@
 * truckDescription
 * truckFoodCategory
 * truckName
-* truckLocationSunrise
-* truckLocationSunset
 
 ## Location 
 * locationId - PK 
