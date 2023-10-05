@@ -1,66 +1,37 @@
 # Conceptual Model
 
-## Homepage
-* home_id — id’s go first
-* home_
-* home_search
+## Profile
+* profileId - PK
+* profileActivationToken
+* profileEmail
+* profileHash
+* profileName
+* profileIsTruckOwner - true or false; boolean 
 
-## Admin
-* adminId - Primary Key
-* foodTruckOwnersId - Foreign Key  
-* adminActivationToken
-* adminEmail
-* adminFirstName
-* adminHash
-* adminLastName
-* adminUsername
-* adminPermissionLevel
-
-## Food Truck Owner
-* ownerId - PK
-* foodTruckId - FK
-* ownerActivationToken
-* ownerBirthDate
-* ownerFirstName
-* ownerEmail
-* ownerHash
-* ownerLastName
-* ownerPermissions
-* ownerUserName
-
-## Food Truck
+## Truck
 * truckId - PK
-* consumerId - FK
-* truckPictureId - FK
-* guestUserId - ?
-* truckActivationToken
+* truckProfileId - FK owner
 * truckDescription
 * truckFoodCategory
 * truckName
+* truckLat
+* truckLng
+* truckLocationSunrise
+* truckLocationSunset
 
-## Truck Pictures
-* truckPictureId - PK
-* truckPicture
-* truckMenuPicture
-* truckFeaturedPhotos
+## Picture 
+* pictureId - PK
+* pictureTruckId - FK
+* pictureUrl
+* pictureType; truck, menu, featured
 
-## Sign-in
-* sign-in ID - PK
-* sign-inHistory
-
-## Consumer Profile
-* consumerId-PK
-* truckId - FK
-* adminId - FK -?
-* consumerActivationToken
-* consumerAvatar
-* consumerFavorites
-
-## Favorite Truck
+## Favorite
 * favoriteTruckId - FK 
-* consumerId - FK 
-* 
+* favoriteProfileId - FK
 
-
-## Relationships 
-...
+## Relationships
+* One food truck owner to many food trucks
+* One consumer profile can favorite many food trucks
+* A food truck can be favorited once by a profile 
+* One food truck can have many pictures
+* One truck can be favorited by many profiles 
