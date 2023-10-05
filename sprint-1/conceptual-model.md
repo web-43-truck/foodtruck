@@ -14,10 +14,18 @@
 * truckDescription
 * truckFoodCategory
 * truckName
-* truckLat
-* truckLng
 * truckLocationSunrise
 * truckLocationSunset
+
+## Location 
+* locationId - PK 
+* locationTruckId - FK
+* locationAddress
+* locationIsActive
+* locationLat
+* locationLng
+* locationSunrise
+* locationSunset
 
 ## Picture 
 * pictureId - PK
