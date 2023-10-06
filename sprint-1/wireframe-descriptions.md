@@ -22,3 +22,6 @@
 * An "Now Open" icon will appear to the left of the truckProfileID when teh truck owner has logged in and indicated that the truck is open and active
 * The truckName field will serve as the trucks name and hyper link to its profile page.
 * At the bottom of the page the truck hunter icon will appear as a hyperlink to return the user to the index.html page
+
+## Profile for Owner
+* As the owner is logged into his account they can clearly see the hyperlink to change the featured images. There is a clear area to enter the location where the food truck will be located and a start and end time of hours of operation. There is a clear section for the truck description with an add/update field button and the bottom right of the section. Below the description, there is dropdown menu asking the user to select the type of cuisine that their truck carries. On this drop down menu, they can select multiple types of cuisines. On the footer of the gage, there is an icon that can take the user to the homepage.
