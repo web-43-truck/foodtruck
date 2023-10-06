@@ -13,3 +13,7 @@
 ## Food Truck Page
 * When a user clicks on a truck from the search page menu, they will see the name of the truck on the very top of the page. Right under that will be three pictures.  The one in the middle will be the largest but they can click on each one to open it more.  Under that, will be a description of the truck and the food type along with their hours.
 * Directly under that is a map with the current location, if they are active. Lastly, a truck icon at the bottom of the page will serve as a link back to home page. 
+
+## User Profile 
+* The user page will have the user profile name, a list of
+their favorite truck with an option to remove trucks when they fall out of favor
