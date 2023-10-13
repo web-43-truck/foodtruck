@@ -1,0 +1,5 @@
+.git
+sql/Dockerfile
+*docker-compose*
+**/node_modules
+README.md
