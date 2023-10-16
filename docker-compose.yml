@@ -6,7 +6,7 @@ services:
     volumes:
       - 'redis:/data'
     env_file:
-      - project.env
+      - example.env
     healthcheck:
       test: [ "CMD", "redis-cli", "ping"]
   sql:
@@ -17,11 +17,11 @@ services:
     volumes:
       - sql:/var/lib/postgresql/data/
     env_file:
-      - project.env
+      - example.env
   node:
     build: backend
     env_file:
-      - project.env
+      - example.env
     ports:
       - '8080:4200'
     user: "node"
