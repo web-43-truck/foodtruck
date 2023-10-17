@@ -16,3 +16,4 @@ true})
         .profilePassword === data.profilePasswordConfirm,
         {message: 'Passwords do not match'}
     )
+
