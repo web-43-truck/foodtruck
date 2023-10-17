@@ -4,8 +4,10 @@ import formData from 'form-data'
 import Mailgun from 'mailgun.js'
 import { setActivationToken, setHash } from '../../utils/auth.utils'
 import { zodErrorResponse } from '../../utils/response.utils'
-import {PrivateProfile} from '../profile/profile.model'
-import {SignUpSchema} from '../sign-up.validator'
+import {insertProfile, PrivateProfile} from '../profile/profile.model'
+import {SignUpProfileSchema} from "./sign-up.validator";
+
+
 
 export async function signupProfileController (request: Request, response: Response): Promise<Response | undefined> {
     try {
