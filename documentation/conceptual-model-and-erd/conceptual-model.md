@@ -7,6 +7,7 @@
 * profileHash
 * profileName
 * profileIsTruckOwner - true or false; boolean 
+* profilePassword
 
 ## Truck
 * truckId - PK
