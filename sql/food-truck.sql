@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS profile(
 -- create table if not exists picture(
 --     picture_id UUID NOT NULL PRIMARY KEY,
 --     picture_truck_id UUID NOT NULL,
---     picture_url VARCHAR (125),
+--     picture_url VARCHAR (276)
 --     picture_type VARCHAR (32)
 --    FOREIGN KEY (picture_truck_id) references truck(truck_id)
 -- )
