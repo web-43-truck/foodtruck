@@ -1,7 +1,7 @@
 import {z} from "zod";
 import {PrivateProfileSchema} from "../profile/profile.validator";
 
-export const SignUpSchema = PrivateProfileSchema
+export const SignUpProfileSchema = PrivateProfileSchema
 .omit( { profileHash:
 true})
 .extend({
