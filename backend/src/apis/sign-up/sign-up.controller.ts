@@ -24,7 +24,7 @@ export async function signupProfileController (request: Request, response: Respo
 
         const profileActivationToken = setActivationToken()
 
-        const profileImageUrl = 'http://placekitten.com/300/300'
+        // const profileImageUrl = 'http://placekitten.com/300/300'
 
         const basePath: string = `${request.protocol}://${request.hostname}:8080${request.originalUrl}activation/${profileActivationToken}`
 
