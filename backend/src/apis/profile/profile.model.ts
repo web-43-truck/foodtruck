@@ -16,7 +16,8 @@ export async function insertProfile (profile : PrivateProfile): Promise<string> 
 
 export async function updateProfile (profile: PrivateProfile): Promise<string> {
     const {profileId, profileActivationToken, profileEmail, profileHash, profileName, profileIsTruckOwner } = profile
-    await sql`UPDATE profile SET profile_activation_token = ${profileActivationToken}, profile_email = ${profileEmail}, profile_hash = ${profileHash}, profile_name = ${profileName} WHERE profile_id = ${profileId}`
+    await sql`UPDATE profile SET profile_activation_token = ${profileActivationToken}, profile_email = ${profileEmail}, profile_hash = ${profileHash}, profile_name = ${profileName},
+               profile_is_truck_owner = ${profileIsTruckOwner} WHERE profile_id = ${profileId}`
     return 'Profile successfully updated'
 
 }
