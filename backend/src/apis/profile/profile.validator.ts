@@ -34,3 +34,4 @@ export const PrivateProfileSchema = z.object({
     })
 })
 
+export const PublicProfileSchema = PrivateProfileSchema.omit({profileHash: true,profileActivationToken: true, profileEmail: true})
