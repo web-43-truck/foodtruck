@@ -27,11 +27,13 @@ export const PrivateProfileSchema = z.object({
         required_error: 'Please let us know if profile is a truck owner',
         invalid_type_error: 'Please provide true or false for is profile a truck owner'
     }),
-    profileName: z.string({
-        required_error: 'Please provide a valid profileName (min 1 character)',
-        invalid_type_error: 'Please provide a valid profileName (max 64 characters)'
+    profileName: z.string()
         .trim()
-    })
+            .min(1, { message: 'please provide a valid profile name (min 1 characters)' })
+            .max(32, { message: 'please provide a valid profile name (max 32 characters)' })
 })
+
+
+
 
 export const PublicProfileSchema = PrivateProfileSchema.omit({profileHash: true,profileActivationToken: true, profileEmail: true})

@@ -67,7 +67,7 @@ return PublicProfileSchema.array().parse(rowList)
 
 export async function selectPrivateProfileByProfileActivationToken (profileActivationToken: string): Promise<PrivateProfile|null> {
 
-    const rowList = await sql`SELECT profile_id, profile_activation_token, profile_email, profile_hash, profile_name
+    const rowList = await sql`SELECT profile_id, profile_activation_token, profile_email, profile_hash, profile_name, profile_is_truck_owner
                               FROM profile
                               WHERE profile_activation_token =${profileActivationToken}`
 
