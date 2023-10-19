@@ -8,7 +8,7 @@ import { zodErrorResponse} from "../../utils/response.utils"
 import { v4 as uuid} from 'uuid'
 import {Status} from "../../utils/interfaces/Status";
 
-export async function singInController (request: Request, response:Response):
+export async function signInController (request: Request, response:Response):
         Promise<Response> {
 
     try{
