@@ -1,6 +1,6 @@
 
 
-import { PrivateProfile, selectPrivateProfilebyProfileEmail } from './profile/profile.model'
+import { PrivateProfile, selectPrivateProfilebyProfileEmail } from './profile.validator'
 import { generateJwt, validatePassword} from "../../utils/auth.utils"
 import { Request, Response } from 'express'
 import { signInProfileSchema} from "./sign-in.validator"
@@ -8,7 +8,7 @@ import { zodErrorResponse} from "../../utils/response.utils"
 import { v4 as uuid} from 'uuid'
 import {Status} from "../../utils/interfaces/Status";
 
-export async function singInController (request: Request, response:Response):
+export async function signInController (request: Request, response:Response):
         Promise<Response> {
 
     try{
