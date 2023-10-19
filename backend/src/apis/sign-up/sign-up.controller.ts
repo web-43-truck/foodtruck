@@ -11,10 +11,11 @@ import {SignUpProfileSchema} from "./sign-up.validator";
 
 export async function signupProfileController (request: Request, response: Response): Promise<Response | undefined> {
     try {
-        const validationResult = SignUpProfileSchema.safeParse(request.body)
-        if (!validationResult.success) {
-            return zodErrorResponse(response, validationResult.error)
-        }
+        console.log(request.body)
+        //const validationResult = SignUpProfileSchema.safeParse(request.body)
+        // if (!validationResult.success) {
+        //     return zodErrorResponse(response, validationResult.error)
+        // }
         const mailgun: Mailgun = new Mailgun(formData)
         const mailgunClient = mailgun.client({username: 'api', key: process.env.MAILGUN_API_KEY as string})
 
