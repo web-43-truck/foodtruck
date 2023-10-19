@@ -73,6 +73,4 @@ export async function selectPrivateProfileByProfileActivationToken (profileActiv
 
     const result = PrivateProfileSchema.array().max(1).parse(rowList)
     return result?.length === 1 ? result[0] : null
-
 }
-
