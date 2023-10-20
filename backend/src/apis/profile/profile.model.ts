@@ -1,11 +1,11 @@
 import {sql} from "../../utils/database.utils";
 import {z} from "zod";
-import {PrivateProfileSchema, PublicProfileSchema} from './profile.validator';
+import {PrivateProfileSchema} from './profile.validator';
 
 
 export type PrivateProfile =  z.infer<typeof PrivateProfileSchema>;
 
-export type PublicProfile = z.infer<typeof PublicProfileSchema>
+
 
 export async function insertProfile (profile : PrivateProfile): Promise<string> {
 
@@ -24,7 +24,7 @@ export async function updateProfile (profile: PrivateProfile): Promise<string> {
 
 export async function selectPrivateProfileByProfileEmail (profileEmail: string): Promise<PrivateProfile | null> {
     const rowList
-        = await sql`SELECT profile_id, profile_activation_token, profile_email, profile_hash, profile_name
+        = await sql`SELECT profile_id, profile_activation_token, profile_email, profile_hash, profile_name, profile_is_truck_owner
                     FROM profile
                     WHERE profile_email = ${profileEmail}`
 
@@ -32,44 +32,13 @@ export async function selectPrivateProfileByProfileEmail (profileEmail: string):
 
 return result?.length === 1 ? result[0] : null
 }
-export async function selectPublicProfileByProfileId (profileId: string): Promise<PublicProfile | null> {
-    const rowList = await sql`SELECT profile_id, profile_activation_token, profile_email, profile_hash, profile_name
-                              FROM profile
-                              WHERE profile_id = ${profileId}`
 
-
-    const result = PublicProfileSchema.array().max(1).parse(rowList)
-
-    return result?.length === 1 ? result[0] : null
-}
-
-export async function selectPublicProfileByProfileName (profileName: string): Promise<PublicProfile | null> {
-    const rowList = await sql`SELECT profile_id, profile_activation_token, profile_email, profile_hash, profile_name
-                              FROM profile
-                              WHERE profile_name = ${profileName}`
-
-
-    const result = PublicProfileSchema.array().max(1).parse(rowList)
-
-    return result?.length === 1 ? result[0] : null
-}
-//wildcards
-export async function selectPublicProfilesByProfileName (profileName: string): Promise<PublicProfile[]> {
-const profileNameWithWildcards = `%${profileName}%`
-
-    const rowList = await sql`SELECT profile_id, profile_activation_token, profile_email, profile_hash, profile_name
-                              FROM profile
-                              WHERE profile_name LIKE ${profileNameWithWildcards}`
-
-
-return PublicProfileSchema.array().parse(rowList)
-}
 
 export async function selectPrivateProfileByProfileActivationToken (profileActivationToken: string): Promise<PrivateProfile|null> {
 
     const rowList = await sql`SELECT profile_id, profile_activation_token, profile_email, profile_hash, profile_name, profile_is_truck_owner
                               FROM profile
-                              WHERE profile_activation_token =${profileActivationToken}`
+                              WHERE profile_activation_token = ${profileActivationToken}`
 
     const result = PrivateProfileSchema.array().max(1).parse(rowList)
     return result?.length === 1 ? result[0] : null
