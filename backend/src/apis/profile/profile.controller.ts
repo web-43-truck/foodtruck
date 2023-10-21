@@ -23,6 +23,7 @@ export async function getProfileByProfileIdController(request: Request, response
         const status: Status = {status: 200, data, message: null}
         return response.json(status)
     } catch (error: any) {
+        console.error(error)
         return (response.json({status: 400, data: null, message: error.message}))
     }
 }
@@ -68,6 +69,7 @@ export async function putProfileController(request: Request, response: Response)
 
 
     } catch (error: unknown) {
+        console.error(error)
         return response.json({status: 500,message: "internal server error", data: null})
     }
 }
