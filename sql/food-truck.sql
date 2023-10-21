@@ -18,7 +18,6 @@ create table if not exists truck(
                                     truck_profile_id UUID NOT NULL,
                                     truck_description VARCHAR(1025),
                                     truck_food_category VARCHAR(64) NOT NULL,
-                                    tuck_image_url VARCHAR(255),
                                     truck_name VARCHAR(64) NOT NULL,
                                     FOREIGN KEY (truck_profile_id) references profile (profile_id)
 );

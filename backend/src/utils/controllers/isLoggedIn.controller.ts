@@ -5,7 +5,6 @@ import {PrivateProfile} from "../../apis/profile/profile.model"
 
 
 export function isLoggedInController(request: Request, response: Response, next: NextFunction): Response | void {
-    //set a predefined response if the user is not logged in
     const status: Status = {status: 401, message: 'Please login', data: null}
     try {
         const profile: PrivateProfile | undefined = request.session?.profile
@@ -25,7 +24,7 @@ export function isLoggedInController(request: Request, response: Response, next:
 
         return next()
     } catch (error: unknown) {
-        // if an error is thrown return the predefined status
+
         return response.json(status)
     }
 }

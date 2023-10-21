@@ -3,7 +3,29 @@ import {PrivateProfileSchema} from "./profile.validator";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {PrivateProfile, selectPrivateProfileByProfileId, updateProfile} from "./profile.model";
 import {Status} from "../../utils/interfaces/Status";
+import {z} from "zod";
 
+
+export async function getProfileByProfileIdController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const validationResult  = z.object({
+            profileId: z.string().uuid('please provide a valid uuid')
+        }).safeParse(request.params)
+
+        if(!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const {profileId} = validationResult.data
+
+        const data  = await selectPrivateProfileByProfileId(profileId)
+
+        const status: Status = {status: 200, data, message: null}
+        return response.json(status)
+    } catch (error: any) {
+        return (response.json({status: 400, data: null, message: error.message}))
+    }
+}
 
 export async function putProfileController(request: Request, response: Response): Promise<Response<Status>> {
     try {
@@ -49,3 +71,4 @@ export async function putProfileController(request: Request, response: Response)
         return response.json({status: 500,message: "internal server error", data: null})
     }
 }
+
