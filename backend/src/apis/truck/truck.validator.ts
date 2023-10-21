@@ -1,6 +1,6 @@
 import {z} from 'zod'
 
-export const truckSchema = z.object({
+export const TruckSchema = z.object({
     truck_id: z.string({
         required_error: 'truckId is required',
         invalid_type_error: 'please provide a valid truckId'
@@ -24,7 +24,8 @@ export const truckSchema = z.object({
         required_error: 'please provide a truckFoodCategory',
         invalid_type_error: 'please provide a valid foodTruckCategory'
     })
-        .max(64, {message: 'truckFoodCategoy is too long'}),
+        .max(64, {message: 'truckFoodCategory is too long'}),
+
     truck_name: z.string()
         .trim()
         .min(1, {message: 'please provide a valid truck name that is min 1 character in length'})
