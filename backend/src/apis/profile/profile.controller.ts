@@ -1,16 +1,17 @@
 import {Request, Response} from "express";
-import {PrivateProfileSchema} from "./profile.validator";
+import {PublicProfileSchema} from "./profile.validator";
 import {zodErrorResponse} from "../../utils/response.utils";
-import {PrivateProfile, selectPrivateProfileByProfileId, updateProfile} from "./profile.model";
+import {
+    PrivateProfile, PublicProfile, selectPrivateProfileByProfileId, selectPublicProfileByProfileId,
+    selectPublicProfileByProfileName, updateProfile
+} from "./profile.model";
 import {Status} from "../../utils/interfaces/Status";
 import {z} from "zod";
 
 
-export async function getProfileByProfileIdController(request: Request, response: Response): Promise<Response<Status>> {
+export async function getPublicProfileByProfileIdController(request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResult  = z.object({
-            profileId: z.string().uuid('please provide a valid uuid')
-        }).safeParse(request.params)
+        const validationResult = PublicProfileSchema.pick({profileId: true}).safeParse(request.params)
 
         if(!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
@@ -18,25 +19,47 @@ export async function getProfileByProfileIdController(request: Request, response
 
         const {profileId} = validationResult.data
 
-        const data  = await selectPrivateProfileByProfileId(profileId)
+        const data  = await selectPublicProfileByProfileId(profileId)
 
-        const status: Status = {status: 200, data, message: null}
-        return response.json(status)
+        return response.json({status:200, message: null, data})
+
     } catch (error: any) {
         console.error(error)
-        return (response.json({status: 400, data: null, message: error.message}))
+        return response.json({status: 500, data: null, message: 'internal server error'})
     }
 }
 
+export async function getPublicProfileByProfileNameController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const validationResult = PublicProfileSchema.pick({profileName: true}).safeParse(request.params)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const {profileName} = validationResult.data
+
+        const data= await selectPublicProfileByProfileName(profileName)
+
+        return response.json({status: 200, message: null, data})
+
+    } catch (error: unknown) {
+
+        return response.json({status: 500,message: "internal server error", data: null})
+    }
+}
+
+
 export async function putProfileController(request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const validationResultForRequestBody = PrivateProfileSchema.safeParse(request.body)
+
+        const validationResultForRequestBody = PublicProfileSchema.safeParse(request.body)
 
         if(!validationResultForRequestBody.success) {
             return zodErrorResponse(response, validationResultForRequestBody.error)
         }
 
-        const validationResultForRequestParams = PrivateProfileSchema.pick({profileId: true}).safeParse(request.params)
+        const validationResultForRequestParams = PublicProfileSchema.pick({profileId: true}).safeParse(request.params)
 
         if(!validationResultForRequestParams.success) {
             return zodErrorResponse(response, validationResultForRequestParams.error)
@@ -51,18 +74,18 @@ export async function putProfileController(request: Request, response: Response)
             return response.json({status: 400, message: "you cannot update a profile that is not yours", data: null})
         }
 
-        const { profileName, profileIsTruckOwner} = validationResultForRequestBody.data
+        const {profileIsTruckOwner, profileName} = validationResultForRequestBody.data
 
+        //grab the profile by profileId
         const profile: PrivateProfile|null = await selectPrivateProfileByProfileId(profileId)
 
         if(profile === null) {
             return response.json({status: 400, message: "profile does not exist", data: null})
         }
 
-        profile.profileName = profileName
         profile.profileIsTruckOwner = profileIsTruckOwner
+        profile.profileName = profileName
 
-        //update the profile in the database
         await updateProfile(profile)
 
         return response.json({status: 200, message: "profile successfully updated", data: null})
