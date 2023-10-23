@@ -6,7 +6,7 @@ import {
     selectTrucksByProfileId,
     selectTrucksByTruckName,
     insertTruck,
-    updateTruck
+    updateTruck, selectAllTrucks
 } from "./truck.model"
 import {zodErrorResponse} from "../../utils/response.utils"
 import {TruckSchema} from "./truck.validator"
@@ -120,7 +120,7 @@ export async function postTruckController (request: Request, response: Response)
     }
 }
 
-export async function getTrucksByProfileIdController (request: Request, response: Response): Promise<Response<Status>> {
+export async function getTrucksByTruckProfileIdController (request: Request, response: Response): Promise<Response<Status>> {
     try {
 
         const validationResult = z.object({
@@ -158,33 +158,66 @@ export async function getTrucksByProfileIdController (request: Request, response
     }
 }
 
-export async function getTruckByProfileIdController (request: Request, response: Response): Promise<Response<Status>> {
+export async function getAllTrucks(request: Request, response: Response): Promise<Response<Status>> {
     try {
 
-        const validationResult = z.object({
-            projectId: z.string().uuid('please provide a valid truckId')
-        }). safeParse(request.params)
+        const data = await selectAllTrucks()
+
+        const status: Status = {status: 200, message: null, data}
+        return response.json(status)
+
+    } catch (error) {
+        console.error(error)
+        return response.json({
+            status: 500,
+            message: 'Error getting trucks. Try again.',
+            data: []
+        })
+    }
+}
+
+export async function getTruckByTruckNameController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+
+        const validationResult = TruckSchema.pick({truckName: true}).safeParse(request.params)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
         }
 
-        // destructure the projectId from the validationResult
-        const { projectId } = validationResult.data
+        const {truckName} = validationResult.data
 
-        // grab the project object from the database that matches the projectId provided
-        const data: Project|null = await selectProjectByProjectId(projectId)
+        const data = await selectTruckByTruckName(truckName)
 
-
-        // return the project object to the client
-        const status: Status = { status: 200, message: null, data }
-        return response.json(status)
+        return response.json({status: 200, message: null, data})
 
     } catch (error) {
         return response.json({
             status: 500,
-            message: 'internal server error',
-            data: null
+            message: '',
+            data: []
         })
+    }
+}
+
+
+export async function getTrucksByNameController(request: Request, response: Response) : Promise<Response<Status>>  {
+    try {
+
+        const validationResult = TruckSchema.pick({truckName: true}).safeParse(request.params)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const {truckName} = validationResult.data
+
+        const data = await selectTrucksByTruckName(truckName)
+
+        return response.json({status: 200, message: null, data})
+
+    } catch (error: unknown) {
+
+        return response.json({status: 500,message: "internal server error", data: null})
     }
 }

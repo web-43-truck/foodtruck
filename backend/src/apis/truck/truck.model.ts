@@ -57,7 +57,12 @@ export async function selectTrucksByTruckName(truckName: string): Promise<Truck[
     return TruckSchema.array().parse(rowList)
 }
 
+export async function selectAllTrucks(): Promise<Truck[]> {
 
+    const rowList = <Truck[]>await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name FROM truck ORDER BY truck_name DESC`
+
+    return TruckSchema.array().parse(rowList)
+}
 
 
 
