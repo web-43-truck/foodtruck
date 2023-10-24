@@ -1,6 +1,13 @@
 import {z} from 'zod'
 
+/**
+ * The shape of a like object
+ * @property favoriteProfileId {string} the primary key
+ * @property favoriteTruckId {string} the foreign key
+ */
+
 export const FavoriteSchema = z.object({
-    favoriteId: z.string({required_error: 'please provide a valid favoriteId'}).uuid({message: 'please provide a valid uuid for favoriteId'}),
+
     favoriteProfileId: z.string({required_error: 'please provide a valid favoriteProfileId'}).uuid({message: 'please provide a valid uuid for favoriteProfileId'}),
-})
+    favoriteTruckId: z.string({required_error: 'Please provide a valid favoriteTruckId'}).uuid({message: "please enter a valid uuid for favoriteTruckId"}),
+    })
