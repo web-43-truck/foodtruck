@@ -1,10 +1,10 @@
 import { App } from './App'
-import {PrivateProfile} from "./apis/profile/profile.model";
+import {PublicProfile} from "./apis/profile/profile.model";
 
 
 declare module 'express-session' {
     export interface SessionData {
-        profile: PrivateProfile|undefined
+        profile: PublicProfile|undefined
         signature: string|undefined
         jwt: string|undefined
     }
