@@ -137,17 +137,11 @@ export async function getTrucksByTruckProfileIdController (request: Request, res
 
         const { truckProfileId } = validationResult.data
 
-        const profile = request.session?.profile
-        const profileIdFromSession = profile?.profileId
-
-        if (profileIdFromSession || truckProfileId !== profileIdFromSession) {
-            return response.json({ status: 400, data: null, message: 'You are not allowed to preform this task' })
-        }
-
         const data: Truck | null = await selectTrucksByProfileId(truckProfileId)
 
         const status: Status = { status: 200, message: null, data }
         return response.json(status)
+
     } catch (error) {
         console.log()
         return response.json({
@@ -193,6 +187,7 @@ export async function getTruckByTruckNameController (request: Request, response:
         return response.json({status: 200, message: null, data})
 
     } catch (error) {
+        console.error(error)
         return response.json({
             status: 500,
             message: '',
@@ -226,7 +221,7 @@ export async function getTrucksByNameController(request: Request, response: Resp
 export async function deleteTruckByTruckIdController (request: Request, response: Response): Promise<Response<Status>> {
     try {
 
-        const validationResult = z.string().uuid({message: 'please provide a valid truck Id'}).safeParse(request.params.threadId)
+        const validationResult = z.string().uuid({message: 'please provide a valid truck Id'}).safeParse(request.params.truckId)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
