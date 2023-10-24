@@ -12,6 +12,7 @@ import {zodErrorResponse} from "../../utils/response.utils"
 import {TruckSchema} from "./truck.validator"
 import {Status} from "../../utils/interfaces/Status";
 import {z} from "zod";
+import {PublicProfile} from "../profile/profile.model";
 
 
 export async function putTruckController(request: Request, response: Response): Promise<Response<Status>> {
