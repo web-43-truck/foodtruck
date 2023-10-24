@@ -1,6 +1,15 @@
 import {Router} from 'express'
-import {postTruckController} from "./truck.controller";
-import {isLoggedInController} from '../../utils/controllers/'
+import {
+    deleteTruckByTruckIdController,
+    getAllTrucks,
+    getTruckByTruckIdController,
+    getTruckByTruckNameController,
+    getTrucksByNameController,
+    getTrucksByTruckProfileIdController,
+    postTruckController,
+    putTruckController
+} from "./truck.controller";
+import {isLoggedInController} from '../../utils/controllers/isLoggedIn.controller'
 
 
 const basePath = 'apis/truck'
@@ -10,3 +19,18 @@ const router = Router()
 
 router.route('/')
     .post(isLoggedInController, postTruckController)
+    .get(getAllTrucks)
+
+router.route('/:truckId')
+    .get(getTruckByTruckIdController)
+    .put(isLoggedInController, putTruckController)
+    .delete(isLoggedInController, deleteTruckByTruckIdController)
+
+router.route('/truckProfileId/:truckProfileId')
+    .get(getTrucksByTruckProfileIdController)
+
+router.route('/truckProfileName/:truckProfileName')
+    .get(getTruckByTruckNameController)
+    .get(getTrucksByNameController)
+
+export const truckRoute = {basePath, router}

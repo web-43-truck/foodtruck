@@ -66,5 +66,11 @@ export async function selectAllTrucks(): Promise<Truck[]> {
 
 
 
+export async function deleteTruckByTruckId(truckId: string): Promise<string> {
+    await sql`DELETE
+              FROM truck
+              WHERE truck_id = ${truckId}`
 
+    return 'Truck successfully deleted'
+}
 

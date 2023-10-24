@@ -6,7 +6,7 @@ import {
     selectTrucksByProfileId,
     selectTrucksByTruckName,
     insertTruck,
-    updateTruck, selectAllTrucks
+    updateTruck, selectAllTrucks, deleteTruckByTruckId
 } from "./truck.model"
 import {zodErrorResponse} from "../../utils/response.utils"
 import {TruckSchema} from "./truck.validator"
@@ -219,5 +219,43 @@ export async function getTrucksByNameController(request: Request, response: Resp
     } catch (error: unknown) {
 
         return response.json({status: 500,message: "internal server error", data: null})
+    }
+}
+
+export async function deleteTruckByTruckIdController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+
+        const validationResult = z.string().uuid({message: 'please provide a valid truck Id'}).safeParse(request.params.threadId)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const profile: PublicProfile = request.session.profile as PublicProfile
+
+        const truckProfileId: string = profile.profileId as string
+
+        const truckId = validationResult.data
+
+        const truck = await selectTruckByTruckId(truckId)
+
+        if(truck?.truckProfileId !== truckProfileId) {
+            return response.json({
+                status: 403,
+                message: 'you are not allowed to delete this truck',
+                data: null
+            })
+        }
+
+        const result = await deleteTruckByTruckId(truckId)
+
+        return response.json({status: 200, message: result, data: null})
+
+    } catch (error) {
+        return response.json({
+            status: 500,
+            message: '',
+            data: []
+        })
     }
 }
