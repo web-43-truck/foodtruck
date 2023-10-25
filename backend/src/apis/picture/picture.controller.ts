@@ -12,9 +12,10 @@ import {zodErrorResponse} from "../../utils/response.utils";
 import {z} from "zod";
 import {PictureSchema} from "./picture.validator";
 import {request} from "http";
-import {selectTruckByTruckId, Truck} from "../truck/truck.model"
+import {selectTruckByTruckId, Truck, updateTruck} from "../truck/truck.model"
 import {Profiler} from "inspector";
-import Profile = module
+import {PublicProfile} from "../profile/profile.model"
+import {TruckSchema} from "../truck/truck.validator";
 
 
 export async function postPictureController(request: Request, response:Response): Promise<Response | undefined> {
@@ -107,7 +108,7 @@ export async function deletePictureByPictureIdController(request: Request, respo
             return zodErrorResponse(response, validationResult.error)
         }
 
-        const profile: Profile = request.session.profile
+        const profile: PublicProfile = request.session.profile
 
         const profileId: string = profile.profileId as string
 
@@ -145,43 +146,46 @@ export async function deletePictureByPictureIdController(request: Request, respo
     }
 }
 
-export async function putPictureByPictureIdController(request: Request, response: Response): Promise<Response<Status>> {
-    try{
+export async function putPictureController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const bodyValidationResult = PictureSchema.safeParse(request.body)
 
-        const validationResultForRequestBody = PictureSchema.safeParse(request.body)
+        if(!bodyValidationResult.success) {
+            return zodErrorResponse(response, bodyValidationResult.error)
+        }
 
-        if(!validationResultForRequestBody.success) {
-        return zodErrorResponse(response, validationResultForRequestBody.error)
+        const paramsValidationResult = PictureSchema.pick({pictureId: true}).safeParse(request.params)
+
+        if(!paramsValidationResult.success) {
+            return zodErrorResponse(response, paramsValidationResult.error)
+        }
+
+        const {pictureId} = paramsValidationResult.data
+
+        const picture: Picture | null = await selectTruckByTruckId(pictureId)
+
+        if (picture === null) {
+            return response.json({status: 404, data: null, message: 'picture does not exist'})
+        }
+
+        const truck = request.session?.truck
+        const pictureTruckId = profile?.truckId
+
+        if ( pictureTruckId === null || picture.pictureTruckId !== pictureTruckId) {
+            return response.json({status: 404, data: null, message: 'you are not allowed to perform this task'})
+        }
+
+        const {pictureUrl, pictureType} = bodyValidationResult.data
+
+        picture.pictureUrl = pictureUrl
+        picture.pictureType = pictureType
+
+        const message = await updateTruck(truck)
+
+        return response.json({status: 200, data: null, message})
+
+    }catch (error: unknown) {
+        console.error(error)
+        return response.json({status: 500, message: 'internal server', data: null})
     }
-
-        const pictureFromSession = request.session?.picture
-        const pictureIdFromSession = pictureFromSession?.pictureId
-
-        const {pictureId} = validationResultForRequestBody.data
-
-        if (pictureIdFromSession !== pictureId) {
-        return response.json({status: 400, message: "you cannot update a picture that is not yours", data: null})
-    }
-
-        const {pictureId, pictureTruckId, pictureType} = validationResultForRequestBody.data
-
-        const truck: Picture |null = await selectPictureByPictureId(pictureId)
-
-        if(truck === null) {
-        return response.json({status: 400, message: "profile does not exist", data: null})
-    }
-
-    truck.pictureId= pictureId
-    truck.pictureTruckId = pictureTruckId
-    truck.pictureUrl = pictureUrl
-    truck.pictureType = pictureType
-    
-    await updatePicture(pictureId)
-    
-    return response.json({status: 200, message: "picture successfully updated", data:null})
-
-  } catch (error: unknown) {
-        return response.json({status: 500,message: "internal server error", data: null})
-    }
-
 }

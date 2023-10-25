@@ -15,9 +15,10 @@ export async function selectPictureByPictureTruckId(pictureTruckId: string): Pro
     const result = PictureSchema.array().max(1).parse(rowList)
     return result?.length === 1 ? result[0] : null
 }
-export async function selectPictureByPictureId(pictureId: string | null): Promise<Picture[]> {
+export async function selectPictureByPictureId(pictureId: string | null): Promise<Picture | null> {
     const rowList = await sql`SELECT picture_id, picture_truck_id, picture_url, picture_type FROM picture WHERE picture_id = ${pictureId}`
-    return PictureSchema.array().parse(rowList)
+    const result = PictureSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result[0] : null
 }
 export async function deletePicture(picture: string): Promise<string> {
     await sql`DELETE FROM picture WHERE picture_id = ${picture}`
