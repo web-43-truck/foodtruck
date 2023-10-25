@@ -10,9 +10,10 @@ export async function insertPicture(picture: Picture): Promise<string> {
             VALUES (gen_random_uuid(), ${pictureTruckId},${pictureUrl},${pictureType})`
     return 'Picture successfully uploaded'
 }
-export async function selectPictureByPictureTruckId(pictureTruckId: string): Promise<Picture[]> {
+export async function selectPictureByPictureTruckId(pictureTruckId: string): Promise<Picture | null> {
     const rowList = await sql`SELECT picture_id, picture_truck_id, picture_url, picture_type FROM picture WHERE pictureTruck_id = ${pictureTruckId}`
-    return PictureSchema.array().parse(rowList)
+    const result = PictureSchema.array().max(1).parse(rowList)
+    return result?.length === 1 ? result[0] : null
 }
 export async function selectPictureByPictureId(pictureId: string | null): Promise<Picture[]> {
     const rowList = await sql`SELECT picture_id, picture_truck_id, picture_url, picture_type FROM picture WHERE picture_id = ${pictureId}`
