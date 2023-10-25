@@ -19,6 +19,7 @@ export function createStatus (status: number, data: unknown, message: string | n
  */
 export function zodErrorResponse (response: Response, error: ZodError): Response<Status> {
     const message = error.issues[0].message
+
     return errorResponse(response, createStatus(418, null, message))
 }
 
