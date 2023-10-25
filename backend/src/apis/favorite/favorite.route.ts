@@ -5,7 +5,7 @@ import {
     getFavoritesByFavoriteTruckIdController,
     postFavoriteController,
     toggleFavoriteController
-} from "./favorite.controller"
+} from './favorite.controller'
 
 const basePath = '/apis/favorite'
 
@@ -19,10 +19,12 @@ router.route('/toggle')
 
 router.route('/favoriteTruckId/:favoriteTruckId')
     .get(getFavoritesByFavoriteTruckIdController)
-    .delete(isLoggedInController, deleteFavoriteController)
+
 
 router.route('/favoriteProfileId/:favoriteProfileId')
     .get(getFavoritesByFavoriteProfileIdController)
+    .delete(isLoggedInController, deleteFavoriteController)
+
 
 
 export const favoriteRoute = {basePath, router}
