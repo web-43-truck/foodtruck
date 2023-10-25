@@ -10,7 +10,7 @@ const router = Router()
 router.route('/')
     .get(getLocationByLocationLng)
 
-router.route('/')
+router.route('/locationLat')
     .get(getLocationByLocationLat)
 
 export const locationRoute = {basePath, router}

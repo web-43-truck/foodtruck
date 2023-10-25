@@ -22,7 +22,8 @@ export const LocationSchema = z.object({
     locationAddress: z.string({
         required_error: 'locationAddress is required',
         invalid_type_error: 'please provide a valid locationAddress'
-    }),
+    })
+        .nullable(),
 
     locationLat: z.string({required_error: 'Unable to locate'
     }),
