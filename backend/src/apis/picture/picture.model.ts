@@ -15,14 +15,14 @@ export async function selectPictureByPictureTruckId(pictureTruckId: string): Pro
     return PictureSchema.array().parse(rowList)
 }
 export async function selectPictureByPictureId(picture: Picture): Promise<Picture[]> {
-    const rowList = await sql`SELECT picture_truck_id, picture_url, picture_type FROM picture WHERE picture = ${pictureId}`
+    const rowList = await sql`SELECT picture_truck_id, picture_url, picture_type FROM picture WHERE picture_id = ${pictureId}`
     return PictureSchema.array().parse(rowList)
 }
-export async function deletePictureByPictureId(pictureId: string): Promise<string> {
-    await sql`DELETE FROM picture WHERE picture_id = ${pictureId}`
+export async function deletePicture(picture: string): Promise<string> {
+    await sql`DELETE FROM picture WHERE picture_id = ${picture}`
     return 'picture successfully deleted'
 }
-export async function updatePicture (picture: Picture): Promise<string> {
+export async function updatePicture(picture: Picture): Promise<string> {
     const {pictureTruckId, pictureUrl, pictureType} = picture
     await sql`UPDATE picture SET picture_truck_id = ${pictureTruckId}, picture_url = ${pictureUrl}, picture_type= ${pictureType}`
     return 'Picture successfully updated'
