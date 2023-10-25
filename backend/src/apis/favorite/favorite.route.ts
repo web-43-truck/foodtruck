@@ -23,6 +23,8 @@ router.route('/favoriteTruckId/:favoriteTruckId')
 
 router.route('/favoriteProfileId/:favoriteProfileId')
     .get(getFavoritesByFavoriteProfileIdController)
+
+router.route('/favoriteProfileId/:favoriteProfileId/favoriteTruckId/:favoriteTruckId')
     .delete(isLoggedInController, deleteFavoriteController)
 
 

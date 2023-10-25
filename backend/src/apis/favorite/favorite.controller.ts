@@ -131,7 +131,7 @@ export async function postFavoriteController(request: Request, response: Respons
 
 export async function deleteFavoriteController(request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const deleteValidationResult = FavoriteSchema.safeParse(request.body)
+        const deleteValidationResult = FavoriteSchema.safeParse(request.params)
 
         if (!deleteValidationResult.success) {
             return zodErrorResponse(response, deleteValidationResult.error)
