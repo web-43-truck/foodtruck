@@ -10,7 +10,4 @@ const router = Router()
 router.route('/')
     .get(indexController)
 
-export const indexRoute = {
-    router,
-    basePath
-}
+export const indexRoute = {router, basePath}

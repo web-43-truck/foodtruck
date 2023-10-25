@@ -1,30 +1,46 @@
-import { Request, Response } from "express";
-import { insertPicture, selectPictureByPictureTruckId, deletePicture, updatePicture } from "picture.model";
-import {zodErrorResponse} from "../../utils/response.utils";
-
-
+import {Request, Response} from 'express'
+import {
+} from "./picture.model";
 import {Status} from "../../utils/interfaces/Status";
+import {PictureSchema} from "./picture.validator";
+import {zodErrorResponse} from "../../utils/response.utils";
+import {z} from "zod";
+import {PictureSchema} from "../picture/picture.validator";
+import {request} from "http";
+import {Truck} from "..truck"
 
-export async function insertPictureController(picture: PublicProfileSchema): Promise<Status>> {
-    const validationResult = PictureSchema.({picture: true}).safeParse(request.params)
-    if (!validationResult.success) {
-        return zodErrorResponse(response, validationResult.error)
+
+export async function postPictureController(request: Request, response:Response): Promise<Response | undefined>
+    try {
+        const validation = PictureSchema.safeParse(request.body)
+        if (!validation.success) {
+            return zodErrorResponse(response, validation.error)
+        }
+
+        const { pictureTruckId, pictureUrl, pictureType} = validation.data
+
+
+        const truck : Truck = request.session.truck as Truck
+
+        const pictureTruckId: string = truck.truckId as string
+
+        const
+
     }
 }
 
-
-export async function selectPictureByPictureTruckIdController(pictureTruckId: string): Promise<Status>
-{
+export async function getPictureByPictureTruckIdController(pictureTruckId: string): Promise<>{
 
 }
 
-export async function selectPictureByPictureIdController(pictureId: string): Promise<Status>{
+export async function getPictureByPictureIdController(pictureId: string): Promise<>{
 
 }
 
-export async function deletePictureByPictureIdController(pictureId: string): Promise<Status>{
+export async function deletePictureByPictureIdController(pictureId: string): {
 
 }
-export async function updatePictureByPictureIdController(pictureId: string): Promise<Status>{
+
+export async function putPictureByPictureIdController(pictureId: string): {
 
 }
