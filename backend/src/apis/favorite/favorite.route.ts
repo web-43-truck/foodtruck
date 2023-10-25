@@ -7,8 +7,7 @@ import {
     toggleFavoriteController
 } from "./favorite.controller"
 
-import basePath = '/apis/favorite'
-
+const basePath = '/apis/favorite'
 
 const router = Router()
 
