@@ -1,17 +1,27 @@
 import {Router} from 'express'
 import {
-    getLocationByLocationLng,
-    getLocationByLocationLat
+    getLocationByLocationTruckId,
+    getLocationByLocationId
 } from "./location.controller"
 const basePath = '/apis/location'
 
 const router = Router()
 
-router.route('/')
-    .get(getLocationByLocationLng)
 
-router.route('/locationLat')
-    .get(getLocationByLocationLat)
+
+
+
+router.route('/locationId')
+    .get(getLocationByLocationId)
+
+router.route('/locationTruckId')
+    .get(getLocationByLocationTruckId)
+
+
+
+
+
+
 
 export const locationRoute = {basePath, router}
 
