@@ -1,5 +1,6 @@
+// storing
 import { Request, Response } from 'express'
-import { uploadToCloudinary } from '../../../utils/cloudinary.utils'
+import { uploadToCloudinary } from '../../utils/cloudinary.utils'
 
 export async function imageUploadController (request: Request, response: Response): Promise<Response> {
     try {
