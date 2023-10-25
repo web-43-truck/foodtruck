@@ -1,13 +1,13 @@
 import {NextFunction, Request, Response} from 'express'
 import {verify} from 'jsonwebtoken'
 import {Status} from '../interfaces/Status'
-import {PrivateProfile} from "../../apis/profile/profile.model"
+import {PublicProfile} from "../../apis/profile/profile.model"
 
 
 export function isLoggedInController(request: Request, response: Response, next: NextFunction): Response | void {
     const status: Status = {status: 401, message: 'Please login', data: null}
     try {
-        const profile: PrivateProfile | undefined = request.session?.profile
+        const profile: PublicProfile | undefined = request.session?.profile
 
         const signature: string | undefined = request.session?.signature
 
