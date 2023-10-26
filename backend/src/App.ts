@@ -10,6 +10,7 @@ import { signInRoute } from './apis/sign-in/sign-in.route'
 import { profileRoute } from './apis/profile/profile.route'
 import { truckRoute } from './apis/truck/truck.route'
 import {favoriteRoute} from "./apis/favorite/favorite.route";
+import {pictureRoute} from "./apis/picture/picture.route";
 
 // The following class creates the app and instantiates the server
 export class App {
@@ -58,6 +59,7 @@ export class App {
         this.app.use(profileRoute.basePath, profileRoute.router)
         this.app.use(truckRoute.basePath, truckRoute.router)
         this.app.use(favoriteRoute.basePath, favoriteRoute.router)
+        this.app.use(pictureRoute.basePath, pictureRoute.router)
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
