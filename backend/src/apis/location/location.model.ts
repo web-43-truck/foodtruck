@@ -41,7 +41,7 @@ export async function updateLocation (location: Location):Promise<string> {
 export async function selectLocationByLocationTruckId(truckId: string): Promise<Location|null> {
 
     const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat,
-                                   location_Lng, location_sunrise, location_sunset FROM location WHERE truck_id = ${truckId}`
+                                   location_Lng, location_sunrise, location_sunset FROM location WHERE location_truck_id = ${locationTruckId}`
 
 
     const result = LocationSchema.array().max(1).parse(rowList)

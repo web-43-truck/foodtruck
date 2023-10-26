@@ -2,7 +2,7 @@ import {LocationSchema} from "./location.validator"
 import {Request, Response} from "express";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {Status} from "../../utils/interfaces/Status";
-import {updateLocation, insertLocation, selectLocationTruckId, selectLocationByLocationId, deleteLocationId} from "./location.model"
+import {updateLocation, insertLocation, selectLocationByTruckId, selectLocationByLocationId, deleteLocationId} from "./location.model"
 import {string, z} from "zod";
 
 
@@ -24,7 +24,7 @@ export async function getLocationByTruckId (request: Request, response: Response
 
         const {locationId} = validationResult.data
 
-        const data: Location | null = await selectLocationByTruckId(locationId)
+        const data: Location | null = await selectLocationByTruckId(locationTruckId)
 
         const status: Status = {status: 200, message: null, data}
         return response.json(status)
