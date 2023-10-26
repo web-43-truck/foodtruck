@@ -1,7 +1,7 @@
 import {Router} from 'express'
 import {
     getLocationByLocationTruckId,
-    getLocationByLocationId
+
 } from "./location.controller"
 const basePath = '/apis/location'
 
@@ -12,7 +12,7 @@ const router = Router()
 
 
 router.route('/locationId')
-    .get(getLocationByLocationId)
+ //   .get(getLocationByLocationId)
 
 router.route('/locationTruckId')
     .get(getLocationByLocationTruckId)

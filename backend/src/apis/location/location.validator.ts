@@ -25,10 +25,10 @@ export const LocationSchema = z.object({
     })
         .nullable(),
 
-    locationLat: z.string({required_error: 'Unable to locate'
+    locationLat: z.coerce.number({required_error: 'Unable to locate'
     }),
 
-    locationLng: z.string({required_error: 'Unable to locate'
+    locationLng: z.coerce.number({required_error: 'Unable to locate'
     }),
 
     locationSunrise: z.number({
