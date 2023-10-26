@@ -2,7 +2,7 @@ import {LocationSchema} from "./location.validator"
 import {Request, Response} from "express";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {Status} from "../../utils/interfaces/Status";
-import {updateLocation, insertLocation, selectLocationTruckId, selectLocationByLocationId, deleteLocationId} from "./location.model"
+import {updateLocation, insertLocation, selectLocationByLocationTruckId, selectLocationByLocationId, deleteLocationId} from "./location.model"
 import {string, z} from "zod";
 
 
@@ -11,33 +11,6 @@ import {string, z} from "zod";
 
 
 
-
-export async function getLocationByTruckId (request: Request, response: Response):Promise<Response<Status>> {
-    try {
-        const validationResult = z.object({
-            locationId: z.string().uuid('please provide a valid location')
-        }). safeParse(request.params)
-
-        if (!validationResult.success) {
-            return zodErrorResponse(response, validationResult.error)
-        }
-
-        const {locationId} = validationResult.data
-
-        const data: Location | null = await selectLocationByTruckId(locationId)
-
-        const status: Status = {status: 200, message: null, data}
-        return response.json(status)
-
-    }
-
-        catch (error) {
-        console.log()
-
-           return response.json({status:500, data: null, message: 'cannot locate'})
-        }
-
-}
 
 
 export async function getLocationByLocationTruckId(request: Request, response: Response):Promise<Response<Status>> {
