@@ -38,7 +38,7 @@ export async function updateLocation (location: Location):Promise<string> {
     return 'Location updated successfully'
 }
 
-export async function selectLocationByLocationTruckId(truckId: string): Promise<Location|null> {
+export async function selectLocationByTruckId(truckId: string): Promise<Location|null> {
 
     const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat,
                                    location_Lng, location_sunrise, location_sunset FROM location WHERE truck_id = ${truckId}`
