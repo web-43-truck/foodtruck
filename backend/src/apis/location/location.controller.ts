@@ -8,47 +8,18 @@ import {string, z} from "zod";
 
 
 
-
-
-
-
-export async function getLocationByTruckId (request: Request, response: Response):Promise<Response<Status>> {
-    try {
-        const validationResult = z.object({
-            locationId: z.string().uuid('please provide a valid location')
-        }). safeParse(request.params)
-
-        if (!validationResult.success) {
-            return zodErrorResponse(response, validationResult.error)
-        }
-
-        const {locationId} = validationResult.data
-
-        const data: Location | null = await selectLocationByTruckId(locationTruckId)
-
-        const status: Status = {status: 200, message: null, data}
-        return response.json(status)
-
-    }
-
-        catch (error) {
-        console.log()
-
-           return response.json({status:500, data: null, message: 'cannot locate'})
-        }
-
-}
-
-
-export async function getLocationByLocationTruckId(request: Request, response: Response):Promise<Response<Status>> {
+export async function getLocationByTruckId(request: Request, response: Response):Promise<Response<Status>> {
     try {
         const validationResult = LocationSchema.safeParse(request.params)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
         }
+        const {locationTruckId} = validationResult.data
 
-        const data = await getLocationByLocationTruckId(request, response)
+        const data = await selectLocationByTruckId(locationTruckId)
+
+        const status: Status= {status:200, message: null, data}
 
         return response.json({status: 200, message: null, data: null})
     } catch (error: any) {
@@ -56,6 +27,7 @@ export async function getLocationByLocationTruckId(request: Request, response: R
         return response.json({status: 500, data: null, message: 'cannot locate'})
 
     }
+}
 
     async function getLocationByLocationAddress(request: Request, response: Response): Promise<Response<Status>> {
         try {
@@ -73,6 +45,7 @@ export async function getLocationByLocationTruckId(request: Request, response: R
             Response.json({status: 500, data: null, message: 'cannot locate'})
             return response.json({status: 500, message: 'internal server', data: null})
         }
+    }
 
         async function getLocationByLocationSunset(request: Request, response: Response): Promise<Response<Status>> {
             try {
@@ -92,6 +65,7 @@ export async function getLocationByLocationTruckId(request: Request, response: R
 
 
             }
+        }
 
             async function getLocationByLocationSunrise(request: Request, response: Response): Promise<Response<Status>> {
                 try {
@@ -109,6 +83,7 @@ export async function getLocationByLocationTruckId(request: Request, response: R
                     return response.json({status: 500, message: 'internal server', data: null})
 
                 }
+            }
 
 
                 async function putLocationController(request: Request, response: Response): Promise<Response<Status>> {
@@ -127,6 +102,9 @@ export async function getLocationByLocationTruckId(request: Request, response: R
                         console.error(error)
                         return response.json({status: 500, message: 'internal server', data: null})
 
+                    }
+                }
+
                         async function getLocationByLocationLat() {
                             new Promise((resolve, reject) => {
                                 if (navigator.geolocation) {
@@ -139,6 +117,7 @@ export async function getLocationByLocationTruckId(request: Request, response: R
 
                         }
 
+
                         function getLocationByLocationLng() {
                             new Promise((resolve, reject) => {
                                 if (navigator.geolocation) {
@@ -149,9 +128,3 @@ export async function getLocationByLocationTruckId(request: Request, response: R
                                 }
                             })
                         }
-                    }
-                }
-            }
-        }
-    }
-}
