@@ -48,4 +48,5 @@ create table if not exists favorite(
                                        favorite_profile_id UUID NOT NULL,
                                        FOREIGN KEY (favorite_truck_id) references truck(truck_id),
                                        FOREIGN KEY (favorite_profile_id) references profile(profile_id)
+
 );
