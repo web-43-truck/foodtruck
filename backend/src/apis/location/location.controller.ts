@@ -2,18 +2,127 @@ import {LocationSchema} from "./location.validator"
 import {Request, Response} from "express";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {Status} from "../../utils/interfaces/Status";
-import {updateLocation, insertLocation, selectLocationByLocationTruckId, selectLocationByLocationId, deleteLocationId} from "./location.model"
 import {string, z} from "zod";
+import {
+    insertLocation,
+    updateLocationId,
+    updateLocationTruckId,
+    deleteLocationId,
+    selectLocationByLocationId,
+    selectLocationByLocationIsActive,
+    selectLocationByLocationTruckId,
+    selectLocationByLocationLat,
+    selectLocationByLocationLng,
+    selectLocationByLocationAddress, selectLocationByLocationSunset, selectLocationByLocationSunrise
+} from "./location.model";
+import {TruckSchema} from "../truck/truck.validator";
 
 
+export async function putLocationController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const bodyValidationResult = LocationSchema.safeParse(request.body)
+
+        if(!bodyValidationResult.success) {
+            return zodErrorResponse(response, bodyValidationResult.error)
+        }
+
+        const paramsValidationResult = LocationSchema.pick({locationId: true}).safeParse(request.params)
+
+        if(!paramsValidationResult.success) {
+            return zodErrorResponse(response, paramsValidationResult.error)
+        }
+
+        const {locationId} = paramsValidationResult.data
+
+        const location: Location | null = await selectLocationByLocationId(locationId)
+
+        if(location === null) {
+            return response.json({status: 404, data: null, message: 'location does not exist'})
+        }
+
+        const truck = request.session ? request.session.truck : undefined
+        const locationTruckId = truck?.truckId
+
+        if (!(location.locationId === locationId && locationId !== null)) {
+            return response.json({status: 404, data: null, message: 'you are not allowed to preform this task'})
+        }
+
+        const { locationIsActive:boolean, locationLat: locationLng} = bodyValidationResult.data
 
 
+        locationTruckId.locationLat = selectLocationByLocationLat
+        locationTruckId.locationLng = selectLocationByLocationLng
+        locationTruckId.locationSunrise = selectLocationByLocationSunrise
+        locationTruckId.locationSunset = selectLocationByLocationSunset
+
+        const message = await updateLocationTruckId(locationTruckId)
+
+        return response.json({status: 200, data: null, message})
+
+    } catch (error: unknown) {
+        console.error(error)
+        return response.json({status: 500, message: 'internal server error', data: null})
+    }
 
 
+}
 
 
+export async function postLocationController (request: Request, response: Response): Promise<Response> {
+    try {
 
-export async function getLocationByLocationTruckId(request: Request, response: Response):Promise<Response<Status>> {
+        const validationResult = LocationSchema.safeParse(request.body)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const { locationId,  locationIsActive, locationLat, locationLng, locationSunset, locationSunrise} = validationResult.data
+
+
+        const truck = request.session?.truck
+        const locationTruckId = truck?.truckId
+
+        if(locationTruckId === undefined || locationTruckId === null) {
+            return response.json({ status: 400, data: null, message: 'You are not allowed to preform this task' })
+        }
+
+        const location: location = {locationTruckId: locationTruckId, locationLat, locationLng,  locationSunrise, locationSunset }
+
+        const message: string = await insertLocation(locationId)
+
+        return response.json({ status: 200, data: null, message })
+
+    } catch (error) {
+        return response.json({
+            status: 500,
+            message: 'internal server error',
+            data: null
+        })
+    }
+
+
+    export async function getLocationByLocationIdController(request: Request, response: Response):Promise<Response<Status>> {
+        try {
+            const validationResult = LocationSchema.safeParse(request.params)
+
+            if (!validationResult.success) {
+                return zodErrorResponse(response, validationResult.error)
+            }
+
+            const data = await selectLocationByLocationId(request, response)
+
+            return response.json({status: 200, message: null, data: null})
+        } catch (error: any) {
+            console.error(error)
+            return response.json({status: 500, data: null, message: 'cannot locate'})
+
+        }
+
+    }
+
+
+export async function getLocationByLocationTruckIdController(request: Request, response: Response):Promise<Response<Status>> {
     try {
         const validationResult = LocationSchema.safeParse(request.params)
 
@@ -21,7 +130,7 @@ export async function getLocationByLocationTruckId(request: Request, response: R
             return zodErrorResponse(response, validationResult.error)
         }
 
-        const data = await getLocationByLocationTruckId(request, response)
+        const data = await selectLocationByLocationTruckId(request, response)
 
         return response.json({status: 200, message: null, data: null})
     } catch (error: any) {
@@ -30,7 +139,9 @@ export async function getLocationByLocationTruckId(request: Request, response: R
 
     }
 
-    async function getLocationByLocationAddress(request: Request, response: Response): Promise<Response<Status>> {
+}
+
+    async function getLocationByLocationAddressController(request: Request, response: Response): Promise<Response<Status>> {
         try {
             const validationResult = LocationSchema.safeParse(request.params)
 
@@ -38,7 +149,7 @@ export async function getLocationByLocationTruckId(request: Request, response: R
                 return zodErrorResponse(response, validationResult.error)
             }
 
-            const data = await getLocationByLocationAddress(request, response)
+            const data = await selectLocationByLocationAddress(request, response)
 
             return response.json({status: 200, message: null, data: null})
         } catch (error: any) {
@@ -47,7 +158,9 @@ export async function getLocationByLocationTruckId(request: Request, response: R
             return response.json({status: 500, message: 'internal server', data: null})
         }
 
-        async function getLocationByLocationSunset(request: Request, response: Response): Promise<Response<Status>> {
+    }
+
+        async function getLocationByLocationSunsetController(request: Request, response: Response): Promise<Response<Status>> {
             try {
                 const validationResult = LocationSchema.safeParse(request.params)
 
@@ -55,7 +168,7 @@ export async function getLocationByLocationTruckId(request: Request, response: R
                     return zodErrorResponse(response, validationResult.error)
                 }
 
-                const data = await getLocationByLocationSunset(request, response)
+                const data = await selectLocationByLocationSunset(request)
 
                 return response.json({status: 200, message: null, data: null})
             } catch (error: any) {
@@ -65,6 +178,7 @@ export async function getLocationByLocationTruckId(request: Request, response: R
 
 
             }
+        }
 
             async function getLocationByLocationSunrise(request: Request, response: Response): Promise<Response<Status>> {
                 try {
@@ -82,9 +196,10 @@ export async function getLocationByLocationTruckId(request: Request, response: R
                     return response.json({status: 500, message: 'internal server', data: null})
 
                 }
+            }
 
 
-                async function putLocationController(request: Request, response: Response): Promise<Response<Status>> {
+                async function postLocationController(request: Request, response: Response): Promise<Response<Status>> {
                     try {
                         const bodyValidationResult = LocationSchema.safeParse(request.body)
 

@@ -3,6 +3,7 @@ import morgan from 'morgan'
 import session from 'express-session'
 import { createClient,  RedisClientType } from 'redis'
 import RedisStore from 'connect-redis'
+
 // Routes
 import { indexRoute } from './apis/index.route'
 import { signUpRoute } from './apis/sign-up/sign-up.route'
