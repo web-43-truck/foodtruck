@@ -3,6 +3,7 @@ import morgan from 'morgan'
 import session from 'express-session'
 import { createClient,  RedisClientType } from 'redis'
 import RedisStore from 'connect-redis'
+import helmet from 'helmet'
 
 // Routes
 import { indexRoute } from './apis/index.route'
@@ -12,7 +13,7 @@ import { profileRoute } from './apis/profile/profile.route'
 import { truckRoute } from './apis/truck/truck.route'
 import { favoriteRoute }  from "./apis/favorite/favorite.route";
 import { pictureRoute } from "./apis/picture/picture.route";
-import helmet from "helmet";
+
 
 // The following class creates the app and instantiates the server
 export class App {
@@ -43,7 +44,7 @@ export class App {
     private middlewares (): void {
 
         this.app.use(morgan('dev'))
-        this.app.use(helmet());
+        this.app.use(helmet())
         this.app.use(express.json())
         this.app.use(session( {
             store: this.redisStore,
