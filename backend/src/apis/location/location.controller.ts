@@ -7,15 +7,15 @@ import {
     insertLocation,
     updateLocationId,
     updateLocationTruckId,
-    deleteLocationId,
     selectLocationByLocationId,
-    selectLocationByLocationIsActive,
     selectLocationByLocationTruckId,
     selectLocationByLocationLat,
     selectLocationByLocationLng,
     selectLocationByLocationAddress, selectLocationByLocationSunset, selectLocationByLocationSunrise
 } from "./location.model";
 import {TruckSchema} from "../truck/truck.validator";
+import {PublicProfile} from "../profile/profile.model";
+import {deleteTruckByTruckId, selectTruckByTruckId} from "../truck/truck.model";
 
 
 export async function putLocationController(request: Request, response: Response): Promise<Response<Status>> {
@@ -32,16 +32,16 @@ export async function putLocationController(request: Request, response: Response
             return zodErrorResponse(response, paramsValidationResult.error)
         }
 
-        const {locationId} = paramsValidationResult.data
+        const {locationTruckId} = paramsValidationResult.data
 
-        const location: Location | null = await selectLocationByLocationId(locationId)
+        const locationId: Location | null = await selectLocationByLocationId(request, response)
 
         if(location === null) {
             return response.json({status: 404, data: null, message: 'location does not exist'})
         }
 
-        const truck = request.session ? request.session.truck : undefined
-        const locationTruckId = truck?.truckId
+        const location = request.session ? request.session.location : undefined
+        const locationTruckId = location?.locationId
 
         if (!(location.locationId === locationId && locationId !== null)) {
             return response.json({status: 404, data: null, message: 'you are not allowed to preform this task'})
@@ -227,6 +227,7 @@ export async function getLocationByLocationTruckIdController(request: Request, r
 
                         }
 
+
                         function getLocationByLocationLng() {
                             new Promise((resolve, reject) => {
                                 if (navigator.geolocation) {
@@ -239,7 +240,4 @@ export async function getLocationByLocationTruckIdController(request: Request, r
                         }
                     }
                 }
-            }
-        }
-    }
-}
+
