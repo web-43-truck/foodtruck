@@ -1,11 +1,12 @@
+
 import {NavBar} from "@/components/NavBar";
-import {TruckView} from "../../components/truck/TruckView";
+import {TruckView} from "./TruckView";
 
 export default function TruckPage(){
     return(
         <>
             <NavBar/>
-            <TruckView/>
+            <TruckView key={process.env["MAPBOX_ACCESS_TOKEN"]}/>
         </>
     )
 }
