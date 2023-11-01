@@ -1,12 +1,14 @@
+import Image from "next/image";
+
 export function TruckView() {
     return (
         <>
             <h1 className="text-center text-8xl my-14">Joe's Tacos</h1>
             <section className="container mx-auto">
                 <div className="flex md:justify-evenly rounded-xl">
-                <Image text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
-                <Image text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
-                <Image text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
+                <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
+                <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
+                <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
                 </div>
             </section>
             <section className="container mx-auto ">
@@ -20,11 +22,23 @@ export function TruckView() {
                 </section>
                 <p className="text-center text-3xl mt-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem harum ipsa neque nobis reprehenderit totam voluptatibus! Alias, aut autem eum explicabo illo illum maxime molestias mollitia provident quasi sit vel!</p>
             </section>
-            <section>
-                <a href="https://www.google.com/maps/@35.0886078,-106.666104,11.75z?entry=ttu"><img src="map-screenshot.png" alt="map scren-shot"/></a>
+            <section >
+                <div className="artboard artboard-horizontal phone-2 my-12">
+                    <a href="https://www.google.com/maps/@35.0886078,-106.666104,11.75z?entry=ttu">
+                        <Image src="/map-screenshot.png"
+                               width={500}
+                               height={500}
+                               alt="map" />
+                    </a>
+                </div>
             </section>
             <div>
-                <a href="/"><img src="food-truck-icon.png" alt="food truck icon"/></a>
+                <a href="/">
+                    <Image src="/food-truck-icon.png"
+                    width={500}
+                    height={500}
+                    alt="food truck icon" className="w-16 text-center"/>
+                </a>
             </div>
         </>
     )
@@ -34,7 +48,7 @@ type ImagesProps = {
     text: string,
     alt: string
 }
-function Image(props: ImagesProps) {
+function Picture(props: ImagesProps) {
     const {text, alt} = props
     return (
         <div className="carousel-item">
