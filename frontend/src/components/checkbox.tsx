@@ -3,8 +3,7 @@ export default function CheckBox() {
 
 
         <div className="inline-flex items-center">
-            <label
-                className="relative flex items-center p-3 rounded-full cursor-pointer"
+            <label className="relative flex items-center p-3 rounded-full cursor-pointer"
                 htmlFor="login"
                 data-ripple-dark="true"
             >

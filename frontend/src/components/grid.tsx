@@ -1,6 +1,8 @@
 import CheckBox from "./checkbox";
+import {SearchItem} from "@/components/SearchItem";
+import {Picture} from "@/components/Picture";
 
-export default function Grid() {
+export function Grid() {
     return (
 
         <div
@@ -8,7 +10,7 @@ export default function Grid() {
 
             <SearchItem truckName={"Joes Tacos"} truckDescription={"Cookie croissant jelly cake carrot cake cotton candy caramels cotton candy. Icing oat souffle. Gingerbread oat cake sweet roll powder jelly-o."}/>
 
-            <Picture/>
+            <Picture text={text}/>
 
             <CheckBox/>
 

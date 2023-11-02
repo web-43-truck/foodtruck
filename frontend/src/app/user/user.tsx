@@ -1,9 +1,9 @@
 'use client'
 
 
-import Grid from "../components/grid";
+import Grid from "../../components/grid";
 
-export default function Home() {
+export default function User() {
     return (
         <>
         <Grid/>
