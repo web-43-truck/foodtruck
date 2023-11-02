@@ -2,13 +2,137 @@ import {LocationSchema} from "./location.validator"
 import {Request, Response} from "express";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {Status} from "../../utils/interfaces/Status";
+<<<<<<< HEAD
 import {updateLocation, insertLocation, selectLocationByTruckId, selectLocationByLocationId, deleteLocationId} from "./location.model"
+=======
+>>>>>>> development
 import {string, z} from "zod";
+import {
+    insertLocation,
+    updateLocationId,
+    updateLocationTruckId,
+    selectLocationByLocationId,
+    selectLocationByLocationTruckId,
+    selectLocationByLocationLat,
+    selectLocationByLocationLng,
+    selectLocationByLocationAddress, selectLocationByLocationSunset, selectLocationByLocationSunrise
+} from "./location.model";
+import {TruckSchema} from "../truck/truck.validator";
+import {PublicProfile} from "../profile/profile.model";
+import {deleteTruckByTruckId, selectTruckByTruckId} from "../truck/truck.model";
 
 
+<<<<<<< HEAD
 
 
 export async function getLocationByTruckId(request: Request, response: Response):Promise<Response<Status>> {
+=======
+export async function putLocationController(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const bodyValidationResult = LocationSchema.safeParse(request.body)
+
+        if(!bodyValidationResult.success) {
+            return zodErrorResponse(response, bodyValidationResult.error)
+        }
+
+        const paramsValidationResult = LocationSchema.pick({locationId: true}).safeParse(request.params)
+
+        if(!paramsValidationResult.success) {
+            return zodErrorResponse(response, paramsValidationResult.error)
+        }
+
+        const {locationTruckId} = paramsValidationResult.data
+
+        const locationId: Location | null = await selectLocationByLocationId(request, response)
+
+        if(location === null) {
+            return response.json({status: 404, data: null, message: 'location does not exist'})
+        }
+
+        const location = request.session ? request.session.location : undefined
+        const locationTruckId = location?.locationId
+
+        if (!(location.locationId === locationId && locationId !== null)) {
+            return response.json({status: 404, data: null, message: 'you are not allowed to preform this task'})
+        }
+
+        const { locationIsActive:boolean, locationLat: locationLng} = bodyValidationResult.data
+
+
+        locationTruckId.locationLat = selectLocationByLocationLat
+        locationTruckId.locationLng = selectLocationByLocationLng
+        locationTruckId.locationSunrise = selectLocationByLocationSunrise
+        locationTruckId.locationSunset = selectLocationByLocationSunset
+
+        const message = await updateLocationTruckId(locationTruckId)
+
+        return response.json({status: 200, data: null, message})
+
+    } catch (error: unknown) {
+        console.error(error)
+        return response.json({status: 500, message: 'internal server error', data: null})
+    }
+
+
+}
+
+
+export async function postLocationController (request: Request, response: Response): Promise<Response> {
+    try {
+
+        const validationResult = LocationSchema.safeParse(request.body)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const { locationId,  locationIsActive, locationLat, locationLng, locationSunset, locationSunrise} = validationResult.data
+
+
+        const truck = request.session?.truck
+        const locationTruckId = truck?.truckId
+
+        if(locationTruckId === undefined || locationTruckId === null) {
+            return response.json({ status: 400, data: null, message: 'You are not allowed to preform this task' })
+        }
+
+        const location: location = {locationTruckId: locationTruckId, locationLat, locationLng,  locationSunrise, locationSunset }
+
+        const message: string = await insertLocation(locationId)
+
+        return response.json({ status: 200, data: null, message })
+
+    } catch (error) {
+        return response.json({
+            status: 500,
+            message: 'internal server error',
+            data: null
+        })
+    }
+
+
+    export async function getLocationByLocationIdController(request: Request, response: Response):Promise<Response<Status>> {
+        try {
+            const validationResult = LocationSchema.safeParse(request.params)
+
+            if (!validationResult.success) {
+                return zodErrorResponse(response, validationResult.error)
+            }
+
+            const data = await selectLocationByLocationId(request, response)
+
+            return response.json({status: 200, message: null, data: null})
+        } catch (error: any) {
+            console.error(error)
+            return response.json({status: 500, data: null, message: 'cannot locate'})
+
+        }
+
+    }
+
+
+export async function getLocationByLocationTruckIdController(request: Request, response: Response):Promise<Response<Status>> {
+>>>>>>> development
     try {
         const validationResult = LocationSchema.safeParse(request.params)
 
@@ -17,9 +141,13 @@ export async function getLocationByTruckId(request: Request, response: Response)
         }
         const {locationTruckId} = validationResult.data
 
+<<<<<<< HEAD
         const data = await selectLocationByTruckId(locationTruckId)
 
         const status: Status= {status:200, message: null, data}
+=======
+        const data = await selectLocationByLocationTruckId(request, response)
+>>>>>>> development
 
         return response.json({status: 200, message: null, data: null})
     } catch (error: any) {
@@ -29,7 +157,9 @@ export async function getLocationByTruckId(request: Request, response: Response)
     }
 }
 
-    async function getLocationByLocationAddress(request: Request, response: Response): Promise<Response<Status>> {
+}
+
+    async function getLocationByLocationAddressController(request: Request, response: Response): Promise<Response<Status>> {
         try {
             const validationResult = LocationSchema.safeParse(request.params)
 
@@ -37,7 +167,7 @@ export async function getLocationByTruckId(request: Request, response: Response)
                 return zodErrorResponse(response, validationResult.error)
             }
 
-            const data = await getLocationByLocationAddress(request, response)
+            const data = await selectLocationByLocationAddress(request, response)
 
             return response.json({status: 200, message: null, data: null})
         } catch (error: any) {
@@ -47,7 +177,9 @@ export async function getLocationByTruckId(request: Request, response: Response)
         }
     }
 
-        async function getLocationByLocationSunset(request: Request, response: Response): Promise<Response<Status>> {
+    }
+
+        async function getLocationByLocationSunsetController(request: Request, response: Response): Promise<Response<Status>> {
             try {
                 const validationResult = LocationSchema.safeParse(request.params)
 
@@ -55,7 +187,7 @@ export async function getLocationByTruckId(request: Request, response: Response)
                     return zodErrorResponse(response, validationResult.error)
                 }
 
-                const data = await getLocationByLocationSunset(request, response)
+                const data = await selectLocationByLocationSunset(request)
 
                 return response.json({status: 200, message: null, data: null})
             } catch (error: any) {
@@ -86,7 +218,7 @@ export async function getLocationByTruckId(request: Request, response: Response)
             }
 
 
-                async function putLocationController(request: Request, response: Response): Promise<Response<Status>> {
+                async function postLocationController(request: Request, response: Response): Promise<Response<Status>> {
                     try {
                         const bodyValidationResult = LocationSchema.safeParse(request.body)
 
@@ -128,3 +260,9 @@ export async function getLocationByTruckId(request: Request, response: Response)
                                 }
                             })
                         }
+<<<<<<< HEAD
+=======
+                    }
+                }
+
+>>>>>>> development
