@@ -76,21 +76,34 @@ export async function postLocationController (request: Request, response: Respon
             return zodErrorResponse(response, validationResult.error)
         }
 
-        const { locationId,  locationIsActive, locationLat, locationLng, locationSunset, locationSunrise} = validationResult.data
+        const {
+            locationId,
+            locationIsActive,
+            locationLat,
+            locationLng,
+            locationSunset,
+            locationSunrise
+        } = validationResult.data
 
 
         const truck = request.session?.truck
         const locationTruckId = truck?.truckId
 
-        if(locationTruckId === undefined || locationTruckId === null) {
-            return response.json({ status: 400, data: null, message: 'You are not allowed to preform this task' })
+        if (locationTruckId === undefined || locationTruckId === null) {
+            return response.json({status: 400, data: null, message: 'You are not allowed to preform this task'})
         }
 
-        const location: location = {locationTruckId: locationTruckId, locationLat, locationLng,  locationSunrise, locationSunset }
+        const location: location = {
+            locationTruckId: locationTruckId,
+            locationLat,
+            locationLng,
+            locationSunrise,
+            locationSunset
+        }
 
         const message: string = await insertLocation(locationId)
 
-        return response.json({ status: 200, data: null, message })
+        return response.json({status: 200, data: null, message})
 
     } catch (error) {
         return response.json({
@@ -99,6 +112,7 @@ export async function postLocationController (request: Request, response: Respon
             data: null
         })
     }
+}
 
 
     export async function getLocationByLocationIdController(request: Request, response: Response):Promise<Response<Status>> {
@@ -149,7 +163,7 @@ export async function getLocationByLocationTruckIdController(request: Request, r
 
 
 
-async function getLocationByLocationAddressController(request: Request, response: Response): Promise<Response<Status>> {
+export async function getLocationByLocationAddressController(request: Request, response: Response): Promise<Response<Status>> {
     try {
         const validationResult = LocationSchema.safeParse(request.params)
 
@@ -170,7 +184,7 @@ async function getLocationByLocationAddressController(request: Request, response
 }
 
 
-async function getLocationByLocationSunsetController(request: Request, response: Response): Promise<Response<Status>> {
+export async function getLocationByLocationSunsetController(request: Request, response: Response): Promise<Response<Status>> {
         try {
             const validationResult = LocationSchema.safeParse(request.params)
 
@@ -190,7 +204,7 @@ async function getLocationByLocationSunsetController(request: Request, response:
     }
 
 
-async function getLocationByLocationSunrise(request: Request, response: Response): Promise<Response<Status>> {
+export async function getLocationByLocationSunrise(request: Request, response: Response): Promise<Response<Status>> {
     try {
         const validationResult = LocationSchema.safeParse(request.params)
 
@@ -209,7 +223,7 @@ async function getLocationByLocationSunrise(request: Request, response: Response
 }
 
 
-async function putLocationController(request: Request, response: Response): Promise<Response<Status>> {
+export async function putLocationController(request: Request, response: Response): Promise<Response<Status>> {
     try {
         const bodyValidationResult = LocationSchema.safeParse(request.body)
 
@@ -227,7 +241,7 @@ async function putLocationController(request: Request, response: Response): Prom
         return response.json({status: 500, message: 'internal server', data: null})
         }
     }
-}
+
 
 // async function getLocationByLocationLat() {
 //     new Promise((resolve, reject) => {
