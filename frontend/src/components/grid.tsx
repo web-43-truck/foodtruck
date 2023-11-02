@@ -8,14 +8,20 @@ export default function Grid() {
 
             <SearchItem truckName={"Joes Tacos"} truckDescription={"Cookie croissant jelly cake carrot cake cotton candy caramels cotton candy. Icing oat souffle. Gingerbread oat cake sweet roll powder jelly-o."}/>
 
+            <Picture/>
+
             <CheckBox/>
 
             <SearchItem truckName={"Cake Shop"} truckDescription={"Cookie croissant jelly cake carrot cake cotton candy caramels cotton candy. Icing oat souffle. Gingerbread oat cake sweet roll powder jelly-o."}/>
+
+            <Picture/>
 
             <CheckBox/>
 
 
             <SearchItem truckName={"Honey Bee Ice Cream"} truckDescription={"Cookie croissant jelly cake carrot cake cotton candy caramels cotton candy. Icing oat souffle. Gingerbread oat cake sweet roll powder jelly-o."}/>
+
+            <Picture/>
 
             <CheckBox/>
 
