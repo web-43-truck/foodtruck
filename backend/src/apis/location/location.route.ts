@@ -7,10 +7,6 @@ const basePath = '/apis/location'
 
 const router = Router()
 
-
-
-
-
 router.route('/locationId')
  //   .get(getLocationByLocationId)
 
