@@ -29,7 +29,7 @@ export default function Form() {
 
                     <button
                         type="submit"
-                        className="w-full text-center py-3 rounded bg-green text-white hover:bg-blue-dark focus:outline-none my-1"
+                        className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
                     >Create Account</button>
 
                     <div className="text-center text-sm text-grey-dark mt-4">
@@ -43,12 +43,7 @@ export default function Form() {
                     </div>
                 </div>
 
-                <div className="text-grey-dark mt-6">
-                    Already have an account?
-                    <a className="no-underline border-b border-gray" href="../login/">
-                        Log in
-                    </a>.
-                </div>
+
             </div>
         </div>
     )

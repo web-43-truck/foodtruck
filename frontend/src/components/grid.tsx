@@ -28,6 +28,10 @@ export function Grid() {
             <CheckBox/>
 
             <SearchItem truckName={"Tanya's Soul Food"} truckDescription={"Cookie croissant jelly cake carrot cake cotton candy caramels cotton candy. Icing oat souffle. Gingerbread oat cake sweet roll powder jelly-o."}/>
+
+            <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
+
+            <CheckBox/>
         </div>)
 
 }
