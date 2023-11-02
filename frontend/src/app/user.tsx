@@ -1,12 +1,12 @@
 'use client'
 
 
-import {NavBar} from "../components/grid";
+import Grid from "../components/grid";
 
 export default function Home() {
     return (
         <>
-
+        <Grid/>
 
 
         </>
