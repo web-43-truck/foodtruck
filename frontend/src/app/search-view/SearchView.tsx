@@ -1,5 +1,5 @@
 import {Picture} from "@/components/Picture";
-import {SearchItem} from "@/components/SearchItem";
+
 
 export function SearchView() {
     return (
