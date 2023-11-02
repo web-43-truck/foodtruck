@@ -1,15 +1,11 @@
 import {NavBar} from "@/components/NavBar";
-
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 export default function Home() {
     return (
-<<<<<<< HEAD
-        <h1>Is this thing on?</h1>
-=======
         <>
         <NavBar/>
         </>
 
->>>>>>> development
     )
 }
