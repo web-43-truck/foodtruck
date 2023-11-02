@@ -2,6 +2,10 @@ import {LocationSchema} from "./location.validator"
 import {Request, Response} from "express";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {Status} from "../../utils/interfaces/Status";
+<<<<<<< HEAD
+import {updateLocation, insertLocation, selectLocationByTruckId, selectLocationByLocationId, deleteLocationId} from "./location.model"
+=======
+>>>>>>> development
 import {string, z} from "zod";
 import {
     insertLocation,
@@ -18,6 +22,11 @@ import {PublicProfile} from "../profile/profile.model";
 import {deleteTruckByTruckId, selectTruckByTruckId} from "../truck/truck.model";
 
 
+<<<<<<< HEAD
+
+
+export async function getLocationByTruckId(request: Request, response: Response):Promise<Response<Status>> {
+=======
 export async function putLocationController(request: Request, response: Response): Promise<Response<Status>> {
     try {
         const bodyValidationResult = LocationSchema.safeParse(request.body)
@@ -123,14 +132,22 @@ export async function postLocationController (request: Request, response: Respon
 
 
 export async function getLocationByLocationTruckIdController(request: Request, response: Response):Promise<Response<Status>> {
+>>>>>>> development
     try {
         const validationResult = LocationSchema.safeParse(request.params)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
         }
+        const {locationTruckId} = validationResult.data
 
+<<<<<<< HEAD
+        const data = await selectLocationByTruckId(locationTruckId)
+
+        const status: Status= {status:200, message: null, data}
+=======
         const data = await selectLocationByLocationTruckId(request, response)
+>>>>>>> development
 
         return response.json({status: 200, message: null, data: null})
     } catch (error: any) {
@@ -138,6 +155,7 @@ export async function getLocationByLocationTruckIdController(request: Request, r
         return response.json({status: 500, data: null, message: 'cannot locate'})
 
     }
+}
 
 }
 
@@ -157,6 +175,7 @@ export async function getLocationByLocationTruckIdController(request: Request, r
             Response.json({status: 500, data: null, message: 'cannot locate'})
             return response.json({status: 500, message: 'internal server', data: null})
         }
+    }
 
     }
 
@@ -215,6 +234,9 @@ export async function getLocationByLocationTruckIdController(request: Request, r
                         console.error(error)
                         return response.json({status: 500, message: 'internal server', data: null})
 
+                    }
+                }
+
                         async function getLocationByLocationLat() {
                             new Promise((resolve, reject) => {
                                 if (navigator.geolocation) {
@@ -238,6 +260,9 @@ export async function getLocationByLocationTruckIdController(request: Request, r
                                 }
                             })
                         }
+<<<<<<< HEAD
+=======
                     }
                 }
 
+>>>>>>> development
