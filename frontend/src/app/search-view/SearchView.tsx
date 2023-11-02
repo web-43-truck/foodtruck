@@ -1,9 +1,7 @@
-import {Picture} from "@/components/Picture";
 import {SearchItem} from "@/components/SearchItem";
 import Image from "next/image";
 import React from "react";
 import {ListItem} from "@/components/ListItem";
-import {ZodError} from "zod";
 
 
 export function SearchView() {
