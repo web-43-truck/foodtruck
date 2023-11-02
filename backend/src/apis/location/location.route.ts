@@ -11,22 +11,17 @@ const router = Router()
 
 
 router.route('/locationAddress')
-    .get(selectLocationByLocationAddress)
+    .get()
 router.route('/locationSunrise')
-    .get(selectLocationByLocationSunrise)
+    .get()
 router.route('/locationSunset')
-    .get(selectLocationByLocationSunset)
+    .get()
 
 router.route('/locationId')
-    .get(selectLocationByLocationId)
+    .get()
 
 router.route('/locationTruckId')
-    .get(selectLocationByLocationTruckId)
-
-
-
-
-
+    .get()
 
 
 export const locationRoute = {basePath, router}
