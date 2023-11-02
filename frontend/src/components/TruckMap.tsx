@@ -11,7 +11,7 @@ export function TruckMap() {
         { lat: 35.23, lng: -106.4444 }])
     return(
         <section className="grid">
-            <div className="justify-self-center">
+            <div className="justify-self-center my-14">
                 <Map
                     initialViewState={{
                         latitude: 35.33,
