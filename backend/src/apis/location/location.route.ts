@@ -1,17 +1,27 @@
 import {Router} from 'express'
 import {
-    getLocationByLocationTruckId,
+
 
 } from "./location.controller"
+
 const basePath = '/apis/location'
 
 const router = Router()
 
+
+
+router.route('/locationAddress')
+    .get(selectLocationByLocationAddress)
+router.route('/locationSunrise')
+    .get(selectLocationByLocationSunrise)
+router.route('/locationSunset')
+    .get(selectLocationByLocationSunset)
+
 router.route('/locationId')
- //   .get(getLocationByLocationId)
+    .get(selectLocationByLocationId)
 
 router.route('/locationTruckId')
-    .get(getLocationByLocationTruckId)
+    .get(selectLocationByLocationTruckId)
 
 
 

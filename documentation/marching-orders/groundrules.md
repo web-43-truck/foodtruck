@@ -1,8 +1,8 @@
 # Ground Rules
 ## Communication / Meetings 
 Whiteboard meetups during open work (once a week)
-* Mental Mondays: every Monday we will meet to talk about emotional awareness and understand where each of us are at starting the week in order to give additional support where needed. 
-* Thoughtful Thursdays: 1 hour of our lunch to meet up (huddle on slack) 
+* Every Monday we will meet to talk about emotional awareness and understand where each of us are at starting the week in order to give additional support where needed. 
+* 1 hour of our lunch to meet up (huddle on slack) 
 * Using slack to communicate summaries on where we are at with out work (daily). 
 * Emotional Support / Conflict Resolution 
 * Keeping a can-do attitude and an open mind 
@@ -19,4 +19,4 @@ Alyssa: Tone of voice, yelling.
 Resolve - Respecting each other and not yelling. 
 Azucena - Close-mindedness, not cooperating. 
 Resolve - keep trying, ask for help, don’t give up. 
-* Celebrating Wins - Sawmill Market or other food hauls for celebrations, leaving the coding stuff at school.
+* Celebrating Wins - Sawmill Market or other food hauls.
