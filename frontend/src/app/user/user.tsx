@@ -1,29 +1,22 @@
 'use client'
 
 
-<<<<<<< HEAD
-import Grid from "../../components/grid"
-import React from 'React'
+
+import {Grid} from "@/components/grid"
 import PropTypes from 'prop-types'
-
-export default function Home() {
-    return (
-        <>
-            <H1 className"text-center text-8xl mt-14">Truck List</H1>
-        <Grid/>
-
-
-
-=======
-import Grid from "../../components/grid";
+import {ReactNode} from "react";
+import {NavBar} from "@/components/NavBar";
+import {TruckMap} from "@/components/TruckMap";
 
 export default function User() {
     return (
         <>
+            <NavBar/>
+            <TruckMap/>
         <Grid/>
 
 
->>>>>>> user
+
         </>
     )
 }
