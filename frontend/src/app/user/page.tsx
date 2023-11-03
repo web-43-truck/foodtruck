@@ -1,16 +1,21 @@
-import User from "@/app/user/user";
+
 import {Footer} from "@/components/Footer";
 import {NavBar} from "@/components/NavBar";
+import {User} from "@/app/user/user";
 
 
 export default function UserPage() {
     const links = [
-        {linkName: 'Home', href: '/'},
-        {linkName: 'Favorites', href: '/'},
-]
+        {linkName: 'Sign-in', href: '/'},
+        {linkName: 'Sign-up', href: '/'},
+        {linkName: 'Favorites', href: '/'}
+    ]
+
     return(
         <>
-            <NavBar links={links}/>
+            <section>
+                <NavBar links={links}/>
+            </section>
         <User/>
             <Footer/>
         </>

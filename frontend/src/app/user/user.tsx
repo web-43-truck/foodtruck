@@ -9,10 +9,10 @@ import {NavBar} from "@/components/NavBar";
 import Image from "next/image";
 
 
-export default function User() {
+export function User() {
     return (
         <>
-            <NavBar/>
+
             <div className="grid py-14">
                 <a href="/" className="justify-self-center">
                     <Image src="/food-truck-icon.png"
