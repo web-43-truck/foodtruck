@@ -1,6 +1,14 @@
 {
   "pages": {
     "/page": [
+<<<<<<< HEAD
+=======
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/not-found": [
+>>>>>>> user2
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
@@ -11,6 +19,7 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+<<<<<<< HEAD
     "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -25,6 +34,12 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/search-view/page.js"
+=======
+    "/user/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/user/page.js"
+>>>>>>> user2
     ]
   }
 }

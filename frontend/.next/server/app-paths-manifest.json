@@ -1,5 +1,10 @@
 {
+<<<<<<< HEAD
   "/truck-view/page": "app/truck-view/page.js",
   "/page": "app/page.js",
   "/search-view/page": "app/search-view/page.js"
+=======
+  "/user/page": "app/user/page.js",
+  "/page": "app/page.js"
+>>>>>>> user2
 }
