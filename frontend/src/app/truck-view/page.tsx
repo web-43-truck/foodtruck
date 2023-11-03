@@ -8,8 +8,8 @@ import {Footer} from "@/components/Footer";
 export default function TruckPage(){
     const links = [
         {linkName: 'Sign-in', href: '/'},
-        {linkName: 'Sign-up', href: '/'},
-        {linkName: 'Favorites', href: '/'}
+        {linkName: 'Sign-up', href: '/SignUp'},
+        {linkName: 'Favorites', href: '/SignUP'}
     ]
     return(
         <>
