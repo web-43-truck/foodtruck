@@ -23,7 +23,7 @@ const foodTruckData = [
         truckName: "Cake Shop",
         truckDescription:
             "Apple pie danish candy marzipan ice cream ice cream. Gingerbread icing donut sugar plum icing dessert candy canes oat cake macaroon. Dragée caramels candy dessert chupa chups dessert lollipop bonbon. Soufflé tiramisu chocolate cake soufflé pie pastry icing liquorice.",
-    },
+    }
 ]
 
 export function SearchView() {
