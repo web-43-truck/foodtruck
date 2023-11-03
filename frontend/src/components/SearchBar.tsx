@@ -1,27 +1,23 @@
 import React, {useState} from "react";
 
-export function SearchBar({ onSearch }) {
-    const [query, setQuery] = useState('')
+function SearchBar({ onSearch }) {
+    const [query, setQuery] = useState('');
 
-    const handleInputChange = (e : any) => {
-        const newQuery = e.target.value
-        setQuery(newQuery)
-        onSearch(newQuery)
+    const handleSearch = () => {
+        onSearch(query);
     };
 
-
     return (
-       <>
-         <div className="bg-base-300">
+         <div>
              <input
                  type="text"
-                 placeholder="Search"
+                 placeholder="Search..."
                  value={query}
-                 onChange={handleInputChange}
+                 onChange={(e) => setQuery(e.target.value)}
              />
+             <button onClick={handleSearch}>Search</button>
          </div>
-       </>
-    )
+    );
 }
 
 export default SearchBar

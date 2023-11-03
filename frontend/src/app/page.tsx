@@ -1,10 +1,22 @@
+import React from 'react';
 import {NavBar} from "@/components/NavBar";
 import 'mapbox-gl/dist/mapbox-gl.css'
-<<<<<<< HEAD
 import SearchBar from "@/components/SearchBar";
-=======
+import SearchableList from "@/components/SearchableList";
+import {useState} from "react";
+import items from "@maplibre/maplibre-gl-style-spec/docs/src/components/items/items";
 
->>>>>>> development
+function App() {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    return (
+        <div>
+            <h1>Searchable List</h1>
+            <SearchBar onSearch={setSearchQuery}/>
+            <SearchableList items={items} searchQuery={searchQuery}/>
+        </div>
+    );
+}
 
 export default function Home() {
     const links = [
@@ -15,18 +27,10 @@ export default function Home() {
 
     return (
         <>
-<<<<<<< HEAD
-            <NavBar/>
-            <SearchBar/>
+          <NavBar links={}/>
+          <SearchBar onSearch={undefined}/>
+          <SearchableList/>
         </>
-
-
-=======
-        <section>
-            <NavBar links={links}/>
-        </section>
-        </>
->>>>>>> development
     )
 }
 
