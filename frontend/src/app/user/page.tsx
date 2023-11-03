@@ -6,8 +6,8 @@ import {User} from "@/app/user/user";
 
 export default function UserPage() {
     const links = [
-        {linkName: 'Sign-in', href: '/'},
-        {linkName: 'Sign-up', href: '/'},
+
+        {linkName: 'Home', href: '/'},
         {linkName: 'Favorites', href: '/'}
     ]
 
@@ -17,7 +17,7 @@ export default function UserPage() {
                 <NavBar links={links}/>
             </section>
         <User/>
-            <Footer/>
+
         </>
     )
 }
