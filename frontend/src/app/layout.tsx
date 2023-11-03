@@ -17,6 +17,7 @@ export default function RootLayout(props : RootLayoutProps) {
     return (
         <html data-theme="light" lang="en">
         <body>{children}</body>
+
         </html>
     )
 }
