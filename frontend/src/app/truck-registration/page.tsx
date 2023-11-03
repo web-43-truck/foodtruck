@@ -12,6 +12,8 @@ export default function TruckRegistration() {
             <section>
                 <NavBar/>
             </section>
+            <div>
+                <label >Weclome, ${username}</label></div>
             <form>
                 <div className="py-3 required">
                     <label htmlFor="truckName" className="block text-gray text-sm font-bold mb-2">Truck Name</label>
@@ -55,7 +57,12 @@ export default function TruckRegistration() {
 
                 </div>
 
-
+                <div className="py-3">
+                    <button type="addTruck"
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Add Another Truck
+                    </button>
+                </div>
 
 
 
