@@ -4,6 +4,7 @@ export function NavBar(props:{links: LinkItem[] }){
     return (
         <>
             <div className="navbar bg-base-300 shadow-inner flex basis-11/12">
+
                     <div className="flex-none">
                         <ul className="menu menu-horizontal px-1 ml-5">
                             {props.links.map((link, index) => (
@@ -14,6 +15,7 @@ export function NavBar(props:{links: LinkItem[] }){
                         </ul>
                     </div>
                     <NavBarTitle/>
+                <NavBarTitle/>
             </div>
         </>
     )

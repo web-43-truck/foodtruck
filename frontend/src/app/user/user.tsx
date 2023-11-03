@@ -4,15 +4,23 @@
 
 import {Grid} from "@/components/grid"
 import PropTypes from 'prop-types'
-import {ReactNode} from "react";
+import React, {ReactNode} from "react";
 import {NavBar} from "@/components/NavBar";
-import {TruckMap} from "@/components/TruckMap";
+import Image from "next/image";
+
 
 export default function User() {
     return (
         <>
             <NavBar/>
-            <TruckMap/>
+            <div className="grid py-14">
+                <a href="/" className="justify-self-center">
+                    <Image src="/food-truck-icon.png"
+                           width={1000}
+                           height={1000}
+                           alt="food truck icon" className="w-20"/>
+                </a>
+            </div>
         <Grid/>
 
 
