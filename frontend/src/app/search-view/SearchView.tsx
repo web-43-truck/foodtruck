@@ -40,6 +40,7 @@ export function SearchView() {
                     />
                 </a>
             </div>
+<<<<<<< HEAD
             <section className="grid">
                 <ul className="justify-self-center menu menu-horizontal bg-base-200 rounded-box gap-10">
                     <ListItem itemName={"A-Z"} href={""} />
@@ -52,6 +53,20 @@ export function SearchView() {
                                 <ListItem itemName={"Mexican"} href={""} />
                                 <ListItem itemName={"Italian"} href={""} />
                             </ul>
+=======
+            <section className="grid mb-6">
+                <ul className="justify-self-center menu menu-horizontal bg-base-200 rounded-box gap-10 text-xl">
+                    <ListItem itemName={"A-Z"} href={""}/>
+                    <ListItem itemName={"Location"} href={""}/>
+                    <li>
+                        <details >
+                            <summary className="hover:bg-accent-focus hover:rounded-xl">Cuisine</summary>
+                                <ul>
+                                    <ListItem itemName={"American"} href={""}/>
+                                    <ListItem itemName={"Mexican"} href={""}/>
+                                    <ListItem itemName={"Italian"} href={""}/>
+                                </ul>
+>>>>>>> search
                         </details>
                     </li>
                 </ul>
