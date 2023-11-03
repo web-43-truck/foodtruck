@@ -6,10 +6,9 @@ import {Footer} from "@/components/Footer";
 
 export default function SignUpPage() {
     const links = [
-
-        {linkName: 'Home', href: '/'},
+        {linkName: 'Sign-in', href: '/'},
+        {linkName: 'Sign-up', href: '/'},
         {linkName: 'Favorites', href: '/'}
-
     ]
     return(
         <>
