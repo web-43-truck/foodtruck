@@ -32,6 +32,9 @@ function NavBarTitle (){
     )
 }
 
+
+
+
 // function NavLinks(props: {children: any}){
 //     return(
 //         <div className="basis-11/12 ">
@@ -59,3 +62,4 @@ function NavBarTitle (){
 //         <li className="justify-end ml-2"><a href={href}>{linkText}</a></li>
 //     )
 // }
+
