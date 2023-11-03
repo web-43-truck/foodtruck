@@ -1,7 +1,8 @@
-import SignUp from "@/app/user/user"
+
 import Form from "@/components/Form"
 import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
+import {SignUp} from "@/app/SignUp/SignUp";
 
 
 export default function SignUpPage() {
@@ -11,7 +12,9 @@ export default function SignUpPage() {
     ]
     return(
         <>
+            <section>
             <NavBar links={links}/>
+            </section>
             <SignUp/>
             <Form/>
             <Footer/>
