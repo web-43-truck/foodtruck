@@ -6,7 +6,7 @@ export default function Home() {
     const links = [
         {linkName: 'Sign-in', href: '/'},
         {linkName: 'Sign-up', href: '/'},
-        {linkName: 'Favorites', href: '/'},
+        {linkName: 'Favorites', href: '/'}
     ]
 
     return (
@@ -14,8 +14,6 @@ export default function Home() {
         <section>
             <NavBar links={links}/>
         </section>
-
         </>
-
     )
 }

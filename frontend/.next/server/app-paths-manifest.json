@@ -1,4 +1,8 @@
 {
+<<<<<<< HEAD
   "/SignUp/page": "app/SignUp/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js"
+=======
+  "/SignUp/page": "app/SignUp/page.js"
+>>>>>>> development
 }

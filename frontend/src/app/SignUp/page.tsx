@@ -5,7 +5,13 @@ import {NavBar} from "@/components/NavBar";
 
 export default function SignUpPage() {
     const links = [
+<<<<<<< HEAD
         {linkName: 'Home', href: '/'},
+=======
+        {linkName: 'Sign-in', href: '/'},
+        {linkName: 'Sign-up', href: '/'},
+        {linkName: 'Favorites', href: '/'}
+>>>>>>> development
     ]
     return(
         <>
