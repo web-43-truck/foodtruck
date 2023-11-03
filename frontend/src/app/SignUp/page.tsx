@@ -4,9 +4,12 @@ import {NavBar} from "@/components/NavBar";
 
 
 export default function SignUpPage() {
+    const links = [
+        {linkName: 'Home', href: '/'},
+    ]
     return(
         <>
-            <NavBar{ links: LinkItem[]; }/>
+            <NavBar links={links}/>
             <SignUp/>
             <Form/>
         </>
