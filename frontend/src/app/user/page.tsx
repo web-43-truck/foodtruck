@@ -1,4 +1,6 @@
 import User from "@/app/user/user";
+import {Footer} from "@/components/Footer";
+import {NavBar} from "@/components/NavBar";
 
 
 export default function UserPage() {
@@ -8,7 +10,9 @@ export default function UserPage() {
 ]
     return(
         <>
+            <NavBar links={links}/>
         <User/>
+            <Footer/>
         </>
     )
 }
