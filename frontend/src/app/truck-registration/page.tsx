@@ -3,7 +3,7 @@
 import React from 'react';
 import {NavBar} from "@/components/NavBar";
 // @ts-ignore
-import {Footer} from "@/components/Footer";
+import Footer from "@/components/Footer"
 
 export default function TruckRegistration() {
 
@@ -13,7 +13,8 @@ export default function TruckRegistration() {
                 <NavBar/>
             </section>
             <div>
-                <label >Weclome, ${username}</label></div>
+            Weclome, username
+            </div>
             <form>
                 <div className="py-3 required">
                     <label htmlFor="truckName" className="block text-gray text-sm font-bold mb-2">Truck Name</label>
