@@ -31,7 +31,7 @@ function NavLinks(props: {children: any}){
                         <ul tabIndex={0} className=" menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52">
                             <li><a>home</a></li>
                             <li><a>log-in</a></li>
-                            <li><a>sign-up</a></li>
+                            <li><a>sign-up</a>href={"SignUp"}</li>
                             <li><a>favorite</a></li>
                         </ul>
                     </div>
