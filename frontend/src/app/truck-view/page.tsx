@@ -13,9 +13,13 @@ export default function TruckPage(){
     ]
     return(
         <>
+
+
+
             <section>
                 <NavBar links={links}/>
             </section>
+
             <TruckView key={process.env["MAPBOX_ACCESS_TOKEN"]}/>
             <TruckMap/>
             <Footer/>
