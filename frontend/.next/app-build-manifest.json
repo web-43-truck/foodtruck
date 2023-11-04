@@ -16,15 +16,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/truck-view/page": [
+    "/SignUp/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/truck-view/page.js"
-    ],
-    "/search-view/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/search-view/page.js"
+      "static/chunks/app/SignUp/page.js"
     ]
   }
 }
