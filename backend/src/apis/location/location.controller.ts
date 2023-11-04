@@ -12,7 +12,7 @@ import {
     selectLocationByLocationTruckId,
     selectLocationByLocationLat,
     selectLocationByLocationLng,
-    selectLocationByLocationAddress, selectLocationByLocationSunset, selectLocationByLocationSunrise
+    selectLocationByLocationAddress, selectLocationByLocationSunrise
 } from "./location.model";
 import axios from "axios/index";
 
