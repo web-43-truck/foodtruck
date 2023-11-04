@@ -22,7 +22,6 @@ create table if not exists truck(
                                     FOREIGN KEY (truck_profile_id) references profile (profile_id)
 );
 
-
 create table if not exists location(
                                        location_id UUID NOT NULL PRIMARY KEY,
                                        location_truck_id UUID NOT NULL,
@@ -34,6 +33,7 @@ create table if not exists location(
                                        location_sunset TIMESTAMPTZ,
                                        FOREIGN KEY (location_truck_id) references truck(truck_id)
 );
+
 
 create table if not exists picture(
                                       picture_id UUID NOT NULL PRIMARY KEY,

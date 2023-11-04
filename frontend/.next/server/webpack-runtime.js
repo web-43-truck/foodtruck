@@ -30,7 +30,11 @@
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
+<<<<<<< HEAD
 /******/ 			__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+=======
+/******/ 			__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+>>>>>>> b193682dd459712f116c483fdcbc569eec202799
 /******/ 			threw = false;
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
@@ -47,11 +51,14 @@
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
+<<<<<<< HEAD
 /******/ 	/* webpack/runtime/amd options */
 /******/ 	(() => {
 /******/ 		__webpack_require__.amdO = {};
 /******/ 	})();
 /******/ 	
+=======
+>>>>>>> b193682dd459712f116c483fdcbc569eec202799
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -130,7 +137,11 @@
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
+<<<<<<< HEAD
 /******/ 		__webpack_require__.h = () => ("bae1febd2a714ec9")
+=======
+/******/ 		__webpack_require__.h = () => ("a802d3dc0ab0c0db")
+>>>>>>> b193682dd459712f116c483fdcbc569eec202799
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
