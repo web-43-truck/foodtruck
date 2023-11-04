@@ -8,11 +8,11 @@ import {
     getTrucksByTruckProfileIdController,
     postTruckController,
     putTruckController
-} from "./truck.controller";
+} from './truck.controller'
 import {isLoggedInController} from '../../utils/controllers/isLoggedIn.controller'
 
 
-const basePath = 'apis/truck'
+const basePath = '/apis/truck'
 
 const router = Router()
 
@@ -29,8 +29,10 @@ router.route('/:truckId')
 router.route('/truckProfileId/:truckProfileId')
     .get(getTrucksByTruckProfileIdController)
 
-router.route('/truckProfileName/:truckProfileName')
+router.route('/truckName/:truckName')
     .get(getTruckByTruckNameController)
+
+router.route('/truckNames/:truckName')
     .get(getTrucksByNameController)
 
 export const truckRoute = {basePath, router}

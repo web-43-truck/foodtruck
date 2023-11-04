@@ -1,13 +1,19 @@
 import express, { Application } from 'express'
 import morgan from 'morgan'
-// Routes
-import { indexRoute } from './apis/index.route'
 import session from 'express-session'
 import { createClient,  RedisClientType } from 'redis'
 import RedisStore from 'connect-redis'
+import helmet from 'helmet'
+
+// Routes
+import { indexRoute } from './apis/index.route'
 import { signUpRoute } from './apis/sign-up/sign-up.route'
-import { signInRoute} from './apis/sign-in/sign-in.route'
-import {profileRoute} from './apis/profile/profile.route'
+import { signInRoute } from './apis/sign-in/sign-in.route'
+import { profileRoute } from './apis/profile/profile.route'
+import { truckRoute } from './apis/truck/truck.route'
+import { favoriteRoute }  from "./apis/favorite/favorite.route";
+import { pictureRoute } from "./apis/picture/picture.route";
+
 
 // The following class creates the app and instantiates the server
 export class App {
@@ -38,6 +44,7 @@ export class App {
     private middlewares (): void {
 
         this.app.use(morgan('dev'))
+        this.app.use(helmet())
         this.app.use(express.json())
         this.app.use(session( {
             store: this.redisStore,
@@ -54,6 +61,9 @@ export class App {
         this.app.use(signUpRoute.basePath, signUpRoute.router)
         this.app.use(signInRoute.basePath, signInRoute.router)
         this.app.use(profileRoute.basePath, profileRoute.router)
+        this.app.use(truckRoute.basePath, truckRoute.router)
+        this.app.use(favoriteRoute.basePath, favoriteRoute.router)
+        this.app.use(pictureRoute.basePath, pictureRoute.router)
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port

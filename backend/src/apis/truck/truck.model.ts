@@ -37,8 +37,13 @@ export async function selectTrucksByProfileId(truckProfileId: string): Promise<T
     return result?.length === 1 ? result[0] : null
 }
 
+<<<<<<< HEAD
 export async function selectTruckByTruckName (truckName: string) : Promise<Truck|null> {
     const rowList = `SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset
+=======
+export async function selectTruckByTruckName (truckName: string) : Promise<Truck | null> {
+    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name
+>>>>>>> development
                      FROM truck
                      WHERE truck_name = ${truckName}`
 
@@ -47,14 +52,16 @@ export async function selectTruckByTruckName (truckName: string) : Promise<Truck
     return result?.length === 1 ? result[0] : null
 }
 
-export async function selectTrucksByTruckName(truckName: string): Promise<Truck[]> {
+export async function selectTrucksByTruckName(truckName: string): Promise<Truck | null> {
     const truckNameWithWildcards = `%${truckName}%`
 
     const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset
                               FROM truck
                               WHERE truck_name LIKE ${truckNameWithWildcards}`
 
-    return TruckSchema.array().parse(rowList)
+    const result = TruckSchema.array().max(1).parse(rowList)
+
+    return result?.length === 1 ? result[0] : null
 }
 
 export async function selectAllTrucks(): Promise<Truck[]> {
