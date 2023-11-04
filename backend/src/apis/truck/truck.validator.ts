@@ -33,33 +33,4 @@ export const TruckSchema = z.object({
         .max(32, {message: 'please provide a valid truck name that is max 32 characters in length'
     }),
 
-    truckIsActive: z.boolean({
-        required_error: 'Please let us know if true or false if truck is active',
-        invalid_type_error: 'Please provide true or false for truck is active'
-    }),
-
-    truckAddress: z.string({
-        required_error: 'locationAddress is required',
-        invalid_type_error: 'please provide a valid locationAddress'
-    })
-        .nullable(),
-
-    truckLat: z.coerce.number({required_error: 'Unable to locate'
-    }),
-
-    truckLng: z.coerce.number({required_error: 'Unable to locate'
-    }),
-
-    truckSunrise: z.number({
-        required_error: 'locationSunrise is required',
-        invalid_type_error: 'please provide a valid locationSunrise'
-    })
-        .nullable(),
-
-    truckSunset: z.number({
-        required_error: 'locationSunset is required',
-        invalid_type_error: 'please provide a valid locationSunset'
-    })
-        .nullable()
-
 })

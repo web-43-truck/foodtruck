@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS favorite;
 DROP TABLE IF EXISTS picture;
+DROP TABLE IF EXISTS location;
 DROP TABLE IF EXISTS truck;
 DROP TABLE IF EXISTS profile;
 CREATE TABLE IF NOT EXISTS profile(
@@ -18,13 +19,19 @@ create table if not exists truck(
                                     truck_description VARCHAR(1025),
                                     truck_food_category VARCHAR(64) NOT NULL,
                                     truck_name VARCHAR(64) NOT NULL,
-                                    truck_is_active BOOLEAN NOT NULL,
-                                    truck_address VARCHAR (64),
-                                    truck_Lat DECIMAL (7,5),
-                                    truck_Lng DECIMAL (8,5),
-                                    truck_sunrise TIMESTAMPTZ,
-                                    truck_sunset TIMESTAMPTZ,
                                     FOREIGN KEY (truck_profile_id) references profile (profile_id)
+);
+
+create table if not exists location(
+                                       location_id UUID NOT NULL PRIMARY KEY,
+                                       location_truck_id UUID NOT NULL,
+                                       location_is_active BOOLEAN NOT NULL,
+                                       location_address VARCHAR (64),
+                                       location_Lat DECIMAL (7,5),
+                                       location_Lng DECIMAL (8,5),
+                                       location_sunrise TIMESTAMPTZ,
+                                       location_sunset TIMESTAMPTZ,
+                                       FOREIGN KEY (location_truck_id) references truck(truck_id)
 );
 
 
@@ -41,5 +48,4 @@ create table if not exists favorite(
                                        favorite_profile_id UUID NOT NULL,
                                        FOREIGN KEY (favorite_truck_id) references truck(truck_id),
                                        FOREIGN KEY (favorite_profile_id) references profile(profile_id)
-
 );

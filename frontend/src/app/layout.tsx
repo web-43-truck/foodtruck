@@ -6,6 +6,7 @@ import React from "react";
 import {inter} from "@/app/ui/fonts";
 
 
+
 export const metadata: Metadata = {
     title: 'Food Truck Hunter',
     description: 'Let us help you find the food truck you need!',

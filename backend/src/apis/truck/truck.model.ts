@@ -1,6 +1,7 @@
 import {z} from 'zod'
 import {TruckSchema} from './truck.validator'
 import {sql} from '../../utils/database.utils'
+import axios from "axios";
 
 export type Truck = z.infer<typeof TruckSchema>
 
@@ -37,14 +38,10 @@ export async function selectTrucksByProfileId(truckProfileId: string): Promise<T
     return result?.length === 1 ? result[0] : null
 }
 
-<<<<<<< HEAD
-export async function selectTruckByTruckName (truckName: string) : Promise<Truck|null> {
-    const rowList = `SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset
-=======
+
+
 export async function selectTruckByTruckName (truckName: string) : Promise<Truck | null> {
-    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name
->>>>>>> development
-                     FROM truck
+    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset FROM truck
                      WHERE truck_name = ${truckName}`
 
     const result = TruckSchema.array().max(1).parse(rowList)
@@ -70,6 +67,8 @@ export async function selectAllTrucks(): Promise<Truck[]> {
 
     return TruckSchema.array().parse(rowList)
 }
+
+
 
 
 

@@ -14,6 +14,7 @@ import {
     selectLocationByLocationLng,
     selectLocationByLocationAddress, selectLocationByLocationSunset, selectLocationByLocationSunrise
 } from "./location.model";
+import axios from "axios/index";
 
 
 
@@ -93,6 +94,25 @@ export async function postLocationController (request: Request, response: Respon
             return response.json({status: 400, data: null, message: 'You are not allowed to preform this task'})
         }
 
+        async function addressConverter(address: string | null) {
+            let formattedAddress = encodeURIComponent(address.split('').join('+'))
+            console.log(formattedAddress)
+            const GEOCODING_API_KEY = process.env.GEOCODING_API_KEY as string
+
+            const result = await axios({
+                method: 'get,' +
+                    `url: \`https://api.geocod.io/v1.7/geocode?api_key=${GEOCODING_API_KEY}&q=${formattedAddress}`,
+            })
+                .then(function (response) {
+                    const latitude = response.data.results[0].location.lat
+                    const longitude = response.data.results[0].location.lng
+                    return {lat: latitude, lng: longitude}
+                })
+            return (result)
+        }
+
+        const truckCoordinates = await addressConverter(truckAddress)
+
         const location: location = {
             locationTruckId: locationTruckId,
             locationLat,
@@ -100,6 +120,8 @@ export async function postLocationController (request: Request, response: Respon
             locationSunrise,
             locationSunset
         }
+
+
 
         const message: string = await insertLocation(locationId)
 

@@ -14,7 +14,7 @@ import {Status} from "../../utils/interfaces/Status";
 import {z} from "zod";
 import {PublicProfile} from "../profile/profile.model";
 
-const Geocodio = require('geocodio')
+
 
 
 export async function putTruckController(request: Request, response: Response): Promise<Response<Status>> {
