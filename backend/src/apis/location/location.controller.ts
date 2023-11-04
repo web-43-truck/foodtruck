@@ -3,7 +3,6 @@ import {Request, Response} from "express";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {Status} from "../../utils/interfaces/Status";
 
-import {string, z} from "zod";
 import {
     insertLocation,
     updateLocationByLocationId,
@@ -39,8 +38,8 @@ export async function putLocationController(request: Request, response: Response
             return response.json({status: 404, data: null, message: 'location does not exist'})
         }
 
-        const location = request.session ? request.session.location : undefined
-        const locationTruckId = location?.locationId
+        const location = request.session ? request.session.locationLat : undefined
+        const locationId = location?.location
 
         if (!(location.locationId === locationId && locationId !== null)) {
             return response.json({status: 404, data: null, message: 'you are not allowed to preform this task'})
