@@ -13,6 +13,8 @@ import {TruckSchema} from "./truck.validator"
 import {Status} from "../../utils/interfaces/Status";
 import {z} from "zod";
 
+const Geocodio = require('geocodio')
+
 
 export async function putTruckController(request: Request, response: Response): Promise<Response<Status>> {
     try {
