@@ -8,7 +8,7 @@ export type Location = z.infer<typeof LocationSchema>
 
 
 
-export async function insertLocation(location: Location): Promise<string> {
+export async function insertLocation(location: { locationLat: number; locationSunset: number | null; locationTruckId: any; locationSunrise: number | null; locationId: string | null; locationLng: number }): Promise<string> {
     const { locationTruckId, locationIsActive, locationAddress, locationLat, locationLng, locationSunrise, locationSunset} = location
 
     await sql `INSERT INTO location(location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset) VALUES (gen_random_uuid(), ${locationTruckId}, ${locationIsActive}, ${locationAddress}, ${locationLat}, ${locationLng}, ${locationSunrise}, ${locationSunset})`
@@ -18,7 +18,7 @@ export async function insertLocation(location: Location): Promise<string> {
 
 
 
-export async function updateLocationByLocationId (location: Location):Promise<string> {
+export async function updateLocationByLocationId(location: string):Promise<string> {
 
     const {locationId, locationIsActive, locationAddress, locationLat, locationLng, locationSunrise, locationSunset} = location
 
@@ -52,7 +52,7 @@ export async function updateLocationByTruckId (location: Location):Promise<strin
     return 'Location updated successfully'
 }
 
-export async function selectLocationByLocationId(locationId: string | null): Promise<Location|null> {
+export async function selectLocationByLocationId(locationId: e.Request): Promise<Location | null> {
 
     const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset FROM location WHERE location_id = ${locationId}`
 
@@ -82,7 +82,7 @@ export async function selectLocationByLocationIsActive(locationIsActive: null): 
 }
 
 
-export async function selectLocationByLocationAddress(locationAddress: string): Promise<Location | null> {
+export async function selectLocationByLocationAddress(locationAddress: e.Request): Promise<Location | null> {
 
     const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset FROM location WHERE location_address = ${locationAddress}`
 
