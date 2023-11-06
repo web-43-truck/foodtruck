@@ -1,10 +1,15 @@
+"use server"
 import {SearchItem} from "@/components/SearchItem";
 import Image from "next/image";
 import React from "react";
 import {ListItem} from "@/components/ListItem";
+import {Truck, TruckSchema} from "@/utils/models/Truck";
 
 
-export function SearchView() {
+export async function SearchView() {
+    const trucks = await getData()
+    console.log(trucks)
+
     return (
         <>
             <div className="grid py-14">
@@ -17,7 +22,7 @@ export function SearchView() {
             </div>
             <section className="grid mb-6">
                 <ul className="justify-self-center menu menu-horizontal bg-base-200 rounded-box gap-10 text-xl">
-                    <ListItem itemName={"A-Z"} href={""}/>
+                    <ListItem itemName={"A-Z"} href={""} />
                     <ListItem itemName={"Location"} href={""}/>
                     <li>
                         <details >
@@ -32,12 +37,29 @@ export function SearchView() {
                 </ul>
             </section>
             <section className="container mx-auto px-14">
-                <SearchItem truckName={"Joe's Tacos"} truckDescription={"Cookie croissant jelly cake carrot cake cotton candy caramels cotton candy. Icing oat cake pie marzipan carrot cake cupcake wafer toffee soufflé. Gingerbread oat cake sweet roll sweet roll powder jelly-o fruitcake sugar plum"}/>
-                <SearchItem truckName={"Cake Shop"} truckDescription={"Apple pie danish candy marzipan ice cream ice cream. Gingerbread icing donut sugar plum icing dessert candy canes oat cake macaroon. Dragée caramels candy dessert chupa chups dessert lollipop bonbon. Soufflé tiramisu chocolate cake soufflé pie pastry icing liquorice."}/>
-                <SearchItem truckName={"Cake Shop"} truckDescription={"Apple pie danish candy marzipan ice cream ice cream. Gingerbread icing donut sugar plum icing dessert candy canes oat cake macaroon. Dragée caramels candy dessert chupa chups dessert lollipop bonbon. Soufflé tiramisu chocolate cake soufflé pie pastry icing liquorice."}/>
-                <SearchItem truckName={"Cake Shop"} truckDescription={"Apple pie danish candy marzipan ice cream ice cream. Gingerbread icing donut sugar plum icing dessert candy canes oat cake macaroon. Dragée caramels candy dessert chupa chups dessert lollipop bonbon. Soufflé tiramisu chocolate cake soufflé pie pastry icing liquorice."}/>
+
+                {trucks.map((truck) => (
+                    <SearchItem
+                        key={truck.truckId}
+                        truck = {truck}
+                     />
+                ))}
+
             </section>
 
         </>
     )
 }
+async function getData(): Promise< Truck[] > {
+    console.log(process.env.REST_API_URL)
+    const response = await fetch(`${process.env.REST_API_URL}/apis/truck`, {next: {revalidate: 0}});
+    if (response.status === 200 || response.status === 304) {
+        const result = await response.json();
+        console.log(result)
+        const trucks = TruckSchema.array().parse(result?.data);
+        return  trucks ;
+    } else {
+        throw new Error("Retrieving data failed");
+    }
+}
+

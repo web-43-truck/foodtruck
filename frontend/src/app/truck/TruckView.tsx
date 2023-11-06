@@ -3,10 +3,16 @@ import Image from "next/image";
 import React from "react";
 import {Picture} from "@/components/Picture";
 import {TruckMap} from "@/components/TruckMap";
+import {Truck, TruckSchema} from "@/utils/models/Truck";
+import {string} from "zod";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
+import {LocationSchema} from "@/utils/models/Location";
 
 
 export function TruckView() {
-
+    // const trucks = await getData()
+    // console.log(trucks)
     return (
         <>
             <h1 className="text-center text-8xl mt-14">Joe's Tacos</h1>
@@ -43,6 +49,30 @@ export function TruckView() {
     )
 }
 
-
+// async function getData(): Promise<{Truck[], locations:{[index:string]: Location}} > {
+//     console.log(process.env.REST_API_URL)
+//     const response = await fetch(`${process.env.REST_API_URL}/apis/truck`, {next: {revalidate: 0}});
+//     if (response.status === 200 || response.status === 304) {
+//         const result = await response.json();
+//         console.log(result)
+//         const trucks = TruckSchema.array().parse(result?.data);
+//         return  trucks ;
+//     } else {
+//         throw new Error("Retrieving data failed");
+//     }
+//
+//     const locations: {[index:string]: Location} = {}
+//     for (let truck of trucks) {
+//         const result = await fetch(`${process.env.REST_API_URL}/apis/location/${truck.locationTruckId}`)
+//             .then(response => {console.log(response.status)
+//             if (response.status === 200 || response.status === 304) {
+//                 return response.json()
+//             }
+//             throw new Error("Retrieving data failed")
+//             }).catch(error => {console.error(error)})
+//         const location = LocationSchema.parse(result?.data)
+//         locations[truck.locationTruckId] = location
+//     }
+// }
 
 
