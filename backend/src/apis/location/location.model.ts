@@ -8,7 +8,7 @@ export type Location = z.infer<typeof LocationSchema>
 
 
 
-export async function insertLocation(location: Location): Promise<string> {
+export async function insertLocation(location: { locationLat: number; locationSunset: number | null; locationTruckId: any; locationSunrise: number | null; locationId: string | null; locationLng: number }): Promise<string> {
     const { locationTruckId, locationIsActive, locationAddress, locationLat, locationLng, locationSunrise, locationSunset} = location
 
     await sql `INSERT INTO location(location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset) VALUES (gen_random_uuid(), ${locationTruckId}, ${locationIsActive}, ${locationAddress}, ${locationLat}, ${locationLng}, ${locationSunrise}, ${locationSunset})`

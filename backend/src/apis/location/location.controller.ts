@@ -5,6 +5,7 @@ import {Status} from "../../utils/interfaces/Status";
 import {Location, selectLocationByLocationSunset} from "./location.model"
 import axios from "axios";
 
+
 import {string, z} from "zod";
 import {
     insertLocation,
@@ -83,7 +84,8 @@ export async function postLocationController(request: Request, response: Respons
             locationAddress // Assuming you have locationAddress in your schema
         } = validationResult.data;
 
-        const truck = request.session?.truck;
+        let truck: any;
+        truck = request.session ? request.session.truck : undefined;
         const locationTruckId = truck?.truckId;
 
         if (locationTruckId === undefined || locationTruckId === null) {
@@ -109,7 +111,7 @@ export async function postLocationController(request: Request, response: Respons
 
         const truckCoordinates = await addressConverter(locationAddress); // Pass the locationAddress variable
 
-        const location: Location = {
+        const location: { locationLat: number; locationSunset: number | null; locationTruckId: any; locationSunrise: number | null; locationId: string | null; locationLng: number } = {
             locationId, // Use the provided locationId
             locationTruckId,
             locationLat,
@@ -154,6 +156,10 @@ export async function postLocationController(request: Request, response: Respons
 
 export async function getLocationByLocationTruckIdController(request: Request, response: Response):Promise<Response<Status>> {
 
+    async function selectLocationByTruckId(locationTruckId: string) {
+
+    }
+
     try {
         const validationResult = LocationSchema.safeParse(request.params)
 
@@ -167,7 +173,7 @@ export async function getLocationByLocationTruckIdController(request: Request, r
 
         const status: Status= {status:200, message: null, data}
 
-        const data = await selectLocationByLocationTruckId(request, response)
+
 
 
         return response.json({status: 200, message: null, data: null})
