@@ -29,7 +29,7 @@ export async function updateLocationByLocationId(location: string):Promise<strin
     const {locationId, locationIsActive, locationAddress, locationLat, locationLng, locationSunrise, locationSunset} = location
 
     await sql`UPDATE location
-              SET 
+              SET
                   location_is_active = ${locationIsActive},
                   location_address = ${locationAddress},
                   location_Lat     = ${locationLat},
@@ -46,8 +46,8 @@ export async function updateLocationByTruckId (location: Location):Promise<strin
     const {locationTruckId, locationIsActive, locationAddress, locationLat, locationLng, locationSunrise, locationSunset} = location
 
     await sql`UPDATE location
-              SET 
-                location_is_active = ${locationIsActive},
+              SET
+                  location_is_active = ${locationIsActive},
                   location_address = ${locationAddress},
                   location_Lat     = ${locationLat},
                   location_Lng     = ${locationLng},
@@ -88,7 +88,7 @@ export async function selectLocationByLocationIsActive(locationIsActive: null): 
 }
 
 
-export async function selectLocationByLocationAddress(request: e.Request, response: e.Response): Promise<Location | null> {
+export async function selectLocationByLocationAddress(locationAddress: e.Request): Promise<Location | null> {
 
     const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset FROM location WHERE location_address = ${locationAddress}`
 
@@ -129,7 +129,7 @@ export async function selectLocationByLocationSunrise(locationSunrise: string): 
 }
 
 
-export async function selectLocationByLocationSunset(locationSunset: e.Request): Promise<Location | null> {
+export async function selectLocationByLocationSunset(locationSunset: string): Promise<Location|null> {
 
     const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset FROM location WHERE location_sunset = ${locationSunset}`
 

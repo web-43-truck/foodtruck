@@ -189,7 +189,7 @@ export async function getLocationByLocationAddress(request: Request, response: R
             return zodErrorResponse(response, validationResult.error)
         }
 
-        const data = await selectLocationByLocationAddress(request, response)
+        const data = await selectLocationByLocationAddress(request)
 
         return response.json({status: 200, message: null, data: null})
 
