@@ -1,17 +1,25 @@
 // Truck Owner Landing Page
 
 import React from 'react';
+import {PublicProfile} from "../backend/src/apis/profile/profile.model";
 import {NavBar} from "@/components/NavBar";
-// @ts-ignore
-import Footer from "@/components/Footer"
+import {Footer} from "@/components/Footer";
 
 export default function TruckRegistration() {
+            const links = [
+            {linkName: 'Sign-out', href: '/'},
+            {linkName: 'home', href: '/'},
+            {linkName: 'Favorites', href: '/'}
+        ]
 
-    return (
-        <>
-            <section>
-                <NavBar/>
-            </section>
+
+        return (
+            <>
+                <section>
+                    <NavBar links={links}/>
+                </section>
+//Session user information goes here
+
             <div>
             Weclome, username
             </div>
@@ -43,10 +51,15 @@ export default function TruckRegistration() {
                 </div>
 
                 <div className="py-3">
-                    <label htmlFor="subject" className="block text-gray text-sm font-bold mb-2">subject</label>
+                    <label htmlFor="subject" className="block text-gray text-sm font-bold mb-2">Locations</label>
                     <input type="text" id="subject" name="subject"
                            className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray focus:bg-white focus:ring-0"/>
-                </div>
+                </div><div className="py-3">
+                <button type="submit"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Add Another Location
+                </button>
+            </div>
                 <div className="py-3">
                     <label htmlFor="truckDescription" className="block text-gray text-sm font-bold mb-2">Tell us about your truck</label>
                     <textarea
@@ -57,25 +70,21 @@ export default function TruckRegistration() {
 
 
                 </div>
-
-                <div className="py-3">
-                    <button type="addTruck"
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Add Another Truck
-                    </button>
-                </div>
-
-
-
                 <div className="py-3">
                     <button type="submit"
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Send
                     </button>
                 </div>
+                <div className="py-3">
+                    <button type="submit"
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Add Another Truck
+                    </button>
+                </div>
             </form>
 
-            <footer/>
+            <Footer/>
         </>
     )
 

@@ -1,84 +1,79 @@
-import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 
-export default function Login():any {=>
-    {
+// Truck Owner Landing Page
 
-        const [email, setEmail] = useState("")
+import React from 'react';
+//import {PublicProfile} from "../backend/src/apis/profile/profile.model";
+import {NavBar} from "@/components/NavBar";
+import {Footer} from "@/components/Footer";
 
-        const [password, setPassword] = useState("")
-
-        const [emailError, setEmailError] = useState("")
-
-        const [passwordError, setPasswordError] = useState("")
-
-
-        const onButtonClick = () => {
+export default function TruckRegistration() {
+    const links = [
+        {linkName: 'Sign-out', href: '/'},
+        {linkName: 'home', href: '/'},
+        {linkName: 'Favorites', href: '/'}
+    ]
 
 
-            return <div className={"mainContainer"}>
+    return (
+        <>
+            <section>
+                <NavBar links={links}/>
+            </section>
 
-                <div className={"titleContainer"}>
+            <div>Truck Hunter Login</div>
 
-                    <div>Login</div>
 
-                </div>
+            <div className={"inputContainer"}>
 
-                <br/>
+                <input
 
-                <div className={"inputContainer"}>
+                    //value={email}
 
-                    <input
+                    placeholder="Enter your email here"
 
-                        value={email}
+                    //onChange={ev => setEmail(ev.target.value)}
 
-                        placeholder="Enter your email here"
+                    className={"inputBox"}/>
 
-                        onChange={ev => setEmail(ev.target.value)}
-
-                        className={"inputBox"}/>
-
-                    <label className="errorLabel">{emailError}</label>
-
-                </div>
-
-                <br/>
-
-                <div className={"inputContainer"}>
-
-                    <input
-
-                        value={password}
-
-                        placeholder="Enter your password here"
-
-                        onChange={ev => setPassword(ev.target.value)}
-
-                        className={"inputBox"}/>
-
-                    <label className="errorLabel">{passwordError}</label>
-
-                </div>
-
-                <br/>
-
-                <div className={"inputContainer"}>
-
-                    <input
-
-                        className={"inputButton"}
-
-                        type="button"
-
-                        onClick={onButtonClick}
-
-                        value={"Log in"}/>
-
-                </div>
+                {/*<label className="errorLabel">{emailError}</label>*/}
 
             </div>
 
-        }
+            <br/>
 
-    }
+            <div className={"inputContainer"}>
+
+                <input
+
+                    //value={password}
+
+                    placeholder="Enter your password here"
+
+                    //onChange={ev => setPassword(ev.target.value)}
+
+                    className={"inputBox"}/>
+
+                {/*<label className="errorLabel">{passwordError}</label>*/}
+
+            </div>
+
+            <br/>
+
+            <div className={"inputContainer"}>
+
+                <input
+
+                    className={"inputButton"}
+
+                    type="button"
+
+                    // onClick={onButtonClick}
+
+                    value={"Log in"}/>
+
+            </div>
+            <Footer/>
+
+        </>
+    )
 }
