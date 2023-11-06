@@ -16,6 +16,7 @@ const router = Router()
 
 router.route('/locationAddress')
     .get(getLocationByLocationAddress)
+
 router.route('/locationSunrise')
     .get(getLocationByLocationSunrise)
 
