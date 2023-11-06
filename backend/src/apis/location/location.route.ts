@@ -1,5 +1,9 @@
 import {Router} from 'express'
 import {
+    getLocationByLocationAddress,
+    getLocationByLocationIdController,
+    getLocationByLocationSunrise,
+    getLocationByLocationTruckIdController
 
 
 } from "./location.controller"
@@ -11,17 +15,16 @@ const router = Router()
 
 
 router.route('/locationAddress')
-    .get()
+    .get(getLocationByLocationAddress)
 router.route('/locationSunrise')
-    .get()
-router.route('/locationSunset')
-    .get()
+    .get(getLocationByLocationSunrise)
+
 
 router.route('/locationId')
-    .get()
+    .get(getLocationByLocationIdController)
 
 router.route('/locationTruckId')
-    .get()
+    .get(getLocationByLocationTruckIdController)
 
 
 export const locationRoute = {basePath, router}

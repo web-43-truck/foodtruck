@@ -1,9 +1,10 @@
 import {LocationSchema} from "./location.validator"
-import {Request, Response} from "express";
+import {Request, response, Response} from "express";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {Status} from "../../utils/interfaces/Status";
 import {Location, selectLocationByLocationSunset} from "./location.model"
 import axios from "axios";
+import session from "express-session"
 
 
 import {string, z} from "zod";
@@ -15,7 +16,8 @@ import {
     selectLocationByLocationTruckId,
     selectLocationByLocationLat,
     selectLocationByLocationLng,
-    selectLocationByLocationAddress, selectLocationByLocationSunrise
+    selectLocationByLocationAddress,
+    selectLocationByLocationSunrise
 } from "./location.model";
 
 
@@ -35,9 +37,7 @@ export async function putLocationController(request: Request, response: Response
             return zodErrorResponse(response, paramsValidationResult.error);
         }
 
-        const locationTruckId = paramsValidationResult.data.locationId; // Correct the variable name
-
-        // Assuming you have a function to fetch the location by ID
+        const locationTruckId = paramsValidationResult.data.locationId;
         const [location] = await Promise.all([selectLocationByLocationId(locationTruckId)]);
 
         if (!location) {
@@ -50,13 +50,8 @@ export async function putLocationController(request: Request, response: Response
 
         const { locationLat, locationLng, locationSunrise, locationSunset } = bodyValidationResult.data;
 
-        // Assuming you have a function to update the location
-        const message = await updateLocationByLocationId(locationTruckId, {
-            locationLat,
-            locationLng,
-            locationSunset,
-            locationSunrise
-        });
+
+        const message = await updateLocationByLocationId('locationTruckId,locationLat,locationLng,locationSunset,locationSunrise')
 
         return response.json({ status: 200, data: null, message });
     } catch (error) {
@@ -66,7 +61,7 @@ export async function putLocationController(request: Request, response: Response
 }
 
 
-export async function postLocationController(request: Request, response: Response): Promise<Response> {
+export async function postLocationIdController(request: Request, response: Response): Promise<Response> {
     try {
         const validationResult = LocationSchema.safeParse(request.body);
 
@@ -81,11 +76,11 @@ export async function postLocationController(request: Request, response: Respons
             locationLng,
             locationSunrise,
             locationSunset,
-            locationAddress // Assuming you have locationAddress in your schema
+            locationAddress
         } = validationResult.data;
 
         let truck: any;
-        truck = request.session ? request.session.truck : undefined;
+        truck = request.session ? request.session : undefined;
         const locationTruckId = truck?.truckId;
 
         if (locationTruckId === undefined || locationTruckId === null) {
@@ -109,10 +104,10 @@ export async function postLocationController(request: Request, response: Respons
             return null;
         }
 
-        const truckCoordinates = await addressConverter(locationAddress); // Pass the locationAddress variable
+        const truckCoordinates = await addressConverter(locationAddress)
 
         const location: { locationLat: number; locationSunset: number | null; locationTruckId: any; locationSunrise: number | null; locationId: string | null; locationLng: number } = {
-            locationId, // Use the provided locationId
+            locationId,
             locationTruckId,
             locationLat,
             locationLng,
@@ -142,7 +137,7 @@ export async function postLocationController(request: Request, response: Respons
                 return zodErrorResponse(response, validationResult.error)
             }
 
-            const data = await selectLocationByLocationId(request, response)
+            const data = await selectLocationByLocationId(request)
 
             return response.json({status: 200, message: null, data: null})
         } catch (error: any) {
@@ -186,7 +181,7 @@ export async function getLocationByLocationTruckIdController(request: Request, r
 
 
 
-export async function getLocationByLocationAddressController(request: Request, response: Response): Promise<Response<Status>> {
+export async function getLocationByLocationAddress(request: Request, response: Response): Promise<Response<Status>> {
     try {
         const validationResult = LocationSchema.safeParse(request.params)
 
@@ -207,24 +202,24 @@ export async function getLocationByLocationAddressController(request: Request, r
 }
 
 
-export async function getLocationByLocationSunsetController(request: Request, response: Response): Promise<Response<Status>> {
-        try {
-            const validationResult = LocationSchema.safeParse(request.params)
-
-            if (!validationResult.success) {
-                return zodErrorResponse(response, validationResult.error)
-            }
-
-            const data = await selectLocationByLocationSunset(request)
-
-            return response.json({status: 200, message: null, data: null})
-
-        } catch (error: any) {
-            console.error(error)
-            Response.json({status: 500, data: null, message: 'cannot locate'})
-            return response.json({status: 500, message: 'internal server', data: null})
-        }
-    }
+// export async function getLocationByLocationSunsetController(request: Request, response: Response): Promise<Response<Status>> {
+//         try {
+//             const validationResult = LocationSchema.safeParse(request.params)
+//
+//             if (!validationResult.success) {
+//                 return zodErrorResponse(response, validationResult.error)
+//             }
+//
+//             const data = await selectLocationByLocationSunset(request)
+//
+//             return response.json({status: 200, message: null, data: null})
+//
+//         } catch (error: any) {
+//             console.error(error)
+//             Response.json({status: 500, data: null, message: 'cannot locate'})
+//             return response.json({status: 500, message: 'internal server', data: null})
+//         }
+//     }
 
 
 export async function getLocationByLocationSunrise(request: Request, response: Response): Promise<Response<Status>> {
@@ -245,30 +240,10 @@ export async function getLocationByLocationSunrise(request: Request, response: R
     }
 }
 
-export async function updateLocationByLocationTruckId
-const { truckId } = req.params;
-const { latitude, longitude } = req.body;
 
-try {
-    const truck = await Truck.findById(truckId);
 
-    if (!truck) {
-        return res.status(404).json({ message: 'Truck not found' });
-    }
 
-    truck.location = {
-        latitude,
-        longitude,
-    };
 
-    await truck.save();
-
-    res.json({ message: 'Location updated successfully', truck });
-} catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
-}
-};
 
 
 
@@ -295,7 +270,7 @@ try {
 //                 console.log(position.coords.longitude)
 //             })
 //         }
-//     }
+//     })
 // }
 
 
