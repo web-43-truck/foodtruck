@@ -8,28 +8,22 @@ export type Location = z.infer<typeof LocationSchema>
 
 
 
-/**
- * @param location
- * @param locationIsActive
- * @param locationAddress
- */
-export async function insertLocation(location: { locationLat: number; locationSunset: number | null; locationTruckId: any; locationSunrise: number | null; locationId: string | null; locationLng: number }, locationIsActive: any = locationIsActive, locationAddress: any): Promise<string> {
-    const { locationTruckId, locationLat, locationLng, locationSunrise, locationSunset} = location
+export async function insertLocation(location: Location): Promise<string> {
+    const { locationTruckId, locationIsActive, locationAddress, locationLat, locationLng, locationSunrise, locationSunset} = location
 
-
-    await sql `INSERT INTO location(location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset) VALUES (gen_random_uuid(), ${locationTruckId}, ${locationIsActive}, ${locationAddress}, ${locationLat}, ${locationLng}, ${locationSunrise}, ${locationSunset})`;
+    await sql `INSERT INTO location(location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset) VALUES (gen_random_uuid(), ${locationTruckId}, ${locationIsActive}, ${locationAddress}, ${locationLat}, ${locationLng}, ${locationSunrise}, ${locationSunset})`
 
     return 'Location updated successfully'
 }
 
 
 
-export async function updateLocationByLocationId(location: string):Promise<string> {
+export async function updateLocationByLocationId (location: Location):Promise<string> {
 
     const {locationId, locationIsActive, locationAddress, locationLat, locationLng, locationSunrise, locationSunset} = location
 
     await sql`UPDATE location
-              SET
+              SET 
                   location_is_active = ${locationIsActive},
                   location_address = ${locationAddress},
                   location_Lat     = ${locationLat},
@@ -46,8 +40,8 @@ export async function updateLocationByTruckId (location: Location):Promise<strin
     const {locationTruckId, locationIsActive, locationAddress, locationLat, locationLng, locationSunrise, locationSunset} = location
 
     await sql`UPDATE location
-              SET
-                  location_is_active = ${locationIsActive},
+              SET 
+                location_is_active = ${locationIsActive},
                   location_address = ${locationAddress},
                   location_Lat     = ${locationLat},
                   location_Lng     = ${locationLng},
@@ -58,7 +52,7 @@ export async function updateLocationByTruckId (location: Location):Promise<strin
     return 'Location updated successfully'
 }
 
-export async function selectLocationByLocationId(locationId: e.Request): Promise<Location | null> {
+export async function selectLocationByLocationId(locationId: string | null): Promise<Location|null> {
 
     const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset FROM location WHERE location_id = ${locationId}`
 
@@ -88,7 +82,7 @@ export async function selectLocationByLocationIsActive(locationIsActive: null): 
 }
 
 
-export async function selectLocationByLocationAddress(locationAddress: e.Request): Promise<Location | null> {
+export async function selectLocationByLocationAddress(locationAddress: string): Promise<Location | null> {
 
     const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset FROM location WHERE location_address = ${locationAddress}`
 
