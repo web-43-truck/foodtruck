@@ -30,5 +30,7 @@ export const TruckSchema = z.object({
     truckName: z.string()
         .trim()
         .min(1, {message: 'please provide a valid truck name that is min 1 character in length'})
-        .max(32, {message: 'please provide a valid truck name that is max 32 characters in length'})
+        .max(32, {message: 'please provide a valid truck name that is max 32 characters in length'
+    }),
+
 })

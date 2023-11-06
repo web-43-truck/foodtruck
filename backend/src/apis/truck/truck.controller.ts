@@ -15,6 +15,8 @@ import {z} from "zod";
 import {PublicProfile} from "../profile/profile.model";
 
 
+
+
 export async function putTruckController(request: Request, response: Response): Promise<Response<Status>> {
     try {
         const bodyValidationResult = TruckSchema.safeParse(request.body)
