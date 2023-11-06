@@ -91,21 +91,6 @@
 /******/ 		};
 /******/ 	}();
 /******/ 	
-<<<<<<< HEAD
-=======
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = function(module) {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				function() { return module['default']; } :
-/******/ 				function() { return module; };
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	}();
-/******/ 	
->>>>>>> b193682dd459712f116c483fdcbc569eec202799
 /******/ 	/* webpack/runtime/create fake namespace object */
 /******/ 	!function() {
 /******/ 		var getProto = Object.getPrototypeOf ? function(obj) { return Object.getPrototypeOf(obj); } : function(obj) { return obj.__proto__; };
@@ -166,11 +151,7 @@
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = function(chunkId) {
 /******/ 			// return url for filenames based on template
-<<<<<<< HEAD
 /******/ 			return undefined;
-=======
-/******/ 			return "static/chunks/" + chunkId + ".js";
->>>>>>> b193682dd459712f116c483fdcbc569eec202799
 /******/ 		};
 /******/ 	}();
 /******/ 	
@@ -199,11 +180,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
-<<<<<<< HEAD
-/******/ 		__webpack_require__.h = function() { return "aa16cbcc22e0ed51"; }
-=======
-/******/ 		__webpack_require__.h = function() { return "140f6ecc734b3b39"; }
->>>>>>> b193682dd459712f116c483fdcbc569eec202799
+/******/ 		__webpack_require__.h = function() { return "5bb800dbe29ff31e"; }
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

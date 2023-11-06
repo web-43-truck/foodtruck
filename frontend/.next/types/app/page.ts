@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-// File: C:\Users\tatia\WebstormProjects\foodtruck\frontend\src\app\page.tsx
-=======
-// File: C:\Users\azuce\OneDrive\Desktop\bootcamp\git\food-truck\frontend\src\app\page.tsx
->>>>>>> b193682dd459712f116c483fdcbc569eec202799
+// File: /Users/444lyssa/Desktop/bootcamp/git/foodtruck/frontend/src/app/page.tsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
