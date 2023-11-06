@@ -123,7 +123,7 @@ export async function selectLocationByLocationSunrise(locationSunrise: string): 
 }
 
 
-export async function selectLocationByLocationSunset(locationSunset: string): Promise<Location|null> {
+export async function selectLocationByLocationSunset(locationSunset: e.Request): Promise<Location | null> {
 
     const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset FROM location WHERE location_sunset = ${locationSunset}`
 
