@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import {z} from "zod";
 
 export const LocationSchema = z.object({
     locationId: z.string({
@@ -44,4 +44,3 @@ export const LocationSchema = z.object({
         .nullable()
 
 })
-

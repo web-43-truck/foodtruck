@@ -35,6 +35,7 @@ export default function CheckBox() {
 
             >
                 Favorite
+
             </label>
         </div>
     )
