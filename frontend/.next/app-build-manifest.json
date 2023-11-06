@@ -16,6 +16,7 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+<<<<<<< HEAD
     "/search-view/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -25,6 +26,12 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/truck/[truckId]/page.js"
+=======
+    "/SignUp/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/SignUp/page.js"
+>>>>>>> development
     ]
   }
 }

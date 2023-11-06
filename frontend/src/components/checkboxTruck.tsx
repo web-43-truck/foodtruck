@@ -1,11 +1,11 @@
-export default function CheckBox() {
+export default function CheckBoxTruck() {
     return (
 
 
         <div className="inline-flex items-center">
             <label className="relative flex items-center p-3 rounded-full cursor-pointer"
-                htmlFor="login"
-                data-ripple-dark="true"
+                   htmlFor="login"
+                   data-ripple-dark="true"
             >
                 <input
                     id="login"
@@ -34,8 +34,7 @@ export default function CheckBox() {
                 className="mt-px font-light text-gray-400 cursor-pointer select-none"
 
             >
-                Favorite
-
+                Truck Owner
             </label>
         </div>
     )

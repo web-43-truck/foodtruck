@@ -1,7 +1,7 @@
 'use client'
-import Image from "next/image";
 import React from "react";
 import {Picture} from "@/components/Picture";
+
 import {TruckMap} from "@/components/TruckMap";
 import {Truck, TruckSchema} from "@/utils/models/Truck";
 import {string} from "zod";
@@ -11,8 +11,7 @@ import {LocationSchema} from "@/utils/models/Location";
 
 
 export function TruckView() {
-    // const trucks = await getData()
-    // console.log(trucks)
+
     return (
         <>
             <h1 className="text-center text-8xl mt-14">Joe's Tacos</h1>
@@ -36,15 +35,6 @@ export function TruckView() {
                     </div>
                 </section>
             </section>
-            <TruckMap/>
-            <div className="grid py-14">
-                <a href="/" className="justify-self-center">
-                    <Image src="/food-truck-icon.png"
-                    width={500}
-                    height={500}
-                    alt="food truck icon" className="w-20"/>
-                </a>
-            </div>
         </>
     )
 }

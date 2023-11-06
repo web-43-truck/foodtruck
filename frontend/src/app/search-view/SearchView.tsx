@@ -6,6 +6,7 @@ import {ListItem} from "@/components/ListItem";
 import {Truck, TruckSchema} from "@/utils/models/Truck";
 
 
+
 export async function SearchView() {
     const trucks = await getData()
     console.log(trucks)
@@ -14,12 +15,16 @@ export async function SearchView() {
         <>
             <div className="grid py-14">
                 <a href="/" className="justify-self-center">
-                    <Image src="/food-truck-icon.png"
-                           width={500}
-                           height={500}
-                           alt="food truck icon" className="w-56 h-50"/>
+                    <Image
+                        src="/food-truck-icon.png"
+                        width={500}
+                        height={500}
+                        alt="food truck icon"
+                        className="w-56 h-50"
+                    />
                 </a>
             </div>
+
             <section className="grid mb-6">
                 <ul className="justify-self-center menu menu-horizontal bg-base-200 rounded-box gap-10 text-xl">
                     <ListItem itemName={"A-Z"} href={""} />
@@ -38,6 +43,7 @@ export async function SearchView() {
             </section>
             <section className="container mx-auto px-14">
 
+
                 {trucks.map((truck) => (
                     <SearchItem
                         key={truck.truckId}
@@ -46,10 +52,10 @@ export async function SearchView() {
                 ))}
 
             </section>
-
         </>
     )
 }
+
 async function getData(): Promise< Truck[] > {
     console.log(process.env.REST_API_URL)
     const response = await fetch(`${process.env.REST_API_URL}/apis/truck`, {next: {revalidate: 0}});
@@ -62,4 +68,3 @@ async function getData(): Promise< Truck[] > {
         throw new Error("Retrieving data failed");
     }
 }
-
