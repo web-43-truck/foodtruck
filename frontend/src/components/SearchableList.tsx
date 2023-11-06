@@ -12,6 +12,6 @@ function SearchableList({ items, searchQuery }: any) {
             ))}
         </ul>
     )
-}
+};
 
-export default SearchableList;
+export default SearchableList

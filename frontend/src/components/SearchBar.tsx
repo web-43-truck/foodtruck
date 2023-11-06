@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {SearchableList} from '/SearchableList';
 
 function SearchBar({ onSearch }) {
     const [query, setQuery] = useState('');

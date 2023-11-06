@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavBar} from "@/components/NavBar";
 import 'mapbox-gl/dist/mapbox-gl.css'
 import SearchBar from "@/components/SearchBar";
 import SearchableList from "@/components/SearchableList";
-import {useState} from "react";
 import items from "@maplibre/maplibre-gl-style-spec/docs/src/components/items/items";
 
 function App() {
