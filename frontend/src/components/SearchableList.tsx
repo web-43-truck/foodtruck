@@ -1,5 +1,4 @@
 import React from 'react';
-
 function SearchableList({ items, searchQuery }: any) {
     const filteredItems = items.filter ((item : any) =>
       item.toLowerCase().includes(searchQuery.toLowerCase())
