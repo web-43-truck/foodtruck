@@ -245,6 +245,30 @@ export async function getLocationByLocationSunrise(request: Request, response: R
     }
 }
 
+export async function updateLocationByLocationTruckId
+const { truckId } = req.params;
+const { latitude, longitude } = req.body;
+
+try {
+    const truck = await Truck.findById(truckId);
+
+    if (!truck) {
+        return res.status(404).json({ message: 'Truck not found' });
+    }
+
+    truck.location = {
+        latitude,
+        longitude,
+    };
+
+    await truck.save();
+
+    res.json({ message: 'Location updated successfully', truck });
+} catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+}
+};
 
 
 
