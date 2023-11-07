@@ -12,6 +12,10 @@
 # next.js
 /.next/
 /out/
+/.next/server
+/.next/cache/webpack/client-development
+/.next/app-build-manifest.json
+/.next/trace
 
 # production
 /build
