@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
   "/not-found": "app/not-found.js"
+=======
+  "/SignUp/page": "app/SignUp/page.js"
+>>>>>>> user2
 }
