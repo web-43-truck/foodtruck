@@ -52,7 +52,7 @@ export async function selectTruckByTruckName (truckName: string) : Promise<Truck
 export async function selectTrucksByTruckName(truckName: string): Promise<Truck | null> {
     const truckNameWithWildcards = `%${truckName}%`
 
-    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset
+    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name
                               FROM truck
                               WHERE truck_name LIKE ${truckNameWithWildcards}`
 
@@ -63,7 +63,7 @@ export async function selectTrucksByTruckName(truckName: string): Promise<Truck 
 
 export async function selectAllTrucks(): Promise<Truck[]> {
 
-    const rowList = <Truck[]>await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset FROM truck ORDER BY truck_name DESC`
+    const rowList = <Truck[]>await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name FROM truck ORDER BY truck_name DESC`
 
     return TruckSchema.array().parse(rowList)
 }
