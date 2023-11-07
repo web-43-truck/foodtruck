@@ -6,7 +6,7 @@ import {
     selectTrucksByProfileId,
     selectTrucksByTruckName,
     insertTruck,
-    updateTruck, selectAllTrucks, deleteTruckByTruckId
+    updateTruck, selectAllTrucks, deleteTruckByTruckId, searchTruckName
 } from "./truck.model"
 import {zodErrorResponse} from "../../utils/response.utils"
 import {TruckSchema} from "./truck.validator"
@@ -217,6 +217,28 @@ export async function getTrucksByNameController(request: Request, response: Resp
     } catch (error: unknown) {
 
         return response.json({status: 500,message: "internal server error", data: null})
+    }
+}
+
+export async function searchTruckByNameController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const search = request.query.name as string
+        if (search === undefined) {
+            return response.json({
+                status: 500, message: 'Search term is undefined', data: []
+            })
+        }
+
+        const data = await searchTruckName(search)
+        return response.json({status: 200, message: null, data})
+
+    } catch (error:any) {
+        console.error(error)
+        return response.json({
+            status: 500,
+            message: error.message,
+            data: []
+        })
     }
 }
 

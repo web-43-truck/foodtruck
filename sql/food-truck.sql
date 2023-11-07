@@ -1,8 +1,11 @@
-DROP TABLE IF EXISTS favorite;
-DROP TABLE IF EXISTS picture;
-DROP TABLE IF EXISTS location;
-DROP TABLE IF EXISTS truck;
-DROP TABLE IF EXISTS profile;
+CREATE EXTENSION pg_trgm;
+
+
+-- DROP TABLE IF EXISTS favorite;
+-- DROP TABLE IF EXISTS picture;
+-- DROP TABLE IF EXISTS location;
+-- DROP TABLE IF EXISTS truck;
+-- DROP TABLE IF EXISTS profile;
 CREATE TABLE IF NOT EXISTS profile(
                                       profile_id UUID NOT NULL PRIMARY KEY,
                                       profile_activation_token CHAR(32),

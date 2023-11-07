@@ -8,7 +8,7 @@ export type Truck = z.infer<typeof TruckSchema>
 export async function insertTruck (truck: Truck): Promise<string> {
     const {truckProfileId, truckDescription, truckFoodCategory, truckName} = truck
 
-    await sql`INSERT INTO truck(truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset) VALUES (gen_random_uuid(), ${truckProfileId}, ${truckDescription}, ${truckFoodCategory}, ${truckName})`
+    await sql`INSERT INTO truck(truck_id, truck_profile_id, truck_description, truck_food_category, truck_name) VALUES (gen_random_uuid(), ${truckProfileId}, ${truckDescription}, ${truckFoodCategory}, ${truckName})`
 
     return 'Truck added successfully'
 }
@@ -23,7 +23,7 @@ export async function updateTruck (truck: Truck): Promise<string> {
 }
 
 export async function selectTruckByTruckId(truckId: string | null): Promise<Truck | null> {
-    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset FROM truck WHERE truck_id = ${truckId}`
+    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name FROM truck WHERE truck_id = ${truckId}`
 
     const result = TruckSchema.array().max(1).parse(rowList)
 
@@ -31,7 +31,7 @@ export async function selectTruckByTruckId(truckId: string | null): Promise<Truc
 }
 
 export async function selectTrucksByProfileId(truckProfileId: string): Promise<Truck | null> {
-    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset FROM truck WHERE truck_profile_id = ${truckProfileId}`
+    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name FROM truck WHERE truck_profile_id = ${truckProfileId}`
 
     const result = TruckSchema.array().max(1).parse(rowList)
 
@@ -41,7 +41,7 @@ export async function selectTrucksByProfileId(truckProfileId: string): Promise<T
 
 
 export async function selectTruckByTruckName (truckName: string) : Promise<Truck | null> {
-    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset FROM truck
+    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name FROM truck
                      WHERE truck_name = ${truckName}`
 
     const result = TruckSchema.array().max(1).parse(rowList)
@@ -68,8 +68,13 @@ export async function selectAllTrucks(): Promise<Truck[]> {
     return TruckSchema.array().parse(rowList)
 }
 
+export async function searchTruckName(truckName:string): Promise<Truck | null> {
+    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name FROM truck WHERE truck_name %> ${truckName} ORDER BY truck_name DESC`
 
+    const result = TruckSchema.array().max(1).parse(rowList)
 
+    return result?.length === 1 ? result[0] : null
+}
 
 
 export async function deleteTruckByTruckId(truckId: string): Promise<string> {
