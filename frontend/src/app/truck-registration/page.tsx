@@ -18,7 +18,7 @@ export default function TruckRegistrationPage(){
                 <NavBar links={links}/>
             </section>
             <TruckRegistration/>
-            <TruckMap/>
+
             <Footer/>
         </>
     )
