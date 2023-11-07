@@ -44,6 +44,7 @@ export async function putLocationController(request: Request, response: Response
         }
 
 
+        }
 
         const { locationLat, locationLng, locationSunrise, locationSunset } = bodyValidationResult.data;
 
