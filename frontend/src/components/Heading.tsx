@@ -1,9 +1,9 @@
 import React from "react";
 
-export function Header() {
+export function FoodTruckHunter() {
     return (
         <>
-
+        <h1>Food Truck Hunter</h1>
         </>
     )
 }

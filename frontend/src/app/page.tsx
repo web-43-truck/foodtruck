@@ -1,7 +1,5 @@
 import {NavBar} from "@/components/NavBar";
 import 'mapbox-gl/dist/mapbox-gl.css'
-import SearchBar from "@/components/SearchBar";
-import SearchableList from "@/components/SearchableList";
 
 export default function Home() {
     const links = [
@@ -13,8 +11,6 @@ export default function Home() {
     return (
         <>
           <NavBar links={links}/>
-          <SearchBar onSearch={SearchableList}/>
-          <SearchableList/>
         </>
     )
 }
