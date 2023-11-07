@@ -6,18 +6,18 @@ import axios from "axios";
 export type Truck = z.infer<typeof TruckSchema>
 
 export async function insertTruck (truck: Truck): Promise<string> {
-    const {truckProfileId, truckDescription, truckFoodCategory, truckName, truckIsActive, truckAddress, truckLat, truckLng, truckSunrise, truckSunset} = truck
+    const {truckProfileId, truckDescription, truckFoodCategory, truckName} = truck
 
-    await sql`INSERT INTO truck(truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset) VALUES (gen_random_uuid(), ${truckProfileId}, ${truckDescription}, ${truckFoodCategory}, ${truckName}, ${truckIsActive}, ${truckAddress}, ${truckLat}, ${truckLng}, ${truckSunrise}, ${truckSunset})`
+    await sql`INSERT INTO truck(truck_id, truck_profile_id, truck_description, truck_food_category, truck_name, truck_is_active, truck_address, truck_lat, truck_lng, truck_sunrise, truck_sunset) VALUES (gen_random_uuid(), ${truckProfileId}, ${truckDescription}, ${truckFoodCategory}, ${truckName})`
 
     return 'Truck added successfully'
 }
 
 export async function updateTruck (truck: Truck): Promise<string> {
 
-    const {truckId, truckDescription, truckFoodCategory, truckName, truckIsActive, truckAddress, truckLat, truckLng, truckSunrise, truckSunset } = truck
+    const {truckId, truckDescription, truckFoodCategory, truckName } = truck
 
-    await sql`UPDATE truck SET truck_description = ${truckDescription}, truck_food_category = ${truckFoodCategory}, truck_name = ${truckName}, truck_is_active = ${truckIsActive}, truck_address = ${truckAddress}, truck_lat = ${truckLat}, truck_lng = ${truckLng}, truck_sunrise =${truckSunrise}, truck_sunset = ${truckSunset} WHERE truck_id = ${truckId}`
+    await sql`UPDATE truck SET truck_description = ${truckDescription}, truck_food_category = ${truckFoodCategory}, truck_name = ${truckName} WHERE truck_id = ${truckId}`
 
     return 'profile updated successfully'
 }
