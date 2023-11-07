@@ -18,7 +18,6 @@ export default function SignUpPage() {
             <NavBar links={links}/>
             </section>
             <SignUp/>
-            <Form/>
             <Footer/>
         </>
     )
