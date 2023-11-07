@@ -33,12 +33,7 @@ export async function TruckView() {
                         <h2 >Close: 10pm</h2>
                     </div>
                     <p className="flex justify-center text-3xl mt-8 px-20">
-                        {trucks.map((truck) => (
-                            <SearchItem
-                                key={truck.truckId}
-                                truckDescription = {truck.truckDescription}
-                            />
-                        ))}
+                        {trucks.length > 0 ? trucks[0].truckDescription : "No Truck Description"}
                     </p>
                     <div className="text-center text-2xl mt-8">
                         <h3 className="underline text-3xl">Address:</h3>
@@ -61,8 +56,6 @@ async function getData(): Promise<Truck[] > {
     } else {
         throw new Error("Retrieving data failed");
     }
-
-
 }
 
 
