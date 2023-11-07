@@ -3,7 +3,7 @@ import {
     getLocationByLocationAddress,
     getLocationByLocationIdController,
     getLocationByLocationSunrise,
-    getLocationByLocationTruckIdController, postLocationIdController, putLocationController
+    getLocationByLocationTruckIdController, postLocationController,  putLocationController
 
 
 } from "./location.controller"
@@ -21,10 +21,10 @@ router.route('/locationSunrise')
     .get(getLocationByLocationSunrise)
 
 
-router.route('/locationId')
+router.route('/:locationId')
     .get(getLocationByLocationIdController)
     .put(putLocationController)
-    .post(postLocationIdController)
+    .post(postLocationController)
 
 router.route('/locationTruckId')
     .get(getLocationByLocationTruckIdController)
