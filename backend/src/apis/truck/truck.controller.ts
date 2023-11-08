@@ -66,7 +66,7 @@ export async function getTruckByTruckIdController (request: Request, response: R
     try {
 
         const validationResult = z.object({
-            truckId: z.string().uuid('please provide a valid projectId')
+            truckId: z.string().uuid('please provide a valid truckId')
         }). safeParse(request.params)
 
         if (!validationResult.success) {
