@@ -1,14 +1,10 @@
 
 import React from "react";
 import {Picture} from "@/components/Picture";
-
 import {TruckMap} from "@/components/TruckMap";
 import {Truck, TruckSchema} from "@/utils/models/Truck";
-import {string} from "zod";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
-import {LocationSchema} from "@/utils/models/Location";
-import {SearchItem} from "@/components/SearchItem";
+
+
 
 
 export async function Truck() {
@@ -40,6 +36,9 @@ export async function Truck() {
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
                     </div>
                 </section>
+            </section>
+            <section>
+                <TruckMap/>
             </section>
         </>
     )

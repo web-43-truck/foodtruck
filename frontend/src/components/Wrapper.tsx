@@ -1,17 +1,26 @@
 'use client'
 
-import {useState} from "react";
+import React, {useState} from "react";
 import {Truck} from "@/utils/models/Truck";
-import {FilterList} from "@/components/FilterList";
+import {SearchItem} from "@/components/SearchItem";
 
-type WrapperProps = {
-    trucks: Truck[]
+type FoodTypeProps = {
+    trucks: Truck[],
+    truckFoodCategory: string
 }
-export function Wrapper({trucks}: WrapperProps) {
-    const [truckList, setTruckList] = useState(trucks)
+
+export function Wrapper({trucks, truckFoodCategory}: FoodTypeProps) {
+console.log(truckFoodCategory)
     return (
         <>
-            <FilterList trucks={truckList}/>
+
+            <section className="container mx-auto px-14">
+                {trucks
+                    .filter((truck) => truck.truckFoodCategory === truckFoodCategory)
+                    .map((truck) => (
+                        <SearchItem key={truck.truckId} truck={truck}/>
+                    ))}
+            </section>
         </>
     )
 }
