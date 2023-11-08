@@ -1,7 +1,7 @@
 
 import {NavBar} from "@/components/NavBar";
-import {TruckView} from "../TruckView";
-import {useParams} from "next/navigation";
+import {Truck} from "../TruckView";
+
 type TruckPageProps = {
     params: {truckId: string}
 }
@@ -17,7 +17,7 @@ export default function TruckPage(props: TruckPageProps){
             <section>
                 <NavBar links={links}/>
             </section>
-            <TruckView key={process.env["MAPBOX_ACCESS_TOKEN"]}/>
+            <Truck key={process.env["MAPBOX_ACCESS_TOKEN"]}/>
         </>
     )
 }

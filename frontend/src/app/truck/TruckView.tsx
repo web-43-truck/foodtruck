@@ -11,7 +11,7 @@ import {LocationSchema} from "@/utils/models/Location";
 import {SearchItem} from "@/components/SearchItem";
 
 
-export async function TruckView() {
+export async function Truck() {
     const trucks = await getData()
     console.log(trucks)
     return (

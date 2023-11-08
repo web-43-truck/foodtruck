@@ -1,4 +1,4 @@
-
+'use client'
 import {NavBar} from "@/components/NavBar";
 import {SearchView} from "@/app/search-view/SearchView";
 

@@ -71,20 +71,6 @@ export async function selectLocationByLocationTruckId(locationTruckId: string): 
 }
 
 
-<<<<<<< HEAD
-//selecting all locations by location truck id
-export async function selectLocationsByLocationTruckId(locationTruckId: string): Promise<Location|null> {
-
-    const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset FROM location WHERE location_truck_id = ${locationTruckId}`
-
-    const result = LocationSchema.array().max(1).parse(rowList)
-
-    return result?.length === 1 ? result[0]:null
-}
-
-
-=======
->>>>>>> development
 
 export async function selectLocationByLocationIsActive(locationIsActive: null): Promise<Location|null> {
 

@@ -1,13 +1,7 @@
 {
-<<<<<<< HEAD
-  "/truck/[truckId]/page": "app/truck/[truckId]/page.js",
+  "/page": "app/page.js",
   "/search-view/page": "app/search-view/page.js",
+  "/truck/[truckId]/page": "app/truck/[truckId]/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/not-found": "app/not-found.js"
-=======
-<<<<<<< HEAD
-  "/not-found": "app/not-found.js"
-=======
-  "/SignUp/page": "app/SignUp/page.js"
->>>>>>> user2
->>>>>>> development
 }
