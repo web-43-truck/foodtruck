@@ -2,7 +2,7 @@ import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-export default function Home() {
+export default function OwnerLanding() {
     const links = [
         {linkName: 'Sign-in', href: '/'},
         {linkName: 'Sign-up', href: '/'},
@@ -17,8 +17,4 @@ export default function Home() {
             <Footer/>
         </>
     )
-}
-
-export function Picture() {
-    return
 }
