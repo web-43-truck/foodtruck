@@ -7,10 +7,15 @@ import {
 
 
 } from "./location.controller"
+import {isLoggedInController} from "../../utils/controllers/isLoggedIn.controller";
 
 const basePath = '/apis/location'
 
 const router = Router()
+
+router.route('/')
+    .post(isLoggedInController, postLocationController)
+
 
 router.route('/locationSunrise')
     .get(getLocationByLocationSunrise)
@@ -18,8 +23,8 @@ router.route('/locationSunrise')
 
 router.route('/:locationId')
     .get(getLocationByLocationIdController)
-    .put(putLocationController)
-    .post(postLocationController)
+    .put(isLoggedInController, putLocationController)
+
 
 router.route('/locationTruckId')
     .get(getLocationByLocationTruckIdController)
