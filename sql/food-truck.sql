@@ -1,8 +1,11 @@
-DROP TABLE IF EXISTS favorite;
-DROP TABLE IF EXISTS picture;
-DROP TABLE IF EXISTS location;
-DROP TABLE IF EXISTS truck;
-DROP TABLE IF EXISTS profile;
+CREATE EXTENSION pg_trgm;
+
+
+-- DROP TABLE IF EXISTS favorite;
+-- DROP TABLE IF EXISTS picture;
+-- DROP TABLE IF EXISTS location;
+-- DROP TABLE IF EXISTS truck;
+-- DROP TABLE IF EXISTS profile;
 CREATE TABLE IF NOT EXISTS profile(
                                       profile_id UUID NOT NULL PRIMARY KEY,
                                       profile_activation_token CHAR(32),
@@ -22,7 +25,6 @@ create table if not exists truck(
                                     FOREIGN KEY (truck_profile_id) references profile (profile_id)
 );
 
-
 create table if not exists location(
                                        location_id UUID NOT NULL PRIMARY KEY,
                                        location_truck_id UUID NOT NULL,
@@ -34,6 +36,7 @@ create table if not exists location(
                                        location_sunset TIMESTAMPTZ,
                                        FOREIGN KEY (location_truck_id) references truck(truck_id)
 );
+
 
 create table if not exists picture(
                                       picture_id UUID NOT NULL PRIMARY KEY,
@@ -48,5 +51,4 @@ create table if not exists favorite(
                                        favorite_profile_id UUID NOT NULL,
                                        FOREIGN KEY (favorite_truck_id) references truck(truck_id),
                                        FOREIGN KEY (favorite_profile_id) references profile(profile_id)
-
 );

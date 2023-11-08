@@ -71,6 +71,7 @@ export async function selectLocationByLocationTruckId(locationTruckId: string): 
 }
 
 
+<<<<<<< HEAD
 //selecting all locations by location truck id
 export async function selectLocationsByLocationTruckId(locationTruckId: string): Promise<Location|null> {
 
@@ -82,6 +83,8 @@ export async function selectLocationsByLocationTruckId(locationTruckId: string):
 }
 
 
+=======
+>>>>>>> development
 
 export async function selectLocationByLocationIsActive(locationIsActive: null): Promise<Location|null> {
 

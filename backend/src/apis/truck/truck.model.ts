@@ -1,6 +1,7 @@
 import {z} from 'zod'
 import {TruckSchema} from './truck.validator'
 import {sql} from '../../utils/database.utils'
+import axios from "axios";
 
 export type Truck = z.infer<typeof TruckSchema>
 
@@ -14,7 +15,7 @@ export async function insertTruck (truck: Truck): Promise<string> {
 
 export async function updateTruck (truck: Truck): Promise<string> {
 
-    const {truckId, truckDescription, truckFoodCategory, truckName} = truck
+    const {truckId, truckDescription, truckFoodCategory, truckName } = truck
 
     await sql`UPDATE truck SET truck_description = ${truckDescription}, truck_food_category = ${truckFoodCategory}, truck_name = ${truckName} WHERE truck_id = ${truckId}`
 
@@ -37,9 +38,10 @@ export async function selectTrucksByProfileId(truckProfileId: string): Promise<T
     return result?.length === 1 ? result[0] : null
 }
 
+
+
 export async function selectTruckByTruckName (truckName: string) : Promise<Truck | null> {
-    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name
-                     FROM truck
+    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name FROM truck
                      WHERE truck_name = ${truckName}`
 
     const result = TruckSchema.array().max(1).parse(rowList)
@@ -66,6 +68,13 @@ export async function selectAllTrucks(): Promise<Truck[]> {
     return TruckSchema.array().parse(rowList)
 }
 
+export async function searchTruckName(truckName:string): Promise<Truck | null> {
+    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name FROM truck WHERE truck_name %> ${truckName} ORDER BY truck_name DESC`
+
+    const result = TruckSchema.array().max(1).parse(rowList)
+
+    return result?.length === 1 ? result[0] : null
+}
 
 
 export async function deleteTruckByTruckId(truckId: string): Promise<string> {
