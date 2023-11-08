@@ -1,5 +1,14 @@
 'use client'
 
-import {Grid} from "@/components/gried"
-impoprt Image from "next/image"
+import {GridFavorites} from "@/components/gridFavorites";
+
+
 import React, {ReactNode} from "react"
+
+export function Favorites() {
+    return (
+        <>
+        <GridFavorites/>
+        </>
+    )
+}
