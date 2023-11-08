@@ -6,38 +6,38 @@ type FoodTypeProps = {
 
 export function FoodType({ onCuisineSelect }: FoodTypeProps) {
     return (
-        <ul>
-            <li
+        <div>
+            <button
                 className="hover:bg-accent-focus hover:rounded-xl"
                 onClick={() => onCuisineSelect("American")}
             >
                 American
-            </li>
-            <li
+            </button>
+            <button
                 className="hover:bg-accent-focus hover:rounded-xl"
                 onClick={() => onCuisineSelect("Asian")}
             >
                 Asian
-            </li>
-            <li
+            </button>
+            <button
                 className="hover:bg-accent-focus hover:rounded-xl"
                 onClick={() => onCuisineSelect("Italian")}
             >
                 Italian
-            </li>
-            <li
+            </button>
+            <button
                 className="hover:bg-accent-focus hover:rounded-xl"
                 onClick={() => onCuisineSelect("Mexican")}
             >
                 Mexican
-            </li>
-            <li
+            </button>
+            <button
                 className="hover:bg-accent-focus hover:rounded-xl"
                 onClick={() => onCuisineSelect("Other")}
             >
                 Other
-            </li>
-        </ul>
+            </button>
+        </div>
     );
 }
 
