@@ -1,5 +1,6 @@
 import {NavBar} from "@/components/NavBar";
 import 'mapbox-gl/dist/mapbox-gl.css'
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
     const links = [
@@ -11,9 +12,7 @@ export default function Home() {
     return (
         <>
           <NavBar links={links}/>
+          <Footer/>
         </>
     )
 }
-
-
-
