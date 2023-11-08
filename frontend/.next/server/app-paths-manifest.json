@@ -2,6 +2,6 @@
   "/page": "app/page.js",
   "/search-view/page": "app/search-view/page.js",
   "/truck/[truckId]/page": "app/truck/[truckId]/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/not-found": "app/not-found.js"
+  "/not-found": "app/not-found.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }
