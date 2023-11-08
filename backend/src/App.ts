@@ -65,7 +65,11 @@ export class App {
         this.app.use(truckRoute.basePath, truckRoute.router)
         this.app.use(favoriteRoute.basePath, favoriteRoute.router)
         this.app.use(pictureRoute.basePath, pictureRoute.router)
+<<<<<<< HEAD
         this.app.use(locationRoute.basePath, locationRoute.router)
+=======
+        this.app.use(locationRoute.basePath, pictureRoute.router)
+>>>>>>> development
     }
 
     // starts the server and tells the terminal to post a message that the server is running and on what port
