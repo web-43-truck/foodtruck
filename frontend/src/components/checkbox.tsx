@@ -1,11 +1,22 @@
+import {
+    ReactElement,
+    JSXElementConstructor,
+    ReactNode,
+    ReactPortal,
+    PromiseLikeOfReactNode,
+    useState,
+    useContext
+} from "react";
+import {Favorites} from "@/app/favorite/Favorites";
+
 export default function CheckBox() {
     return (
 
 
         <div className="inline-flex items-center">
             <label className="relative flex items-center p-3 rounded-full cursor-pointer"
-                htmlFor="login"
-                data-ripple-dark="true"
+                   htmlFor="login"
+                   data-ripple-dark="true"
             >
                 <input
                     id="login"
@@ -37,6 +48,7 @@ export default function CheckBox() {
                 Favorite
 
             </label>
-        </div>
-    )
+        </div>)
 }
+
+

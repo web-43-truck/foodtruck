@@ -2,6 +2,7 @@ import CheckBox from "./checkbox";
 
 import {SearchItem} from "@/components/SearchItem";
 import {Picture} from "@/components/Picture";
+import Button from "@/components/button";
 
 export function Grid() {
     return (
@@ -12,26 +13,26 @@ export function Grid() {
 
             <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
 
-            <CheckBox/>
+            <Button/>
 
             <SearchItem truckName={"Cake Shop"} truckDescription={"Cookie croissant jelly cake carrot cake cotton candy caramels cotton candy. Icing oat souffle. Gingerbread oat cake sweet roll powder jelly-o."}/>
 
                 <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
 
-            <CheckBox/>
+            <Button/>
 
 
             <SearchItem truckName={"Honey Bee Ice Cream"} truckDescription={"Cookie croissant jelly cake carrot cake cotton candy caramels cotton candy. Icing oat souffle. Gingerbread oat cake sweet roll powder jelly-o."}/>
 
                 <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
 
-            <CheckBox/>
+            <Button/>
 
             <SearchItem truckName={"Tanya's Soul Food"} truckDescription={"Cookie croissant jelly cake carrot cake cotton candy caramels cotton candy. Icing oat souffle. Gingerbread oat cake sweet roll powder jelly-o."}/>
 
             <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
 
-            <CheckBox/>
+            <Button/>
         </div>)
 
 }
