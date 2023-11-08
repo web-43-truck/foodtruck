@@ -253,6 +253,8 @@ export async function getLocationByLocationSunrise(request: Request, response: R
 
 
 
+
+
 // async function getLocationByLocationLat() {
 //     new Promise((resolve, reject) => {
 //         if (navigator.geolocation) {
