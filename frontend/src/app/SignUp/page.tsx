@@ -7,10 +7,8 @@ import {SignUp} from "@/app/SignUp/SignUp";
 
 export default function SignUpPage() {
     const links = [
-
         {linkName: 'Home', href: '/'},
         {linkName: 'Favorites', href: '/'}
-
     ]
     return(
         <>

@@ -7,7 +7,7 @@ import {
     getTrucksByNameController,
     getTrucksByTruckProfileIdController,
     postTruckController,
-    putTruckController
+    putTruckController, searchTruckByNameController
 } from './truck.controller'
 import {isLoggedInController} from '../../utils/controllers/isLoggedIn.controller'
 
@@ -32,7 +32,13 @@ router.route('/truckProfileId/:truckProfileId')
 router.route('/truckName/:truckName')
     .get(getTruckByTruckNameController)
 
+router.route('/truckSearch/:truckName')
+    .get(searchTruckByNameController)
+
 router.route('/truckNames/:truckName')
     .get(getTrucksByNameController)
+
+
+
 
 export const truckRoute = {basePath, router}

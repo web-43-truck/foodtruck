@@ -23,7 +23,7 @@ const foodTruckData = [
         truckName: "Cake Shop",
         truckDescription:
             "Apple pie danish candy marzipan ice cream ice cream. Gingerbread icing donut sugar plum icing dessert candy canes oat cake macaroon. Dragée caramels candy dessert chupa chups dessert lollipop bonbon. Soufflé tiramisu chocolate cake soufflé pie pastry icing liquorice.",
-    },
+    }
 ]
 
 export function SearchView() {
@@ -40,18 +40,19 @@ export function SearchView() {
                     />
                 </a>
             </div>
-            <section className="grid">
-                <ul className="justify-self-center menu menu-horizontal bg-base-200 rounded-box gap-10">
-                    <ListItem itemName={"A-Z"} href={""} />
-                    <ListItem itemName={"Location"} href={""} />
+
+            <section className="grid mb-6">
+                <ul className="justify-self-center menu menu-horizontal bg-base-200 rounded-box gap-10 text-xl">
+                    <ListItem itemName={"A-Z"} href={""}/>
+                    <ListItem itemName={"Location"} href={""}/>
                     <li>
-                        <details>
-                            <summary>Cuisine</summary>
-                            <ul>
-                                <ListItem itemName={"American"} href={""} />
-                                <ListItem itemName={"Mexican"} href={""} />
-                                <ListItem itemName={"Italian"} href={""} />
-                            </ul>
+                        <details >
+                            <summary className="hover:bg-accent-focus hover:rounded-xl">Cuisine</summary>
+                                <ul>
+                                    <ListItem itemName={"American"} href={""}/>
+                                    <ListItem itemName={"Mexican"} href={""}/>
+                                    <ListItem itemName={"Italian"} href={""}/>
+                                </ul>
                         </details>
                     </li>
                 </ul>

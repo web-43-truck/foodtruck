@@ -1,6 +1,10 @@
 import {Router} from 'express'
 import {
 
+    getLocationByLocationIdController,
+    getLocationByLocationSunrise,
+    getLocationByLocationTruckIdController, postLocationController,  putLocationController
+
 
 } from "./location.controller"
 
@@ -8,20 +12,17 @@ const basePath = '/apis/location'
 
 const router = Router()
 
-
-
-router.route('/locationAddress')
-    .get()
 router.route('/locationSunrise')
-    .get()
-router.route('/locationSunset')
-    .get()
+    .get(getLocationByLocationSunrise)
 
-router.route('/locationId')
-    .get()
+
+router.route('/:locationId')
+    .get(getLocationByLocationIdController)
+    .put(putLocationController)
+    .post(postLocationController)
 
 router.route('/locationTruckId')
-    .get()
+    .get(getLocationByLocationTruckIdController)
 
 
 export const locationRoute = {basePath, router}
