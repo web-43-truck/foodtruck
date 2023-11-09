@@ -11,9 +11,7 @@ export default function OwnerLanding() {
 
     return (
         <>
-            <section>
             <NavBar links={links}/>
-            </section>
             <Footer/>
         </>
     )
