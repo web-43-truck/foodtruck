@@ -139,7 +139,7 @@ export async function postLocationController(request: Request, response: Respons
 }
 
 
-    export async function getLocationByLocationIdController(request: Request, response: Response):Promise<Response<Status>> {
+export async function getLocationByLocationIdController(request: Request, response: Response):Promise<Response<Status>> {
         try {
             const validationResult = z.object({
                 locationId: z
@@ -181,7 +181,7 @@ export async function getLocationsByLocationTruckIdController(request: Request, 
         const {locationTruckId} = validationResult.data
 
 
-        const data: Location | null = await selectLocationByLocationTruckId(locationTruckId)
+        const data: Location[] | null = await selectLocationByLocationTruckId(locationTruckId)
 
         const status: Status = { status: 200, message: null, data }
         return response.json(status)
@@ -223,7 +223,9 @@ export async function getLocationByLocationSunrise(request: Request, response: R
     }
 }
 
-
+// export async function getLocationByActiveLocation(request: Request, response: Response){
+//
+// }
 
 
 // export async function getLocationByLocationAddress(request: Request, response: Response): Promise<Response<Status>> {

@@ -3,7 +3,7 @@ import {
     deleteTruckByTruckIdController,
     getAllTrucks,
     getTruckByTruckIdController,
-    getTruckByTruckNameController,
+    getTruckByTruckNameController, getTrucksByLocationTruckIdController,
     getTrucksByNameController,
     getTrucksByTruckProfileIdController,
     postTruckController,
@@ -22,9 +22,13 @@ router.route('/')
     .get(getAllTrucks)
 
 router.route('/:truckId')
+    .get(getTrucksByLocationTruckIdController)
     .get(getTruckByTruckIdController)
     .put(isLoggedInController, putTruckController)
     .delete(isLoggedInController, deleteTruckByTruckIdController)
+
+router.route('/truckId/:truckId')
+    .get(getTrucksByLocationTruckIdController)
 
 router.route('/truckProfileId/:truckProfileId')
     .get(getTrucksByTruckProfileIdController)
