@@ -2,7 +2,8 @@
 import React from "react";
 import {Picture} from "@/components/Picture";
 import {TruckMap} from "@/components/TruckMap";
-import {Truck, TruckSchema} from "@/utils/models/Truck";
+import {Truck, TruckSchema} from "@/utils/models/Truck"
+
 
 
 

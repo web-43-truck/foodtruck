@@ -11,15 +11,22 @@ import {TruckSchema} from "@/utils/models/Truck";
 import {Truck} from "@/app/truck/TruckView";
 
 
-export function User() {
-    return (
-        <>
+
+    export function User() {
+        const links = [
+            {linkName: 'Home', href: '/'},
+            {linkName: 'Sign Out', href: '/'}
+
+        ]
+        return (
+            <>
 
 
-        <Grid/>
+                <Grid/>
 
-        </>
-    )
-}
+            </>
+        )
+    }
+
 
 

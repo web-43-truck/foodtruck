@@ -1,5 +1,5 @@
 import CheckBox from "./checkbox";
-
+import {Truck, TruckSchema} from "@/utils/models/Truck"
 import {SearchItem} from "@/components/SearchItem";
 import {Picture} from "@/components/Picture";
 import React from "react";
