@@ -1,10 +1,7 @@
 
 import React, {ReactNode} from "react"
 import {Form, Formik} from 'formik'
-import {SearchItem} from "@/components/SearchItem";
-import {Picture} from "@/components/Picture";
-import CheckBox from "@/components/checkbox";
-import CheckBoxTruck from "@/components/checkboxTruck";
+
 
 
 

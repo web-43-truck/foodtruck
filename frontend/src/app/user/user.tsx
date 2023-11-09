@@ -5,6 +5,10 @@
 import {Grid} from "@/components/grid"
 import PropTypes from 'prop-types'
 import React, {ReactNode, useEffect, useState} from "react";
+import {favorite, FavoriteSchema} from "@/utils/models/Favorite"
+import {TruckSchema} from "@/utils/models/Truck";
+import {Truck} from "@/app/truck/TruckView";
+import { Favorite } from @/app/favorite/Favorite
 
 
 
@@ -12,7 +16,7 @@ import React, {ReactNode, useEffect, useState} from "react";
 
 
 
-async function getData(profileId: string): Promise<Favorite> {
+async function getData(favoriteProfileId: string): Promise<Favorite> {
     console.log(process.env.REST_API_URL)
     const response = await fetch(`${process.env.REST_API_URL}/apis/profile`, {next: {revalidate: 0}})
     if (response.status === 200) {
@@ -21,8 +25,8 @@ async function getData(profileId: string): Promise<Favorite> {
         const result = await response.json()
 
     console.log(result)
-    const profile = FavoriteSchema.array().parse(result?.data)
-    return profile
+    const favoriteProfileId = FavoriteSchema.array().parse(result?.data)
+    return favoriteProfileId
 } else {
     throw new Error("Retrieving data failed")
 }
@@ -48,4 +52,15 @@ export function User() {
     }
 
 
-
+    async function getData(): Promise<Truck[] > {
+        console.log(process.env.REST_API_URL)
+        const response = await fetch(`${process.env.REST_API_URL}/apis/truck`, {next: {revalidate: 0}});
+        if (response.status === 200 || response.status === 304) {
+            const result = await response.json();
+            console.log(result)
+            const trucks = TruckSchema.array().parse(result?.data);
+            return  trucks ;
+        } else {
+            throw new Error("Retrieving data failed");
+        }
+    }}
