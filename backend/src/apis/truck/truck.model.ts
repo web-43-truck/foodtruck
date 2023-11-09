@@ -68,6 +68,12 @@ export async function selectAllTrucks(): Promise<Truck[]> {
     return TruckSchema.array().parse(rowList)
 }
 
+export async function selectTrucksByLocationTruckId(): Promise<Truck[] | null>{
+    const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name FROM truck JOIN location ON truck.truck_id = location.location_truck_id ORDER BY truck_name DESC`
+
+    return TruckSchema.array().parse(rowList)
+}
+
 export async function searchTruckName(truckName:string): Promise<Truck[] | null> {
     const rowList = await sql`SELECT truck_id, truck_profile_id, truck_description, truck_food_category, truck_name FROM truck WHERE truck_name %> ${truckName} ORDER BY truck_name DESC`
 

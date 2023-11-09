@@ -129,7 +129,7 @@ export async function getTrucksByTruckProfileIdController (request: Request, res
         const validationResult = z.object({
             truckProfileId: z
                 .string()
-                .uuid('please provide a valid projectProfileId')
+                .uuid('please provide a valid truck profile Id')
         }).safeParse(request.params)
 
         if (!validationResult.success) {

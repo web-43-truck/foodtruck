@@ -1,6 +1,7 @@
 import {sql} from "../../utils/database.utils"
 import {z} from "zod"
 import {LocationSchema} from "./location.validator"
+import {TruckSchema} from "../truck/truck.validator";
 
 
 
@@ -61,13 +62,12 @@ export async function selectLocationByLocationId(locationId: string | null): Pro
     return result?.length === 1 ? result[0]:null
 }
 
-export async function selectLocationByLocationTruckId(locationTruckId: string): Promise<Location|null> {
+export async function selectLocationByLocationTruckId(locationTruckId: string): Promise<Location | null > {
 
     const rowList = await sql `SELECT location_id, location_truck_id, location_is_active, location_address, location_Lat, location_Lng, location_sunrise, location_sunset FROM location WHERE location_truck_id = ${locationTruckId}`
 
-    const result = LocationSchema.array().max(1).parse(rowList)
+    return LocationSchema.array().parse(rowList)
 
-    return result?.length === 1 ? result[0]:null
 }
 
 
