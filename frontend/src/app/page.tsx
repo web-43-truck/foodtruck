@@ -1,7 +1,6 @@
 import {NavBar} from "@/components/NavBar";
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-
 export default function Home() {
     const links = [
         {linkName: 'Sign-in', href: '/'},
@@ -11,9 +10,9 @@ export default function Home() {
 
     return (
         <>
-        <section>
-            <NavBar links={links}/>
-        </section>
+            <section>
+                <NavBar links={links}/>
+            </section>
         </>
     )
 }

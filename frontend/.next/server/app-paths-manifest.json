@@ -1,7 +1,4 @@
 {
-<<<<<<< HEAD
-  "/not-found": "app/not-found.js"
-=======
-  "/SignUp/page": "app/SignUp/page.js"
->>>>>>> user2
+  "/page": "app/page.js",
+  "/owner-view/page": "app/owner-view/page.js"
 }
