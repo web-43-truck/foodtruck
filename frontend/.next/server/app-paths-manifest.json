@@ -1,4 +1,8 @@
 {
+<<<<<<< HEAD
   "/page": "app/page.js",
   "/owner-view/page": "app/owner-view/page.js"
+=======
+  "/page": "app/page.js"
+>>>>>>> 6ac915f1bbe3521116ac0a49b3098481be34673b
 }
