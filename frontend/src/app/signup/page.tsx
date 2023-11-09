@@ -2,7 +2,8 @@
 import Form from "@/components/Form"
 import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
-import {SignUp} from "@/app/SignUp/SignUp";
+import {SignUp} from "@/app/signup/SignUp";
+
 
 
 export default function SignUpPage() {
