@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+// File: /Users/444lyssa/Desktop/bootcamp/git/foodtruck/frontend/src/app/page.tsx
+=======
 // File: C:\Users\azuce\OneDrive\Desktop\bootcamp\git\food-truck\frontend\src\app\page.tsx
+>>>>>>> 6ac915f1bbe3521116ac0a49b3098481be34673b
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
