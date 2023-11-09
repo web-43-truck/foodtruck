@@ -11,7 +11,7 @@ import CheckBoxTruck from "@/components/checkboxTruck";
 
 export function SignUp() {
     return (
-        <>
+
             <div className="bg-grey-lighter mx-auto flex flex-col">
                 <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
                     <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
@@ -43,14 +43,14 @@ export function SignUp() {
 
                        <label className="block border border-red-light w-full p-3 rounded mb-4"
                               placeholder="Confirm Password"
-htmlFor={"confirmpassword"}>Confirm Password</label>
+                              htmlFor={"confirmpassword"}>Confirm Password</label>
                        <button
                            type="submit" disabled = {isSubmitting}
                            className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
                        >Create Account</button>
                    </Form>)}
-                    )}
-                    </Formik>
+
+                    </Formik>)}
                 </div>
-                <>
+
 
