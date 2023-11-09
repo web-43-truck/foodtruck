@@ -1,6 +1,6 @@
-import Form from "@/components/Form"
+
 import React, {ReactNode} from "react"
-import { Formik } from 'formik'
+import {Form, Formik} from 'formik'
 import {SearchItem} from "@/components/SearchItem";
 import {Picture} from "@/components/Picture";
 import CheckBox from "@/components/checkbox";
@@ -48,9 +48,12 @@ export function SignUp() {
                            type="submit" disabled = {isSubmitting}
                            className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
                        >Create Account</button>
-                   </Form>)}
+                   </Form>)}>
 
-                    </Formik>)}
+                    </Formik>
                 </div>
 
+</div>
+        </div>
 
+    )}
