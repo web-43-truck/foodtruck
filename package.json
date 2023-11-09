@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "foodtruck",
   "version": "1.0.0",
   "description": "",
@@ -8,4 +9,9 @@
   },
   "author": "",
   "license": "ISC"
+=======
+  "dependencies": {
+    "geocodio-library-node": "^1.5.0"
+  }
+>>>>>>> development
 }

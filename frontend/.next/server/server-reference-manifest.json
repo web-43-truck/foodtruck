@@ -1,5 +1,26 @@
 {
-  "node": {},
+  "node": {
+    "e02048bffe47a130e4202b66ca58aab0638bf8d6": {
+      "workers": {
+        "app/search-view/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cazuce%5C%5COneDrive%5C%5CDesktop%5C%5Cbootcamp%5C%5Cgit%5C%5Cfood-truck%5C%5Cfrontend%5C%5Csrc%5C%5Capp%5C%5Csearch-view%5C%5Cpage.tsx%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/search-view/page": "rsc"
+      }
+    },
+    "6cfaa5587820dab516694391e0cea7f0f3b7f96d": {
+      "workers": {
+        "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cazuce%5C%5COneDrive%5C%5CDesktop%5C%5Cbootcamp%5C%5Cgit%5C%5Cfood-truck%5C%5Cfrontend%5C%5Csrc%5C%5Capp%5C%5Cpage.tsx%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/page": "rsc"
+      }
+    }
+  },
   "edge": {},
+<<<<<<< HEAD
   "encryptionKey": "gG3C1zKnTBPB2RXBtIEdRD+9ZVFsvZKnG8mLTkqKe48="
+=======
+  "encryptionKey": "dB3GwjPpbT7hKZqFspl/qnGBX0GSaeI7YG/s+n6/PAA="
+>>>>>>> development
 }

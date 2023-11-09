@@ -1,9 +1,9 @@
-import { z } from 'zod'
+import {z} from "zod";
 
 export const LocationSchema = z.object({
     locationId: z.string({
         required_error: 'locationId is required',
-        invalid_type_error: 'please provide a valid truckId'
+        invalid_type_error: 'please provide a valid locationId'
     })
         .uuid({message: 'please provide a valid locationId'})
         .nullable(),
@@ -12,7 +12,7 @@ export const LocationSchema = z.object({
         required_error: 'locationTruckId is required',
         invalid_type_error: 'please provide a valid locationTruckId'
     })
-        .uuid({message: 'please provide a valid truckProfileId'}),
+        .uuid({message: 'please provide a valid locationTruckId'}),
 
     locationIsActive: z.boolean({
         required_error: 'locationIsActive is required',
@@ -31,17 +31,16 @@ export const LocationSchema = z.object({
     locationLng: z.coerce.number({required_error: 'Unable to locate'
     }),
 
-    locationSunrise: z.number({
+    locationSunrise: z.coerce.number({
         required_error: 'locationSunrise is required',
         invalid_type_error: 'please provide a valid locationSunrise'
     })
         .nullable(),
 
-    locationSunset: z.number({
+    locationSunset: z.coerce.number({
         required_error: 'locationSunset is required',
         invalid_type_error: 'please provide a valid locationSunset'
     })
         .nullable()
 
 })
-

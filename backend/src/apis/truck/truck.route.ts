@@ -3,11 +3,11 @@ import {
     deleteTruckByTruckIdController,
     getAllTrucks,
     getTruckByTruckIdController,
-    getTruckByTruckNameController,
+    getTruckByTruckNameController, getTrucksByLocationTruckIdController,
     getTrucksByNameController,
     getTrucksByTruckProfileIdController,
     postTruckController,
-    putTruckController
+    putTruckController, searchTruckByNameController
 } from './truck.controller'
 import {isLoggedInController} from '../../utils/controllers/isLoggedIn.controller'
 
@@ -22,9 +22,13 @@ router.route('/')
     .get(getAllTrucks)
 
 router.route('/:truckId')
+    .get(getTrucksByLocationTruckIdController)
     .get(getTruckByTruckIdController)
     .put(isLoggedInController, putTruckController)
     .delete(isLoggedInController, deleteTruckByTruckIdController)
+
+router.route('/truckId/:truckId')
+    .get(getTrucksByLocationTruckIdController)
 
 router.route('/truckProfileId/:truckProfileId')
     .get(getTrucksByTruckProfileIdController)
@@ -32,7 +36,13 @@ router.route('/truckProfileId/:truckProfileId')
 router.route('/truckName/:truckName')
     .get(getTruckByTruckNameController)
 
+router.route('/truckSearch/:truckName')
+    .get(searchTruckByNameController)
+
 router.route('/truckNames/:truckName')
     .get(getTrucksByNameController)
+
+
+
 
 export const truckRoute = {basePath, router}

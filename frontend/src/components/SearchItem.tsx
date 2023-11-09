@@ -1,18 +1,28 @@
-export function SearchItem(searchItemDescriptors: SearchItemDescriptors){
-    const {truckName, truckDescription} = searchItemDescriptors
+import React from 'react';
+import {Truck} from "@/utils/models/Truck";
+import Link from "next/link";
+
+type SearchItemProps = {
+    truck: Truck
+};
+
+export function SearchItem(props: SearchItemProps) {
+    const {truck} = props
+    const { truckName, truckDescription, truckId } = truck
+
     return (
         <>
-            <section className="py-6 px-14">
-                <h2 className="text-xl underline">{truckName}</h2>
+            <section className="py-6 px-20">
+                <Link href={`/truck/${truckId}`}><h2 className="text-2xl underline text-accent-content">{truckName}</h2></Link>
                 <p className="text-lg">{truckDescription}</p>
             </section>
         </>
-    )
+    );
 }
 
 
-type SearchItemDescriptors = {
-    truckName: string,
-    truckDescription: string
-}
+
+
+
+
 
