@@ -8,7 +8,7 @@ import React, {ReactNode, useEffect, useState} from "react";
 import {favorite, FavoriteSchema} from "@/utils/models/Favorite"
 import {TruckSchema} from "@/utils/models/Truck";
 import {Truck} from "@/app/truck/TruckView";
-import { Favorite } from @/app/favorite/Favorite
+import { Favorite } from "@/utils/models/Favorite"
 
 
 
@@ -33,25 +33,6 @@ async function getData(favoriteProfileId: string): Promise<Favorite> {
 
 
 
-
-
-export function User() {
-        const links = [
-            {linkName: 'Home', href: '/'},
-            {linkName: 'Sign Out', href: '/'}
-
-        ]
-        return (
-            <>
-
-
-
-
-            </>
-        )
-    }
-
-
     async function getData(): Promise<Truck[] > {
         console.log(process.env.REST_API_URL)
         const response = await fetch(`${process.env.REST_API_URL}/apis/truck`, {next: {revalidate: 0}});
@@ -64,3 +45,20 @@ export function User() {
             throw new Error("Retrieving data failed");
         }
     }}
+
+
+export default function User() {
+    const links = [
+        {linkName: 'Home', href: '/'},
+        {linkName: 'Sign Out', href: '/'}
+
+    ]
+    return (
+        <>
+
+
+
+
+        </>
+    )
+}

@@ -1,6 +1,6 @@
 import CheckBoxTruck from "@/components/checkboxTruck";
-import {Form, Formik} from "formik";
-import React from "react";
+import {Form, Formik} from "formik"
+import React from "react"
 
 export default function SignInForm() {
     return (
