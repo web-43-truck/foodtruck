@@ -30,9 +30,11 @@ export async function TruckComponent({truck, locations}: TruckComponentProps) {
                 <section className="container mx-auto ">
                     <div className="gap-x-6 text-3xl flex flex-row justify-center">
                         <h2 className="underline text-3xl">Hours:</h2>
+                        <span>Open:</span>
                         <p>
-                            {locations.map((location) => location.locationSunset)}
+                            {locations.map((location) => location.locationSunrise)}
                         </p>
+                        <span>Close:</span>
                         <p >
                             {locations.map((location) => location.locationSunset)}
                         </p>
