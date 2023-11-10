@@ -3,14 +3,16 @@ import React from "react";
 import {Picture} from "@/components/Picture";
 import {TruckMap} from "@/components/TruckMap";
 import {Truck} from "@/utils/models/Truck";
+import {Location} from "@/utils/models/Location"
 
 
 type TruckComponentProps = {
-    truck: Truck[]
+    truck: Truck,
+    locations: Location[]
 }
 
 
-export async function TruckComponent(truck: TruckComponentProps) {
+export async function TruckComponent({truck, locations}: TruckComponentProps) {
 
     return (
         <>
@@ -27,15 +29,25 @@ export async function TruckComponent(truck: TruckComponentProps) {
             <section className="bg-base-300 py-10 shadow-lg">
                 <section className="container mx-auto ">
                     <div className="gap-x-6 text-3xl flex flex-row justify-center">
-                        <h2 >Open: 6pm</h2>
-                        <h2 >Close: 10pm</h2>
+                        <h2 className="underline text-3xl">Hours:</h2>
+                        <p>
+                            {locations.map((location) => location.locationSunset)}
+                        </p>
+                        <p >
+                            {locations.map((location) => location.locationSunset)}
+                        </p>
                     </div>
-                    <p className="flex justify-center text-3xl mt-8 px-20">
-                        {truck.truckDescription ? truck.truckDescription : "No Truck Description"}
-                    </p>
+                    <div className="text-center text-2xl mt-8">
+                        <h3 className="underline text-3xl">Who We Are:</h3>
+                        <p className="flex justify-center text-3xl mt-8 px-20">
+                            {truck.truckDescription ? truck.truckDescription : "No Truck Description"}
+                        </p>
+                    </div>
                     <div className="text-center text-2xl mt-8">
                         <h3 className="underline text-3xl">Address:</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                        <p>
+                            {locations.map((location) => location.locationAddress)}
+                        </p>
                     </div>
                 </section>
             </section>

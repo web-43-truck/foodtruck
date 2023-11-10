@@ -22,7 +22,6 @@ router.route('/')
     .get(getAllTrucks)
 
 router.route('/:truckId')
-    .get(getTrucksByLocationTruckIdController)
     .get(getTruckByTruckIdController)
     .put(isLoggedInController, putTruckController)
     .delete(isLoggedInController, deleteTruckByTruckIdController)

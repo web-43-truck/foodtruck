@@ -2,7 +2,7 @@ import {LocationSchema} from "./location.validator"
 import {Request, Response} from "express";
 import {zodErrorResponse} from "../../utils/response.utils";
 import {Status} from "../../utils/interfaces/Status";
-import {Location} from "./location.model"
+import {deleteByLocationId, Location} from "./location.model"
 
 import {
     insertLocation,
@@ -17,7 +17,7 @@ import {
 } from "./location.model";
 import {z} from "zod";
 import {PublicProfile} from "../profile/profile.model";
-import {selectTruckByTruckId, Truck} from "../truck/truck.model";
+import {deleteTruckByTruckId, selectTruckByTruckId, Truck} from "../truck/truck.model";
 
 
 
@@ -91,25 +91,6 @@ export async function postLocationController(request: Request, response: Respons
             return response.json({status: 401, message: 'Not authorized to post a location.', data: null})
         }
 
-
-        // async function addressConverter(address: string | null) {
-        //     if (address) {
-        //         const formattedAddress = encodeURIComponent(address.split(' ').join('+'));
-        //         console.log(formattedAddress);
-        //         const GEOCODING_API_KEY = process.env.GEOCODING_API_KEY as string;
-        //
-        //         const response = await axios.get(`https://api.geocod.io/v1.7/geocode?api_key=${GEOCODING_API_KEY}&q=${formattedAddress}`);
-        //
-        //         const latitude = response.data.results[0].location.lat;
-        //         const longitude = response.data.results[0].location.lng;
-        //
-        //         return { lat: latitude, lng: longitude };
-        //     }
-        //
-        //     return null;
-        // }
-
-        // const truckCoordinates = await addressConverter(locationAddress)
 
         const location : Location = {
             locationId: null,
@@ -222,6 +203,58 @@ export async function getLocationByLocationSunrise(request: Request, response: R
 
     }
 }
+
+
+export async function deleteLocationByLocationIdController(request: Request, response: Response): Promise<Response> {
+    try {
+        const validationResult = z.string().uuid({ message: 'please provide a valid location Id' }).safeParse(request.params.locationId);
+
+        if (!validationResult.success) {
+            return response.status(400).json({ status: 400, message: validationResult.error.errors.join(', '), data: null });
+        }
+
+        const profile: PublicProfile = request.session.profile as PublicProfile;
+        const profileId: string = profile.profileId as string;
+        const locationId: string = request.params.locationId;
+        const truckId = validationResult.data
+        const truck: Truck | null = await selectTruckByTruckId(truckId);
+        if (truck?.truckProfileId !== profileId) {
+            return response.status(401).json({ status: 401, message: 'Not authorized to delete the location.', data: null });
+        }
+
+        const result = await deleteByLocationId(locationId)
+
+        return response.status(200).json({ status: 200, message: result, data: null });
+
+    } catch (error) {
+        console.error(error);
+        return response.status(500).json({
+            status: 500,
+            message: 'Internal Server Error',
+            data: null,
+        });
+    }
+}
+
+// async function addressConverter(address: string | null) {
+//     if (address) {
+//         const formattedAddress = encodeURIComponent(address.split(' ').join('+'));
+//         console.log(formattedAddress);
+//         const GEOCODING_API_KEY = process.env.GEOCODING_API_KEY as string;
+//
+//         const response = await axios.get(`https://api.geocod.io/v1.7/geocode?api_key=${GEOCODING_API_KEY}&q=${formattedAddress}`);
+//
+//         const latitude = response.data.results[0].location.lat;
+//         const longitude = response.data.results[0].location.lng;
+//
+//         return { lat: latitude, lng: longitude };
+//     }
+//
+//     return null;
+// }
+
+// const truckCoordinates = await addressConverter(locationAddress)
+
 
 // export async function getLocationByActiveLocation(request: Request, response: Response){
 //

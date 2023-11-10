@@ -1,5 +1,6 @@
 import {Router} from 'express'
 import {
+    deleteLocationByLocationIdController,
 
     getLocationByLocationIdController,
     getLocationByLocationSunrise,
@@ -26,6 +27,7 @@ router.route('/locationSunrise')
 router.route('/locationId/:locationId')
     .get(getLocationByLocationIdController)
     .put(isLoggedInController, putLocationController)
+    .delete(isLoggedInController, deleteLocationByLocationIdController)
 
 
 router.route('/locationTruckId/:locationTruckId')
