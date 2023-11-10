@@ -12,39 +12,39 @@ import {Favorite, FavoriteSchema} from "../../apis/favorite/favorite.model"
 import {Location, LocationSchema} from "@/utils/models/Location";
 
 
-async function getData(locationTruckId: string): Promise<{ trucks: Truck[], profile: Profile }> {
-    const truck = truckId;
-    console.log(process.env.REST_API_URL);
-    console.log("is this a valid truckID", truckId);
-    console.log("is this location truckId", profileId);
-
-
-    const endpointUrls = [
-        `${process.env.REST_API_URL}/apis/truck/${truckId}`,
-        `${process.env.REST_API_URL}/apis/profile/profileId/${Profile}`
-    ]
-
-
-    let truckResult, locationsResult;
-
-
-    for (const endpointUrl of endpointUrls) {
-        const response = await fetch(endpointUrl);
-        const result = await response.json();
-
-        if (endpointUrl.includes('truck')) {
-            truckResult = result.data;
-        } else if (endpointUrl.includes('location')) {
-            locationsResult = result.data;
-        }
-
-        console.log(`${endpointUrl} API response`, result.data);
-    }
-
-    const truck = truckResult ? TruckSchema.parse(trucksResult) : null;
-    const profile = profileResult ? ProfileSchema.array().parse(profileResult) : [];
-
-    return { trucks, profile };
+// async function getData(locationTruckId: string): Promise<{ trucks: Truck[], profile: Profile }> {
+//     const truck = truckId;
+//     console.log(process.env.REST_API_URL);
+//     console.log("is this a valid truckID", truckId);
+//     console.log("is this location truckId", profileId);
+//
+//
+//     const endpointUrls = [
+//         `${process.env.REST_API_URL}/apis/truck/${truckId}`,
+//         `${process.env.REST_API_URL}/apis/profile/profileId/${Profile}`
+//     ]
+//
+//
+//     let truckResult, locationsResult;
+//
+//
+//     for (const endpointUrl of endpointUrls) {
+//         const response = await fetch(endpointUrl);
+//         const result = await response.json();
+//
+//         if (endpointUrl.includes('truck')) {
+//             truckResult = result.data;
+//         } else if (endpointUrl.includes('location')) {
+//             locationsResult = result.data;
+//         }
+//
+//         console.log(`${endpointUrl} API response`, result.data);
+//     }
+//
+//     const truck = truckResult ? TruckSchema.parse(trucksResult) : null;
+//     const profile = profileResult ? ProfileSchema.array().parse(profileResult) : [];
+//
+//     return { trucks, profile };
 }
 
 
