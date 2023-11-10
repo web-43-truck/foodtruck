@@ -39,8 +39,8 @@ async function getData(favoriteProfileId: string): Promise<Favorite> {
         if (response.status === 200 || response.status === 304) {
             const result = await response.json();
             console.log(result)
-            const trucks = TruckSchema.array().parse(result?.data);
-            return  trucks ;
+            const truckId = TruckSchema.array().parse(result?.data);
+            return  truckId ;
         } else {
             throw new Error("Retrieving data failed");
         }
