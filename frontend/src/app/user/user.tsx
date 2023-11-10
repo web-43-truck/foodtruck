@@ -13,32 +13,31 @@ import {Favorite, FavoriteSchema} from "../../apis/favorite/favorite.model"
 
 
 
-async function getData( favoriteTruckId: string ): Promise<{ trucks: Truck[], profiles: Profile[]  }> {
-    const truckId = favoriteTruckId
-    const profileId: string = favoriteProfileId
-
-    // Fetch truck data
-    const truckResponse = await fetch(`${process.env.REST_API_URL}/apis/truck/${truckId}`, {next: {revalidate: 0}})
-
-    const truckResult = await truckResponse.json()
-    console.log("Truck API response", truckResult)
-
-    const truck = TruckSchema.parse(truckResult?.data)
 
 
-
-    const profileResponse = await fetch(`${process.env.REST_API_URL}/apis/favorite/favoriteTruckId/${favoriteTruckId}`)
-    const favoritesResult = await favoritesResponse.json()
-    console.log("Favorites by Profile unable to load", favoritesResult?.data)
-
-
-    const  locations = favoritesResult?.data ? FavoriteSchema.array().parse(favoritesResult?.data) : []
-
-    return {favoriteProfileId, truckId}
-}
-
-
-
+// async function getData( favoriteTruckId: string ): Promise<{ trucks: Truck[], profiles: Profile[]  }> {
+//     const truckId = favoriteTruckId
+//     const profileId: string = favoriteProfileId
+//
+//     // Fetch truck data
+//     const truckResponse = await fetch(`${process.env.REST_API_URL}/apis/truck/${truckId}`, {next: {revalidate: 0}})
+//
+//     const truckResult = await truckResponse.json()
+//     console.log("Truck API response", truckResult)
+//
+//     const truck = TruckSchema.parse(truckResult?.data)
+//
+//
+//
+//     const profileResponse = await fetch(`${process.env.REST_API_URL}/apis/favorite/favoriteTruckId/${favoriteTruckId}`)
+//     const favoritesResult = await favoritesResponse.json()
+//     console.log("Favorites by Profile unable to load", favoritesResult?.data)
+//
+//
+//     const  locations = favoritesResult?.data ? FavoriteSchema.array().parse(favoritesResult?.data) : []
+//
+//     return {favoriteProfileId, truckId}
+// }
 
 // export default function getData() {
 //     const Favorite = () => {
