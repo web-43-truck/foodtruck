@@ -17,14 +17,14 @@ export  function SearchView({trucks}: SearchViewProps) {
     return (
         <>
 
-            <div className="grid py-14">
+            <div className="grid py-20 pt-20">
                 <a href="/" className="justify-self-center">
                     <Image
                         src="/food-truck-icon.png"
                         width={500}
                         height={500}
                         alt="food truck icon"
-                        className="w-56 h-50"
+                        className="w-56 h-50 pt-20"
                     />
                 </a>
             </div>

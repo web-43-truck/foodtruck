@@ -9,7 +9,7 @@ type FoodTypeProps = {
     truckFoodCategory: string
 }
 
-export function Wrapper({trucks, truckFoodCategory}: FoodTypeProps) {
+export function SearchResult({trucks, truckFoodCategory}: FoodTypeProps) {
 console.log(truckFoodCategory)
     return (
         <>
