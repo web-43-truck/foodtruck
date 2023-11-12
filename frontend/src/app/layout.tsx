@@ -19,7 +19,7 @@ type RootLayoutProps = {
 export default function RootLayout(props : RootLayoutProps) {
     const { children } = props
     return (
-        <html data-theme="light" lang="en">
+        <html data-theme="cupcake" lang="en">
         <body className={`${inter.className} antialiased`}>{children}</body>
         </html>
     )

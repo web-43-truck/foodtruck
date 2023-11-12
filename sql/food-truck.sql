@@ -53,4 +53,4 @@ create table if not exists favorite(
                                        FOREIGN KEY (favorite_profile_id) references profile(profile_id)
 );
 
--- DELETE FROM location WHERE location_id = '911f219f-3ab5-439a-80bf-3691dd8921e5'
+DELETE FROM location WHERE location_id = 'e923410a-e6d5-46c9-bfbb-fab36cd57d9b'

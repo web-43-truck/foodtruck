@@ -12,8 +12,8 @@ type TruckPageProps = {
 export default async function TruckPage(props: TruckPageProps){
     console.log("line 12", props.params)
     const links = [
-        {linkName: 'Sign-in', href: '/'},
-        {linkName: 'Sign-up', href: '/'},
+        {linkName: "Sign-in", href: "/"},
+        {linkName: "Sign-up", href: "SignUp"},
     ]
 
     const {truckId} = props.params
@@ -41,7 +41,7 @@ async function getData( locationTruckId: string ): Promise<{ truck: Truck | null
     const truckId = locationTruckId
 
     // Fetch truck data
-    const truckResponse = await fetch(`${process.env.REST_API_URL}/apis/truck/${truckId}`, {next: {revalidate: 0}})
+    const truckResponse = await fetch(`${process.env.REST_API_URL}/apis/truck/truckId/${truckId}`, {next: {revalidate: 0}})
 
     const truckResult = await truckResponse.json()
 
@@ -54,12 +54,9 @@ async function getData( locationTruckId: string ): Promise<{ truck: Truck | null
     const  locations = locationsResult?.data ? LocationSchema.array().parse(locationsResult?.data) : []
 
     const pictureResponse = await fetch(
-        `${process.env.REST_API_URL}/apis/picture/pictureTruckId/${truckId}`, {next: {revalidate: 0}}
-
-    )
+        `${process.env.REST_API_URL}/apis/picture/pictureTruckId/${truckId}`, {next: {revalidate: 0}})
     const pictureResult = await pictureResponse.json()
     const pictures = pictureResult?.data ? PictureSchema.array().parse(pictureResult?.data) : []
-
 
     return {truck, locations, pictures}
 }

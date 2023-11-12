@@ -9,14 +9,13 @@ type FoodTypeProps = {
     truckFoodCategory: string
 }
 
-export function SearchResult({trucks, truckFoodCategory}: FoodTypeProps) {
-console.log(truckFoodCategory)
+export function FilterResults({trucks, truckFoodCategory}: FoodTypeProps) {
+console.log("truckFoodCategory", truckFoodCategory)
     return (
         <>
-
             <section className="container mx-auto px-14">
                 {trucks
-                    .filter((truck) => truck.truckFoodCategory === truckFoodCategory)
+                    .filter((truck) => truck.truckFoodCategory === truckFoodCategory || truckFoodCategory === '')
                     .map((truck) => (
                         <SearchItem key={truck.truckId} truck={truck}/>
                     ))}

@@ -37,4 +37,4 @@ yarn-error.log*
 next-env.d.ts
 
 /frontend/.env.local
-.env.development
+/frontend/.env.development

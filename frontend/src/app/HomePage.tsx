@@ -2,17 +2,23 @@
 import Image from "next/image"
 import React, {useState} from "react"
 import { Truck, TruckSchema } from "@/utils/models/Truck"
-import {Wrapper} from "@/components/Wrapper";
+
+import {useRouter} from "next/router";
+import {FilterResults} from "@/components/FilterResults";
+import {SearchBar} from "@/components/SearchBar";
 
 type SearchViewProps = {
-    trucks: Truck[]
+    trucks: Truck[],
+    initialSearch: string
 }
-export  function SearchView({trucks}: SearchViewProps) {
+export  function HomePage({trucks, initialSearch}: SearchViewProps) {
     const [truckFoodCategory, setTruckFoodCategory] = useState('')
+
     const handleChange = (event: any) => {
         setTruckFoodCategory(event.target.value)
         console.log(truckFoodCategory)
     }
+
 
     return (
         <>
@@ -29,12 +35,8 @@ export  function SearchView({trucks}: SearchViewProps) {
                 </a>
             </div>
             <div className={"md:flex md:justify-center text-center gap-4"}>
-                <div className={"grid align-self-center px-6 md:px-0"}>
-                    <label className="label">
-                        <span className="label-text">Search For A Food Truck</span>
-                    </label>
-                    <input type="text" placeholder="Type here" className="input input-bordered w-2xl " />
-                </div>
+                <SearchBar initialSearch={initialSearch}/>
+
                 <div className="form-control  grid align-self-center px-6 md:px-0 py-6 md:py-0">
                     <label className="label max-w-xl" htmlFor={"truckFoodCategory"}>
                         <span className="label-text">Pick A Food Category</span>
@@ -54,7 +56,8 @@ export  function SearchView({trucks}: SearchViewProps) {
                 </div>
             </div>
             <div>
-                {truckFoodCategory && <Wrapper trucks={trucks} truckFoodCategory={truckFoodCategory}/>}
+               <FilterResults trucks={trucks} truckFoodCategory={truckFoodCategory}/>
+
             </div>
         </>
     )
