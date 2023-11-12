@@ -254,14 +254,17 @@ export async function getTrucksByNameController(request: Request, response: Resp
 
 export async function searchTruckByNameController (request: Request, response: Response): Promise<Response<Status>> {
     try {
-        const search = request.query.name as string
-        if (search === undefined) {
-            return response.json({
-                status: 500, message: 'Search term is undefined', data: []
-            })
-        }
+        const truckName = request.query.name as string
+console.log("truck name:", truckName)
 
-        const data = await searchTruckName(search)
+        if (truckName === undefined) {
+            return response.json({
+                status: 500,
+                message: 'Search term is undefined',
+                data: [],
+            });
+        }
+        const data = await searchTruckName(truckName)
         return response.json({status: 200, message: null, data})
 
     } catch (error:any) {

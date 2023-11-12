@@ -7,9 +7,8 @@ import {
     getLocationsByLocationTruckIdController,
     postLocationController,
     putLocationController
+    } from "./location.controller"
 
-
-} from "./location.controller"
 import {isLoggedInController} from "../../utils/controllers/isLoggedIn.controller";
 
 const basePath = '/apis/location'

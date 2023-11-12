@@ -21,12 +21,12 @@ router.route('/')
     .post(isLoggedInController, postTruckController)
     .get(getAllTrucks)
 
-router.route('/:truckId')
+router.route('/truckId/:truckId')
     .get(getTruckByTruckIdController)
     .put(isLoggedInController, putTruckController)
     .delete(isLoggedInController, deleteTruckByTruckIdController)
 
-router.route('/truckId/:truckId')
+router.route('/locationTruckId/:truckId')
     .get(getTrucksByLocationTruckIdController)
 
 router.route('/truckProfileId/:truckProfileId')
@@ -35,7 +35,7 @@ router.route('/truckProfileId/:truckProfileId')
 router.route('/truckName/:truckName')
     .get(getTruckByTruckNameController)
 
-router.route('/truckSearch/:truckName')
+router.route('/truckSearch')
     .get(searchTruckByNameController)
 
 router.route('/truckNames/:truckName')
