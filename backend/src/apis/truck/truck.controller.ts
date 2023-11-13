@@ -255,7 +255,7 @@ export async function getTrucksByNameController(request: Request, response: Resp
 export async function searchTruckByNameController (request: Request, response: Response): Promise<Response<Status>> {
     try {
         const truckName = request.query.name as string
-console.log("truck name:", truckName)
+        console.log("truck name:", truckName)
 
         if (truckName === undefined) {
             return response.json({
@@ -264,7 +264,13 @@ console.log("truck name:", truckName)
                 data: [],
             });
         }
-        const data = await searchTruckName(truckName)
+        let data
+        if(truckName.length < 3){
+            data = await selectAllTrucks()
+        } else {
+            data = await searchTruckName(truckName)
+        }
+
         return response.json({status: 200, message: null, data})
 
     } catch (error:any) {

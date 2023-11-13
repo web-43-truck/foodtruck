@@ -12,7 +12,8 @@ type SearchViewProps = {
 export  function HomePage({trucks, initialSearch}: SearchViewProps) {
     const [truckFoodCategory, setTruckFoodCategory] = useState('')
     const router = useRouter()
-    const handleSearchChange =(event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchChange =(
+        event: React.ChangeEvent<HTMLInputElement>) => {
         router.push(`/?name=${event.target.value}`)
     }
     const handleChange = (event: any) => {

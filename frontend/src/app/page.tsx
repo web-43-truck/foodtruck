@@ -27,7 +27,8 @@ export default async function Home({searchParams}: HomeProps){
 }
 
 async function getData(name: string): Promise<Truck[]> {
-    const response = await fetch(`${process.env.REST_API_URL}/apis/truck/truckSearch/?name=${name}`, {
+    let assignedName = name ? name : ''
+    const response = await fetch(`${process.env.REST_API_URL}/apis/truck/truckSearch/?name=${assignedName}`, {
         next: { revalidate: 0 },
     })
 
