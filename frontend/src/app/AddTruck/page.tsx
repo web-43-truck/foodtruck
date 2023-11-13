@@ -1,3 +1,4 @@
+import React from 'react';
 import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
 import TruckForm from "@/components/TruckForm";
@@ -10,9 +11,7 @@ export default function AddTruck() {
     ]
     return(
         <>
-            <section>
-                <NavBar links={links}/>
-            </section>
+            <NavBar links={links}/>
             <TruckForm/>
             <Footer/>
         </>

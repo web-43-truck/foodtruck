@@ -1,12 +1,13 @@
 import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
-git
+import React from "react";
+
 export default function OwnerPage() {
     const links = [
         {linkName: 'Home', href: '/'},
         {linkName: 'Favorites', href: '/'}
     ]
-    return(
+    return (
         <>
             <NavBar links={links}/>
             <Footer/>
