@@ -4,7 +4,7 @@ import {Result, Schema, ValidationChain, validationResult} from 'express-validat
 
 export const asyncValidatorController  = (validations: ValidationChain[])  => {
     return async (request: Request, response: Response, next: NextFunction): Promise<void | Response> => {
-        await Promise.all(validations.map((validation: ValidationChain ): Promise<Result> => validation.run(request)));
+        await Promise.all(validations?.map((validations: ValidationChain ): Promise<Result> => validations.run(request)));
 
         const errors: Result = validationResult(request);
 
