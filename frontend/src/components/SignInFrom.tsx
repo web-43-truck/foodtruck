@@ -30,7 +30,7 @@ export default function SignInForm() {
                                 className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
                             >Sign In</button>
                         </Form>
-                    )}
+                    )})
 
 
 
