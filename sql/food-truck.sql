@@ -1,4 +1,4 @@
-CREATE EXTENSION pg_trgm;
+-- CREATE EXTENSION pg_trgm;
 
 
 -- DROP TABLE IF EXISTS favorite;
@@ -32,8 +32,8 @@ create table if not exists location(
                                        location_address VARCHAR (64),
                                        location_Lat DECIMAL (7,5),
                                        location_Lng DECIMAL (8,5),
-                                       location_sunrise TIMESTAMPTZ,
-                                       location_sunset TIMESTAMPTZ,
+                                       location_sunrise VARCHAR(2),
+                                       location_sunset VARCHAR(2),
                                        FOREIGN KEY (location_truck_id) references truck(truck_id)
 );
 
@@ -52,3 +52,5 @@ create table if not exists favorite(
                                        FOREIGN KEY (favorite_truck_id) references truck(truck_id),
                                        FOREIGN KEY (favorite_profile_id) references profile(profile_id)
 );
+
+DELETE FROM location WHERE location_id = 'e923410a-e6d5-46c9-bfbb-fab36cd57d9b'

@@ -1,4 +1,4 @@
-import {z} from 'zod'
+import {z} from "zod";
 
 export const PictureSchema = z.object({
     pictureId: z.string({
@@ -26,3 +26,4 @@ export const PictureSchema = z.object({
     })
 })
 
+export type Picture = z.infer<typeof PictureSchema>

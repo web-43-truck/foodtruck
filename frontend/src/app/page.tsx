@@ -1,19 +1,21 @@
 'use server'
 import {NavBar} from "@/components/NavBar";
-import {SearchView} from "@/app/SearchView";
+import {HomePage} from "@/app/HomePage";
 import {Truck, TruckSchema} from "@/utils/models/Truck";
 
 
-export default function Home() {
+type HomeProps = {
+    searchParams: {
+        name: string
+    }
+}
 
-
-export default async function SearchPage(){
-    const trucks = await getData()
+export default async function Home({searchParams}: HomeProps) {
+    const trucks = await getData(searchParams.name)
 
     const links = [
         {linkName: 'Sign-in', href: '/'},
-        {linkName: 'Sign-up', href: '/'},
-        {linkName: 'Favorites', href: '/'}
+        {linkName: 'Sign-up', href: 'SignUp'},
     ]
 
     return (
@@ -22,28 +24,23 @@ export default async function SearchPage(){
                 <NavBar links={links}/>
             </section>
 
+            <HomePage trucks={trucks} initialSearch={searchParams.name}/>
+
         </>
     )
 }
 
-            <SearchView trucks={trucks}/>
-        </>
-    )
-}
-
-async function getData(): Promise<Truck[]> {
-    console.log(process.env.REST_API_URL)
-    const response = await fetch(`${process.env.REST_API_URL}/apis/truck`, {
-        next: { revalidate: 0 },
+async function getData(name: string): Promise<Truck[]> {
+    let assignedName = name ? name : ''
+    const response = await fetch(`${process.env.REST_API_URL}/apis/truck/truckSearch/?name=${assignedName}`, {
+        next: {revalidate: 0},
     })
 
     if (response.status === 200 || response.status === 304) {
         const result = await response.json()
-        console.log(result);
         const trucks = TruckSchema.array().parse(result?.data)
         return trucks
     } else {
         throw new Error("Retrieving data failed");
     }
 }
-
