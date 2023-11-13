@@ -26,10 +26,12 @@ export const LocationSchema = z.object({
         .nullable(),
 
     locationLat: z.coerce.number({required_error: 'Unable to locate'
-    }),
+    })
+        .nullable(),
 
     locationLng: z.coerce.number({required_error: 'Unable to locate'
-    }),
+    })
+        .nullable(),
 
     locationSunrise: z.coerce.number({
         required_error: 'locationSunrise is required',
@@ -44,3 +46,11 @@ export const LocationSchema = z.object({
         .nullable()
 
 })
+    .refine(location => {
+      const result =  location.locationAddress === null && location.locationLat === null && location.locationLng === null
+
+        return (!result)
+    }, {message:"You must provide your location or address to create a location"})
+
+
+
