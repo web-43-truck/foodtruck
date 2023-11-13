@@ -71,7 +71,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                     <input
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.email}
+                        value={values?.email}
                         className="input input-bordered w-full max"
                         type="text"
                         name="email"
@@ -85,7 +85,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                         className="input input-bordered w-full max"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.password}
+                        value={values?.password}
                         type="text"
                         name="Password"
                         id="password"
