@@ -1,11 +1,13 @@
 'use client'
 import React, {ReactNode} from "react"
 import {Field, Form, Formik, FormikHelpers, FormikProps} from 'formik'
-import * as Yup from 'yup'
-import {toFormikValidationSchema} from "zod-formik-adapter";
 
+import {toFormikValidationSchema} from "zod-formik-adapter"
+import {FormDebugger} from "@/components/signup/FormDebugger";
+import {DisplayStatus} from "@/components/signup/DisplayStatus";
+import {DisplayError} from "@/components/signup/DisplayErrors";
 
-export function SignUpForm() {
+export default function SignUpForm() {
 
     const initialValues : any = {
         FullName: '',
@@ -58,7 +60,7 @@ function SignUpContent(props: FormikProps<SignUp>) {
             <form onSubmit={handleSubmit} className={""}>
 
                 <div className="form-control">
-                    <label className="label" htmlFor="profileEmail">fullName</label>
+                    <label className="label" htmlFor="fullName">fullName</label>
                     <input
                         onBlur={handleBlur}
                         onChange={handleChange}

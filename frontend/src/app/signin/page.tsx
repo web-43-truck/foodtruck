@@ -1,14 +1,17 @@
 'use client'
 
-import {SignIn, SignInSchema} from "@utils/models/SignIn"
+
 import {Field, Form, Formik, FormikHelpers, FormikProps} from "formik"
 import {toFormikValidationSchema} from "zod-formik-adapter"
 import React from "react"
-import * as Yup from 'yup'
+import {FormDebugger} from "@/components/formDebugger";
+import {DisplayError} from "@/components/signup/DisplayErrors";
+import {DisplayStatus} from "@/components/signup/DisplayStatus";
 
 
 
-export function SignInFormComponent() {
+
+export default function SignInFormComponent() {
 
     const initialValues : any = {
         Email: '',
@@ -38,7 +41,7 @@ export function SignInFormComponent() {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={toFormikValidationSchema(SignInSchema)}
+                validationSchema={toFormikValidationSchema}
             >
                 {SignInFormContent}
             </Formik>
