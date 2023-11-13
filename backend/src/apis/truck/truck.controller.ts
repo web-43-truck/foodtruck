@@ -6,7 +6,7 @@ import {
     selectTrucksByProfileId,
     selectTrucksByTruckName,
     insertTruck,
-    updateTruck, selectAllTrucks, deleteTruckByTruckId, searchTruckName
+    updateTruck, selectAllTrucks, deleteTruckByTruckId, searchTruckName, selectTrucksByLocationTruckId
 } from "./truck.model"
 import {zodErrorResponse} from "../../utils/response.utils"
 import {TruckSchema} from "./truck.validator"
@@ -129,7 +129,7 @@ export async function getTrucksByTruckProfileIdController (request: Request, res
         const validationResult = z.object({
             truckProfileId: z
                 .string()
-                .uuid('please provide a valid projectProfileId')
+                .uuid('please provide a valid truck profile Id')
         }).safeParse(request.params)
 
         if (!validationResult.success) {
@@ -140,6 +140,38 @@ export async function getTrucksByTruckProfileIdController (request: Request, res
         const { truckProfileId } = validationResult.data
 
         const data: Truck | null = await selectTrucksByProfileId(truckProfileId)
+
+        const status: Status = { status: 200, message: null, data }
+        return response.json(status)
+
+    } catch (error) {
+        console.log()
+        return response.json({
+
+            status: 500,
+            message: 'internal server error',
+            data: []
+        })
+    }
+}
+
+export async function getTrucksByLocationTruckIdController (request: Request, response: Response): Promise<Response<Status>> {
+    try {
+
+        const validationResult = z.object({
+            truckId: z
+                .string()
+                .uuid('please provide a valid truck profile Id')
+        }).safeParse(request.params)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+
+        }
+
+        const { truckId } = validationResult.data
+
+        const data: Truck[] | null = await selectTrucksByLocationTruckId(truckId)
 
         const status: Status = { status: 200, message: null, data }
         return response.json(status)

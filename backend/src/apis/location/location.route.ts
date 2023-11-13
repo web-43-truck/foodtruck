@@ -3,7 +3,9 @@ import {
 
     getLocationByLocationIdController,
     getLocationByLocationSunrise,
-    getLocationByLocationTruckIdController, postLocationController,  putLocationController
+    getLocationsByLocationTruckIdController,
+    postLocationController,
+    putLocationController
 
 
 } from "./location.controller"
@@ -21,13 +23,13 @@ router.route('/locationSunrise')
     .get(getLocationByLocationSunrise)
 
 
-router.route('/:locationId')
+router.route('/locationId/:locationId')
     .get(getLocationByLocationIdController)
     .put(isLoggedInController, putLocationController)
 
 
-router.route('/locationTruckId')
-    .get(getLocationByLocationTruckIdController)
+router.route('/locationTruckId/:locationTruckId')
+    .get(getLocationsByLocationTruckIdController)
 
 
 export const locationRoute = {basePath, router}

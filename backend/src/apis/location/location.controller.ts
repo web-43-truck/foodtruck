@@ -139,7 +139,7 @@ export async function postLocationController(request: Request, response: Respons
 }
 
 
-    export async function getLocationByLocationIdController(request: Request, response: Response):Promise<Response<Status>> {
+export async function getLocationByLocationIdController(request: Request, response: Response):Promise<Response<Status>> {
         try {
             const validationResult = z.object({
                 locationId: z
@@ -166,21 +166,27 @@ export async function postLocationController(request: Request, response: Respons
     }
 
 
-export async function getLocationByLocationTruckIdController(request: Request, response: Response):Promise<Response<Status>> {
-
+export async function getLocationsByLocationTruckIdController(request: Request, response: Response):Promise<Response<Status>> {
     try {
-        const validationResult = LocationSchema.safeParse(request.params)
+        const validationResult = z.object({
+            locationTruckId: z
+                .string()
+                .uuid('please provide a valid location truck id')
+        }).safeParse(request.params)
 
         if (!validationResult.success) {
             return zodErrorResponse(response, validationResult.error)
+
         }
         const {locationTruckId} = validationResult.data
 
 
-        const data = await selectLocationByLocationTruckId(locationTruckId)
+        const data: Location[] | null = await selectLocationByLocationTruckId(locationTruckId)
 
         const status: Status = { status: 200, message: null, data }
         return response.json(status)
+
+
     } catch (error: any) {
         console.error(error)
         return response.json({status: 500, data: null, message: 'cannot locate'})
@@ -188,6 +194,38 @@ export async function getLocationByLocationTruckIdController(request: Request, r
     }
 }
 
+
+
+
+
+export async function getLocationByLocationSunrise(request: Request, response: Response): Promise<Response<Status>> {
+    try {
+        const validationResult = z.object({
+            locationSunrise: z.string().uuid('please provide a valid location sunrise')
+        }). safeParse(request.params)
+
+        if (!validationResult.success) {
+            return zodErrorResponse(response, validationResult.error)
+        }
+
+        const { locationSunrise } = validationResult.data
+
+        const data = await selectLocationByLocationSunrise(locationSunrise)
+
+        const status: Status = { status: 200, message: null, data }
+        return response.json(status)
+
+    } catch (error: any) {
+        console.error(error)
+        Response.json({status: 500, data: null, message: 'cannot locate'})
+        return response.json({status: 500, message: 'internal server', data: null})
+
+    }
+}
+
+// export async function getLocationByActiveLocation(request: Request, response: Response){
+//
+// }
 
 
 // export async function getLocationByLocationAddress(request: Request, response: Response): Promise<Response<Status>> {
@@ -221,41 +259,6 @@ export async function getLocationByLocationTruckIdController(request: Request, r
 //
 //             const data = await selectLocationByLocationSunset(request)
 //
-//             return response.json({status: 200, message: null, data: null})
-//
-//         } catch (error: any) {
-//             console.error(error)
-//             Response.json({status: 500, data: null, message: 'cannot locate'})
-//             return response.json({status: 500, message: 'internal server', data: null})
-//         }
-//     }
-
-
-export async function getLocationByLocationSunrise(request: Request, response: Response): Promise<Response<Status>> {
-    try {
-        const validationResult = z.object({
-            locationSunrise: z.string().uuid('please provide a valid location sunrise')
-        }). safeParse(request.params)
-
-        if (!validationResult.success) {
-            return zodErrorResponse(response, validationResult.error)
-        }
-
-        const { locationSunrise } = validationResult.data
-
-        const data = await selectLocationByLocationSunrise(locationSunrise)
-
-        const status: Status = { status: 200, message: null, data }
-        return response.json(status)
-
-    } catch (error: any) {
-        console.error(error)
-        Response.json({status: 500, data: null, message: 'cannot locate'})
-        return response.json({status: 500, message: 'internal server', data: null})
-
-    }
-}
-
 
 
 

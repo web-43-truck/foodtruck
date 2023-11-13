@@ -6,18 +6,18 @@ import {SignUp} from "@/app/signup/SignUp";
 
 
 
-export default function SignUpPage() {
-    const links = [
-        {linkName: 'Home', href: '/'},
-        {linkName: 'Favorites', href: '/'}
-    ]
-    return(
-        <>
-            <section>
-            <NavBar links={links}/>
-            </section>
-            <SignUp/>
-            <Footer/>
-        </>
-    )
-}
+// export default function SignUpPage() {
+//     const links = [
+//         {linkName: 'Home', href: '/'},
+//
+//     ]
+//     return(
+//         <>
+//             <section>
+//             <NavBar links={links}/>
+//             </section>
+//             <SignUp/>
+//             <Footer/>
+//         </>
+//     )
+// }
