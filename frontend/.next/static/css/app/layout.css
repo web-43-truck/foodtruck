@@ -1972,14 +1972,14 @@ html {
 .justify-center {
   justify-content: center;
 }
+.gap-2 {
+  gap: 0.5rem;
+}
 .gap-3 {
   gap: 0.75rem;
 }
 .gap-4 {
   gap: 1rem;
-}
-.gap-2 {
-  gap: 0.5rem;
 }
 .gap-x-6 {
   -moz-column-gap: 1.5rem;
@@ -2101,6 +2101,9 @@ html {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.pb-0 {
+  padding-bottom: 0px;
+}
 .pr-2 {
   padding-right: 0.5rem;
 }
@@ -2109,9 +2112,6 @@ html {
 }
 .pt-20 {
   padding-top: 5rem;
-}
-.pb-0 {
-  padding-bottom: 0px;
 }
 .text-center {
   text-align: center;
