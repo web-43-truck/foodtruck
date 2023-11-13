@@ -1,13 +1,6 @@
-import Form from "@/components/Form"
 import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
-import {SignUp} from "@/app/SignUp/SignUp";
 import {EditTrucksGrid} from "@/components/EditTrucksGrid";
-
-
-function ViewEditTrucks() {
-    return null;
-}
 
 export default function OwnerPage() {
     const links = [
@@ -19,7 +12,7 @@ export default function OwnerPage() {
             <section>
                 <NavBar links={links}/>
             </section>
-            <ViewEditTrucks/>
+            <EditTrucksGrid/>
             <Footer/>
         </>
     )
