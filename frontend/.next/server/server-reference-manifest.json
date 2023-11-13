@@ -1,9 +1,4 @@
 {
-<<<<<<< HEAD
-  "node": {},
-  "edge": {},
-  "encryptionKey": "eGSbrCWW8GHloROXxxRFAjmm39X1SQ4zgibUSIIWPZM="
-=======
   "node": {
     "6a01fdee0a36ab6388a9344ab9b7869f40b39f53": {
       "workers": {
@@ -15,6 +10,5 @@
     }
   },
   "edge": {},
-  "encryptionKey": "+dyofeUUbqbJAZl5vAUA4/QMWTKNoz9vrtXxE64iqrA="
->>>>>>> development
+  "encryptionKey": "FUGO9TIilYqz2nAiGdtGvnBxZv34b7r0MOXbVX3HH4k="
 }
