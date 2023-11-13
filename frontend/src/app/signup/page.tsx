@@ -1,7 +1,7 @@
 'use client'
 import React, {ReactNode} from "react"
 import { Formik, FormikHelpers, FormikProps} from 'formik'
-
+import {SignUp, SignUpSchema} from "@/backend/apis/signup"
 import {toFormikValidationSchema} from "zod-formik-adapter"
 import {FormDebugger} from "@/components/signup/FormDebugger";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
@@ -36,7 +36,7 @@ export default function SignUpForm() {
     return(
         <>
             <h1 className="text-3xl pb-0 font-bold">Sign Up</h1>
-            <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={toFormikValidationSchema(SignUpProfileSchema)} >
+            <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={toFormikValidationSchema} >
                 {SignUpContent}
             </Formik>
         </>
