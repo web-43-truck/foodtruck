@@ -1,56 +1,64 @@
 
 import React, {ReactNode} from "react"
-import {Form, Formik} from 'formik'
+import {Field, Form, Formik} from 'formik'
+import * as Yup from 'yup'
 
 
 
 
+const SignupSchema = Yup.object().shape({
+    fullName: Yup.string()
+        .required('Required'),
+    email: Yup.string().email('Invalid email').required('Required'),
+    password: Yup.string().email('Error creating password').required('Required'),
+    confirmPassword: Yup.string().email('Error confirming password').required('Required')
+})
 
-export function SignUp() {
-    return (
+export const ValidationSchema=() => (
+    <div className="bg-grey-lighter mx-auto flex flex-col">
+        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+            <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+                <h1 className="mb-8 text-3xl text-center">Sign Up</h1>
+                <Formik initialValues={{
+                    fullName: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: ''
+                }}
+                        validationSchema={SignupSchema}
+                        onSubmit={values => {
+                            console.log(values)
+                        }}
+                    {({ errors, touched }) => (
+                        <Form>
+                            <Field name="fullName" validate={validateFullName} />
+                            {errors.email && touched.email && <div>{errors.email}</div>}
+                            <Field name="email" validate={validateEmail} />
+                            {errors.email && touched.email && <div>{errors.email}</div>}
+                            <Field name="email" validate={validatePassword} />
+                            {errors.email && touched.email && <div>{errors.email}</div>}
+                            <Field name="password" validate={validateConfirmPassword} />
+                            {errors.password && touched.password && <div>{errors.username}</div>}
 
-            <div className="bg-grey-lighter mx-auto flex flex-col">
-                <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                    <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-                        <h1 className="mb-8 text-3xl text-center">Sign up</h1>
-            <Formik initialValues={{
-                fullname: '',
-                email: '',
-                password: '',
-                confirmpassword: ''
-            }}
-                    onSubmit={async (values) => {
-                    alert(JSON.stringify(values, null))
-            }}
-                {({ isSubmitting }) => (
-                   <Form>
-                        <label
-                               className="block border border-red-light w-full p-3 rounded mb-4"
+                            <label
+                                className="block border border-red-light w-full p-3 rounded mb-4"
 
-                               placeholder="Full Name" htmlFor={"fullName"}>Full Name</label>
+                                placeholder="Email" htmlFor={"email"}>Email</label>
 
-                        <label
-                            className="block border border-red-light w-full p-3 rounded mb-4"
+                            <label className="block border border-red-light w-full p-3 rounded mb-4"
+                                   placeholder="Password"
+                                   htmlFor={"password"}>Password</label>
 
-                            placeholder="Email" htmlFor={"email"}>Email</label>
-
-                       <label className="block border border-red-light w-full p-3 rounded mb-4"
-                              placeholder="Password"
-                              htmlFor={"password"}>Password</label>
-
-                       <label className="block border border-red-light w-full p-3 rounded mb-4"
-                              placeholder="Confirm Password"
-                              htmlFor={"confirmpassword"}>Confirm Password</label>
-                       <button
-                           type="submit" disabled = {isSubmitting}
-                           className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
-                       >Create Account</button>
-                   </Form>)}>
-
-                    </Formik>
-                </div>
-
-</div>
+                            <button
+                                type="button"
+                                onClick={() => validateForm().then(() => console.log('ERROR'))}
+                            >
+                            </button>
+                            <button
+                                type="submit"
+                                className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
+                            >Sign In</button>
+                        </Form>
+                    )} </div>
         </div>
-
-    )}
+    </div>)
