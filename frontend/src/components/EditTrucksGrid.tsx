@@ -15,7 +15,6 @@ export function EditTrucksGrid() {
 
             <EditButton/>
 
-
             <SearchItem truck={}/>
 
             <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
