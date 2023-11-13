@@ -2,7 +2,7 @@ import Form from "@/components/Form"
 import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
 import {SignUp} from "@/app/SignUp/SignUp";
-import {EditTrucksGrid} from "@/components/ViewEditTrucks";
+import {EditTrucksGrid} from "@/components/EditTrucksGrid";
 
 
 function ViewEditTrucks() {
@@ -24,3 +24,15 @@ export default function OwnerPage() {
         </>
     )
 }
+
+// EXAMPLE FOR PULLING GRID DATA
+// export async function getData(): Promise<{favorite: Favorite[], truck: Truck[]}> {
+//     const result = await fetch (
+//         (`${process.env.REST_API_URL}/apis/favorite` `${process.env.REST_API_URL}/apis/truck`)
+//             .then(response => {
+//                 if (response.status === 200 || response.status === 304) {
+//                     return response.json()
+//                 }
+//                 throw new Error("Retrieving data failed")
+//             }) .catch ((error: any) => console.error(error)) )
+//     console.log(result)
