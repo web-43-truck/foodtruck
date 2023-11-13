@@ -1,7 +1,7 @@
 'use client'
 import React, {ReactNode} from "react"
 import { Formik, FormikHelpers, FormikProps} from 'formik'
-import {SignUp, SignUpSchema} from "@/backend/apis/signup"
+import {SignUp, SignUpSchema} from ""
 import {toFormikValidationSchema} from "zod-formik-adapter"
 import {FormDebugger} from "@/components/signup/FormDebugger";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
