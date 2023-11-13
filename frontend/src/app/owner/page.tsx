@@ -1,7 +1,6 @@
 import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
-import {EditTrucksGrid} from "@/components/EditTrucksGrid";
-
+git
 export default function OwnerPage() {
     const links = [
         {linkName: 'Home', href: '/'},
@@ -9,10 +8,7 @@ export default function OwnerPage() {
     ]
     return(
         <>
-            <section>
-                <NavBar links={links}/>
-            </section>
-            <EditTrucksGrid/>
+            <NavBar links={links}/>
             <Footer/>
         </>
     )
