@@ -328,6 +328,8 @@ export async function deleteLocationByLocationIdController(request: Request, res
 
 
 
+
+
 // async function getLocationByLocationLat() {
 //     new Promise((resolve, reject) => {
 //         if (navigator.geolocation) {

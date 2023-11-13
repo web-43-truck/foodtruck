@@ -3,9 +3,8 @@ import React, {useState} from "react";
 import {Picture} from "@/components/Picture";
 import {TruckMap} from "@/components/TruckMap";
 import {Truck} from "@/utils/models/Truck";
-import {Location} from "@/utils/models/Location"
-import Map from "react-map-gl";
-import {Pin} from "@/app/Pin";
+
+
 
 
 type TruckComponentProps = {
