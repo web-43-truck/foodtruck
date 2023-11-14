@@ -4,14 +4,14 @@ import {
 } from "./picture.controller"
 import {isLoggedInController} from "../../utils/controllers/isLoggedIn.controller";
 
-const basePath = 'apis/picture'
+const basePath = '/apis/picture'
 
 const router: Router = Router()
 
 router.route('/')
     .post(isLoggedInController, postPictureController)
 
-router.route('/pictureTruckId')
+router.route('/pictureTruckId/:pictureTruckId')
     .get(getPictureByPictureTruckIdController)
 
 router.route('/pictureId/:pictureId')

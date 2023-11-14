@@ -131,9 +131,8 @@ export async function selectLocationByLocationSunset(locationSunset: string): Pr
 }
 
 
-export async function deleteLocationId(locationId: string): Promise<string> {
+export async function deleteByLocationId(locationId: string): Promise<string> {
     await sql `DELETE FROM location WHERE location_id = ${locationId}`
-
 
     return 'Location deleted'
 }

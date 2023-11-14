@@ -1,14 +1,14 @@
 import {Router} from 'express'
 import {
+    deleteLocationByLocationIdController,
 
     getLocationByLocationIdController,
     getLocationByLocationSunrise,
     getLocationsByLocationTruckIdController,
     postLocationController,
     putLocationController
+    } from "./location.controller"
 
-
-} from "./location.controller"
 import {isLoggedInController} from "../../utils/controllers/isLoggedIn.controller";
 
 const basePath = '/apis/location'
@@ -26,6 +26,7 @@ router.route('/locationSunrise')
 router.route('/locationId/:locationId')
     .get(getLocationByLocationIdController)
     .put(isLoggedInController, putLocationController)
+    .delete(isLoggedInController, deleteLocationByLocationIdController)
 
 
 router.route('/locationTruckId/:locationTruckId')

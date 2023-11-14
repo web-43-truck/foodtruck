@@ -6,14 +6,15 @@ export type Picture = z.infer<typeof PictureSchema>;
 
 export async function insertPicture(picture: Picture): Promise<string> {
     const {pictureTruckId, pictureUrl, pictureType} = picture
-    await sql `INSERT INTO (picture_id, picture_truck_id, picture_url, picture_type)
+    await sql `INSERT INTO picture (picture_id, picture_truck_id, picture_url, picture_type)
             VALUES (gen_random_uuid(), ${pictureTruckId},${pictureUrl},${pictureType})`
     return 'Picture successfully uploaded'
 }
-export async function selectPictureByPictureTruckId(pictureTruckId: string): Promise<Picture | null> {
-    const rowList = await sql`SELECT picture_id, picture_truck_id, picture_url, picture_type FROM picture WHERE pictureTruck_id = ${pictureTruckId}`
-    const result = PictureSchema.array().max(1).parse(rowList)
-    return result?.length === 1 ? result[0] : null
+export async function selectPictureByPictureTruckId(pictureTruckId: string): Promise<Picture[] | null> {
+
+    const rowList = await sql`SELECT picture_id, picture_truck_id, picture_url, picture_type FROM picture WHERE picture_truck_id = ${pictureTruckId}`
+
+    return  PictureSchema.array().parse(rowList)
 }
 export async function selectPictureByPictureId(pictureId: string | null): Promise<Picture | null> {
     const rowList = await sql`SELECT picture_id, picture_truck_id, picture_url, picture_type FROM picture WHERE picture_id = ${pictureId}`

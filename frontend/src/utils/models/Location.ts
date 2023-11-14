@@ -1,5 +1,5 @@
 import {z} from "zod";
-import {TruckSchema} from "@/utils/models/Truck";
+
 
 export const LocationSchema = z.object({
     locationId: z.string({
