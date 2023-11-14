@@ -1,5 +1,5 @@
 {
-  "/signup/page": "app/signup/page.js",
-  "/page": "app/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/truck/[truckId]/page": "app/truck/[truckId]/page.js",
+  "/page": "app/page.js"
 }
