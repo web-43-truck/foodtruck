@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default function TruckForm() {
     return (
         <div className="bg-grey-lighter mx-auto flex flex-col">
@@ -8,40 +9,71 @@ export default function TruckForm() {
                     <h1 className="mb-8 text-3xl text-center"></h1>
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.truckName}
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="fullname"
-                        placeholder="Truck Name" />
+                        id="truckName"
+                        placeholder="Truck Name"
+
+                    />
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.address}
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="address"
-                        placeholder="Address" />
+                        placeholder="Address"
+                        id="address"
+                    />
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.description}
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4 h-20"
                         name="description"
-                        placeholder="Description" />
+                        placeholder="Description"
+                        id="description"
+                    />
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.open}
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="open"
-                        placeholder="Open Time" />
+                        placeholder="Open Time"
+                        id="open"
+                    />
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.close}
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="close"
-                        placeholder="Close Time" />
+                        placeholder="Close Time"
+                        id="close"
+                    />
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.upload}
                         type="file"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="upload"
-                        placeholder="Upload Photos" />
+                        placeholder="Upload Photos"
+                        id="upload"
+                    />
 
                     <button
                         type="submit"

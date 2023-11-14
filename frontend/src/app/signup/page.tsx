@@ -60,7 +60,7 @@ function SignUpContent(props: FormikProps<SignUp>) {
     return(
         <>
             <form onSubmit={handleSubmit} className={""}>
-<h1> I am here </h1>
+
                 <div className="form-control">
                     <label className="label" htmlFor="profileName">Full Name</label>
                     <input

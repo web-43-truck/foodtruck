@@ -3,8 +3,7 @@ import React, {useState} from "react";
 import {Picture} from "@/components/Picture";
 import {TruckMap} from "@/components/TruckMap";
 import {Truck} from "@/utils/models/Truck";
-
-
+import {Location} from "@/utils/models/Location";
 
 
 type TruckComponentProps = {
@@ -33,14 +32,14 @@ export async function TruckComponent({truck, locations}: TruckComponentProps) {
                         <h2 className="underline text-3xl ">Hours</h2>
                     </div>
                     <div className=" text-2xl flex justify-center">
-                            <span className="pr-2">Open:</span>
-                            <p className="pr-6">
-                                {locations.map((location) => location.locationSunrise)}
-                            </p>
-                            <span className="pr-2">Close:</span>
-                            <p>
-                                {locations.map((location) => location.locationSunset)}
-                            </p>
+                        <span className="pr-2">Open:</span>
+                        <p className="pr-6">
+                            {locations.map((location) => location.locationSunrise)}
+                        </p>
+                        <span className="pr-2">Close:</span>
+                        <p>
+                            {locations.map((location) => location.locationSunset)}
+                        </p>
                     </div>
                     <div className="text-center text-2xl mt-8">
                         <h3 className="underline text-3xl">Who We Are</h3>
@@ -63,6 +62,3 @@ export async function TruckComponent({truck, locations}: TruckComponentProps) {
         </>
     )
 }
-
-
-
