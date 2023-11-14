@@ -21,7 +21,7 @@ export default function TruckForm() {
 
                     <input
                         type="text"
-                        className="block border border-red-light w-full p-3 rounded mb-4 h-30"
+                        className="block border border-red-light w-full p-3 rounded mb-4 h-20"
                         name="description"
                         placeholder="Description" />
 
@@ -37,6 +37,16 @@ export default function TruckForm() {
                         name="close"
                         placeholder="Close Time" />
 
+                    <input
+                        type="file"
+                        className="block border border-red-light w-full p-3 rounded mb-4"
+                        name="upload"
+                        placeholder="Upload Photos" />
+
+                    <button
+                        type="submit"
+                        className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
+                    >Upload Picture(s)</button>
 
                     <div className="form-control  grid align-self-center px-6 md:px-0 py-6 md:py-0">
                         <label className="label max-w-xl" htmlFor={"truckFoodCategory"}>

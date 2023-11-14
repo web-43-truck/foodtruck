@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
-import TruckForm from "@/components/TruckForm";
+import TruckForm from "@/app/AddTruck/TruckForm";
 import {Picture} from "@/components/Picture";
 
 
