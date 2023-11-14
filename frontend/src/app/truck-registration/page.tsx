@@ -1,25 +1,13 @@
-
-import {NavBar} from "@/components/NavBar";
-import TruckRegistration from "./truck-registration";
-import {TruckMap} from "@/components/TruckMap";
-import React from "react";
-import {Footer} from "@/components/Footer";
+import SignUp from "@/app/user/user"
+import React from 'react'
+import {TruckRegistration} from "@/app/truck-registration/truck-registration";
 
 
-export default function TruckRegistrationPage(){
-    const links = [
-        {linkName: 'Sign-in', href: '/'},
-        {linkName: 'Sign-up', href: '/'},
-        {linkName: 'Favorites', href: '/'}
-    ]
+export default function SignUpPage() {
     return(
         <>
-            <section>
-                <NavBar links={links}/>
-            </section>
             <TruckRegistration/>
 
-            <Footer/>
         </>
     )
 }

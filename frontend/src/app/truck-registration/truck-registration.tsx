@@ -3,9 +3,9 @@
 import React from 'react';
 
 // import {PublicProfile} from "../backend/src/apis/profile/profile.model";
-import {Footer} from "@/components/Footer";
+//import {Footer} from "@/components/Footer";
 
-export default function TruckRegistration() {
+export function TruckRegistration() {
     const links = [
         {linkName: 'Sign-out', href: '/'},
         {linkName: 'home', href: '/'},
@@ -15,7 +15,6 @@ export default function TruckRegistration() {
 
     return (
         <>
-
             //Session user information goes here
 
             <div className="border-slate-200 bg-blue-400 border-4 mx-auto md:mx-24 text-center text-4xl p-1 md:p-4">
@@ -23,12 +22,13 @@ export default function TruckRegistration() {
             </div>
 
 
-                <div className="py-3 required mx-auto md:mx-24">
+            <div className="py-3 required mx-auto md:mx-24">
                     <label htmlFor="truckName" className="block text-gray text-2xl font-bold mb-2">Truck Name</label>
                     <input type="text" id="truckName" name="truckName" placeholder="Chaim's Kosher HOme Cooking"
                            className="mx-auto mt-1 block w-full rounded-md bg-gray-100 border-blue-400 border-4 background-slate-200 focus:border-gray focus:bg-white focus:ring-0 placeholder:text-black placeholder:italic"></input>
-                </div>
-                <div className="py-3 mx-auto md:mx-24 dropdown-end">
+            </div>
+
+            <div className="py-3 mx-auto md:mx-24 dropdown-end">
                     <label htmlFor="Food Type" className=" block text-gray text-xl font-bold mb-2">
                         Food Type:
                         <select className="ms-4 text-black font-medium text-lg group-hover:bg-blue-400 border-4">
@@ -52,9 +52,16 @@ export default function TruckRegistration() {
                     </label>
                     <label htmlFor="Food Type" className=" block text-gray text-xl font-bold mb-2">
                         Meals Served:
+                    </label>
                         <select className="ms-4 text-black font-medium text-lg group-hover:bg-blue-400 border-4">
-                            <option value="select" selected>Select an option></option>
-                            <option value="breakfast Only" selected>Breakfast Only></option>
+                            <option value="select" selected>Select an option</option>
+                            <option value="breakfastOnly">Breakfast Only</option>
+                            <option value="Brunch">Breakfast or Lunch, Brunch</option>
+                            <option value="lunchOnly">Lunch Only</option>
+                            <option value="LunchDinner">Lunch and Dinner</option>
+                            <option value="select">Dinner Only</option>
+                            <option value="Club"> Club Hours 10pm to 3am</option>
+                        </select>
                 </div>
 
                 <div className="py-3 required mx-auto md:mx-24">
@@ -98,8 +105,8 @@ export default function TruckRegistration() {
                 </div>
 
 
-            <Footer/>
-        </>
-    )
 
+)
+</>
+        )
 }
