@@ -9,7 +9,7 @@ type HomeProps = {
     }
 }
 
-export default async function Home({searchParams}: HomeProps){
+export default async function Home({searchParams}: HomeProps) {
     const trucks = await getData(searchParams.name)
     const links = [
         {linkName: 'Sign-in', href: '/'},
@@ -29,7 +29,7 @@ export default async function Home({searchParams}: HomeProps){
 async function getData(name: string): Promise<Truck[]> {
     let assignedName = name ? name : ''
     const response = await fetch(`${process.env.REST_API_URL}/apis/truck/truckSearch/?name=${assignedName}`, {
-        next: { revalidate: 0 },
+        next: {revalidate: 0},
     })
 
     if (response.status === 200 || response.status === 304) {
