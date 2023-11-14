@@ -1,10 +1,13 @@
 {
   "pages": {
+<<<<<<< HEAD
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+=======
+>>>>>>> development
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -16,10 +19,22 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+<<<<<<< HEAD
     "/AddTruck/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/AddTruck/page.js"
+=======
+    "/signin/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/signin/page.js"
+    ],
+    "/signup/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/signup/page.js"
+>>>>>>> development
     ]
   }
 }
