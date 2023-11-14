@@ -5,7 +5,7 @@ import AddTruck from "@/app/AddTruck/AddTruck";
 import {Picture} from "@/components/Picture";
 
 
-export default function AddTruck() {
+export default function () {
     const links = [
         {linkName: 'Home', href: '/'},
         {linkName: 'Favorites', href: '/'}

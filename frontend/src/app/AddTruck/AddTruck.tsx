@@ -3,24 +3,27 @@ import {Session} from "@/utils/FetchSession";
 import {Truck} from "@/utils/models/Truck";
 import {toFormikValidationSchema} from "zod-formik-adapter";
 import {ProfileSchema} from "@/utils/models/Profile";
-import { Dropzone } from "dropzone";
+// import { Dropzone } from "dropzone";
+import {DisplayStatus} from "@/components/signup/DisplayStatus";
+import {FormDebugger} from "@/components/signup/FormDebugger";
+import React from "react";
 
 type AddTruckProps = {
     session: Session
 }
 
 export default function AddTruck({session}:AddTruckProps) {
-    const initialValues: any = {
+    const initialValues = {
 
         truckId: null,
-        truckProfileId: session.profile.profileId,
-        truckDescription: null,
+        truckProfileId: '',
+        truckDescription: '',
         truckFoodCategory: '',
         truckName: '',
 
     }
 
-    const handleSubmit = (values: Truck, actions: FormikHelpers<Truck>) => {
+    const handleSubmit = (values: Truck, actions: FormikHelpers<any>) => {
         const {setStatus, resetForm} = actions
         const result = fetch('/api/truck', {
             method: "POST",
@@ -37,157 +40,136 @@ export default function AddTruck({session}:AddTruckProps) {
             setStatus({type, message: json.message})
         })
     }
+        return (
+            <>
+                <Formik
+                    initialValues={initialValues}
+                    onSubmit={handleSubmit}
+                    validationSchema={toFormikValidationSchema(ProfileSchema)}>
+                    {TruckFormContent}
+                </Formik>
+            </>
+        )
+    }
 
-<<<<<<< HEAD:frontend/src/app/AddTruck/AddTruck.tsx
-=======
+    function TruckFormContent(props: FormikProps<any>) {
+        const {
+            status,
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            handleReset
+        } = props
 
-export default function TruckForm() {
->>>>>>> development:frontend/src/app/AddTruck/TruckForm.tsx
-    return (
-        <>
-            <Formik
-                initialValues={initialValues}
-                onSubmit={handleSubmit}
-                validationSchema={toFormikValidationSchema(ProfileSchema)}
-            >
-                {TruckFormContent}
-            </Formik>
-        </>
-    )
-}
+        // const onDrop = useCallback(acceptedFiles => {
+        //
+        //     // Do something with the files
+        // }, [])
+        //
+        // const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
-function TruckFormContent(props: FormikProps<Truck>) {
+        return (
+            <>
+                <form onSubmit={handleSubmit} className={""}>
+                    <div className="bg-grey-lighter mx-auto flex flex-col">
+                        <div
+                            className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+                            <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+                                <h1 className="mb-8 text-3xl text-center"></h1>
 
-    // const onDrop = useCallback(acceptedFiles => {
-    //
-    //     // Do something with the files
-    // }, [])
-    //
-    // const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+                                <label className="label" htmlFor="truckName">Truck Name</label>
+                                <input
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    value={values.truckName}
+                                    type="text"
+                                    className="block border border-red-light w-full p-3 rounded mb-4"
+                                    name="truckName"
+                                    id="truckName"
+                                    placeholder="Truck Name"
+                                />
 
-    return(
-        <>
+                                <label className="label" htmlFor="description">Description</label>
+                                <input
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    value={values.truckDescription}
+                                    type="text"
+                                    className="block border border-red-light w-full p-3 rounded mb-4 h-20"
+                                    name="description"
+                                    placeholder="Description"
+                                    id="description"
+                                />
 
-    <div className="bg-grey-lighter mx-auto flex flex-col">
-            <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-                    <h1 className="mb-8 text-3xl text-center"></h1>
 
-                    <input
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.truckName}
-                        type="text"
-                        className="block border border-red-light w-full p-3 rounded mb-4"
-                        name="fullname"
-                        id="truckName"
-                        placeholder="Truck Name"
+                                {/*<div {...getInputProps}>*/}
+                                {/*<input {...getInputProps}*/}
+                                {/*    type="file"*/}
+                                {/*    className="block border border-red-light w-full p-3 rounded mb-4"*/}
+                                {/*    name="upload"*/}
+                                {/*    placeholder="Upload Photos" />*/}
 
-                    />
+                                {/*<input*/}
+                                {/*    onBlur={handleBlur}*/}
+                                {/*    onChange={handleChange}*/}
+                                {/*    value={values.upload}*/}
+                                {/*    type="file"*/}
+                                {/*    className="block border border-red-light w-full p-3 rounded mb-4"*/}
+                                {/*    name="upload"*/}
+                                {/*    placeholder="Upload Photos"*/}
+                                {/*    id="upload"*/}
+                                {/*/>*/}
 
-                    <input
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.address}
-                        type="text"
-                        className="block border border-red-light w-full p-3 rounded mb-4"
-                        name="address"
-                        placeholder="Address"
-                        id="address"
-                    />
+                                {/*    {*/}
+                                {/*        isDragActive ?*/}
+                                {/*            <p>Drop the files here ...</p> :*/}
+                                {/*            <p>Drag 'n' drop some files here, or click to select files</p>*/}
+                                {/*    }*/}
 
-                    <input
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.description}
-                        type="text"
-                        className="block border border-red-light w-full p-3 rounded mb-4 h-20"
-                        name="description"
-                        placeholder="Description"
-                        id="description"
-                    />
+                                {/*</div>*/}
 
-                    <input
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.open}
-                        type="text"
-                        className="block border border-red-light w-full p-3 rounded mb-4"
-                        name="open"
-                        placeholder="Open Time"
-                        id="open"
-                    />
+                                {/*<button*/}
+                                {/*    type="submit"*/}
+                                {/*    className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"*/}
+                                {/*>Upload Picture(s)</button>*/}
 
-                    <input
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.close}
-                        type="text"
-                        className="block border border-red-light w-full p-3 rounded mb-4"
-                        name="close"
-                        placeholder="Close Time"
-                        id="close"
-                    />
+                                <div className="form-control  grid align-self-center px-6 md:px-0 py-6 md:py-0">
+                                    <label className="label max-w-xl" htmlFor={"truckFoodCategory"}>
+                                        <span className="label-text">Pick A Food Category</span>
+                                    </label>
+                                    <select id={"truckFoodCategory"} name={"truckFoodCategory"}
+                                            className="select select-bordered">
+                                        <option disabled value={''}>Pick one</option>
+                                        <option value={"American"}>American</option>
+                                        <option value={"Asian"}>Asian</option>
+                                        <option value={"Cuban"}>Cuban</option>
+                                        <option value={"French"}>French</option>
+                                        <option value={"Greek"}>Greek</option>
+                                        <option value={"Indian"}>Indian</option>
+                                        <option value={"Italian"}>Italian</option>
+                                        <option value={"Mexican"}>Mexican</option>
+                                        <option value={"Other"}>Other</option>
+                                    </select>
+                                </div>
 
-<<<<<<< HEAD:frontend/src/app/AddTruck/AddTruck.tsx
-                    {/*<div {...getInputProps}>*/}
-                    {/*<input {...getInputProps}*/}
-                    {/*    type="file"*/}
-                    {/*    className="block border border-red-light w-full p-3 rounded mb-4"*/}
-                    {/*    name="upload"*/}
-                    {/*    placeholder="Upload Photos" />*/}
-=======
-                    <input
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.upload}
-                        type="file"
-                        className="block border border-red-light w-full p-3 rounded mb-4"
-                        name="upload"
-                        placeholder="Upload Photos"
-                        id="upload"
-                    />
->>>>>>> development:frontend/src/app/AddTruck/TruckForm.tsx
-
-                    {/*    {*/}
-                    {/*        isDragActive ?*/}
-                    {/*            <p>Drop the files here ...</p> :*/}
-                    {/*            <p>Drag 'n' drop some files here, or click to select files</p>*/}
-                    {/*    }*/}
-
-                    {/*</div>*/}
-
-                    {/*<button*/}
-                    {/*    type="submit"*/}
-                    {/*    className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"*/}
-                    {/*>Upload Picture(s)</button>*/}
-
-                    <div className="form-control  grid align-self-center px-6 md:px-0 py-6 md:py-0">
-                        <label className="label max-w-xl" htmlFor={"truckFoodCategory"}>
-                            <span className="label-text">Pick A Food Category</span>
-                        </label>
-                        <select id={"truckFoodCategory"} name={"truckFoodCategory"}  className="select select-bordered">
-                            <option disabled value={''}>Pick one</option>
-                            <option value={"American"}>American</option>
-                            <option value={"Asian"}>Asian</option>
-                            <option value={"Cuban"}>Cuban</option>
-                            <option value={"French"}>French</option>
-                            <option value={"Greek"}>Greek</option>
-                            <option value={"Indian"}>Indian</option>
-                            <option value={"Italian"}>Italian</option>
-                            <option value={"Mexican"}>Mexican</option>
-                            <option value={"Other"}>Other</option>
-                        </select>
+                                <div>
+                                    <button
+                                        type="submit"
+                                        className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
+                                    >Save
+                                    </button>
+                                    <button className='btn btn-danger' onClick={handleReset} type="reset">reset</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <DisplayStatus status={status}/>
+                </form>
+                <FormDebugger {...props}/>
+            </>
+        )
 
-                    <button
-                        type="submit"
-                        className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
-                    >Save</button>
-
-                    </div>
-                </div>
-            </div>
-        </>
-    )
 }
