@@ -21,7 +21,7 @@ export default function TruckForm() {
 
                     <input
                         type="text"
-                        className="block border border-red-light w-full p-3 rounded mb-4"
+                        className="block border border-red-light w-full p-3 rounded mb-4 h-30"
                         name="description"
                         placeholder="Description" />
 
@@ -29,13 +29,13 @@ export default function TruckForm() {
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="open"
-                        placeholder="Open" />
+                        placeholder="Open Time" />
 
                     <input
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="close"
-                        placeholder="Close" />
+                        placeholder="Close Time" />
 
 
                     <div className="form-control  grid align-self-center px-6 md:px-0 py-6 md:py-0">
