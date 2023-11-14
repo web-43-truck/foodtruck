@@ -38,6 +38,11 @@ export default function AddTruck({session}:AddTruckProps) {
         })
     }
 
+<<<<<<< HEAD:frontend/src/app/AddTruck/AddTruck.tsx
+=======
+
+export default function TruckForm() {
+>>>>>>> development:frontend/src/app/AddTruck/TruckForm.tsx
     return (
         <>
             <Formik
@@ -69,41 +74,80 @@ function TruckFormContent(props: FormikProps<Truck>) {
                     <h1 className="mb-8 text-3xl text-center"></h1>
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.truckName}
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="fullname"
-                        placeholder="Truck Name" />
+                        id="truckName"
+                        placeholder="Truck Name"
+
+                    />
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.address}
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="address"
-                        placeholder="Address" />
+                        placeholder="Address"
+                        id="address"
+                    />
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.description}
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4 h-20"
                         name="description"
-                        placeholder="Description" />
+                        placeholder="Description"
+                        id="description"
+                    />
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.open}
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="open"
-                        placeholder="Open Time" />
+                        placeholder="Open Time"
+                        id="open"
+                    />
 
                     <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.close}
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="close"
-                        placeholder="Close Time" />
+                        placeholder="Close Time"
+                        id="close"
+                    />
 
+<<<<<<< HEAD:frontend/src/app/AddTruck/AddTruck.tsx
                     {/*<div {...getInputProps}>*/}
                     {/*<input {...getInputProps}*/}
                     {/*    type="file"*/}
                     {/*    className="block border border-red-light w-full p-3 rounded mb-4"*/}
                     {/*    name="upload"*/}
                     {/*    placeholder="Upload Photos" />*/}
+=======
+                    <input
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        value={values.upload}
+                        type="file"
+                        className="block border border-red-light w-full p-3 rounded mb-4"
+                        name="upload"
+                        placeholder="Upload Photos"
+                        id="upload"
+                    />
+>>>>>>> development:frontend/src/app/AddTruck/TruckForm.tsx
 
                     {/*    {*/}
                     {/*        isDragActive ?*/}
