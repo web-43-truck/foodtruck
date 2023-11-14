@@ -16,3 +16,9 @@ const config: Config = {
     themes: ["cupcake"],
   }
 }
+<<<<<<< HEAD
+=======
+
+export default Config
+
+>>>>>>> owner-landing
