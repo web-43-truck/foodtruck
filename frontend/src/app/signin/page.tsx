@@ -5,7 +5,7 @@ import {Field, Form, Formik, FormikHelpers, FormikProps} from "formik"
 import {toFormikValidationSchema} from "zod-formik-adapter"
 import {SignIn, SignInSchema} from "@/apis/signin"
 import React from "react"
-
+import {FormDebugger} from "@/components/formDebugger"
 import {DisplayError} from "@/components/signup/DisplayErrors";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
 
@@ -42,7 +42,7 @@ export default function SignInFormComponent() {
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={toFormikValidationSchema}
+                validationSchema={toFormikValidationSchema(SignInSchema)}
             >
                 {SignInFormContent}
             </Formik>
@@ -72,11 +72,11 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                     <input
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values?.email}
+                        value={values.profileEmail}
                         className="input input-bordered w-full max"
                         type="text"
-                        name="email"
-                        id="email"
+                        name="profileEmail"
+                        id="profileEmail"
                     />
                     <DisplayError errors={errors} touched={touched} field={"profileEmail"} />
                 </div>
@@ -86,12 +86,12 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                         className="input input-bordered w-full max"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.password}
+                        value={values.profilePassword}
                         type="password"
-                        name="Password"
+                        name="profilePassword"
                         id="password"
                     />
-                    <DisplayError errors={errors} touched={touched} field={"password"} />
+                    <DisplayError errors={errors} touched={touched} field={"profilePassword"} />
                 </div>
                 <div className="py-2 flex gap-2">
                     <button className='btn btn-success' type="submit">Sign In</button>
@@ -99,6 +99,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                 </div>
                 <DisplayStatus status={status} />
             </form>
+            <FormDebugger {...props}/>
         </>
     )
 }
