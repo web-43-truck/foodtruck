@@ -1,8 +1,5 @@
 {
-<<<<<<< HEAD
   "/page": "app/page.js",
-  "/AddTruck/page": "app/AddTruck/page.js"
-=======
-  "/page": "app/page.js"
->>>>>>> owner-landing
+  "/truck/[truckId]/page": "app/truck/[truckId]/page.js",
+  "/owner/page": "app/owner/page.js"
 }
