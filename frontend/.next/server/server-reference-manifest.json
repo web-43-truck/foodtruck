@@ -1,14 +1,5 @@
 {
-  "node": {
-    "6a01fdee0a36ab6388a9344ab9b7869f40b39f53": {
-      "workers": {
-        "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2F444lyssa%2FDesktop%2Fbootcamp%2Fgit%2Ffoodtruck%2Ffrontend%2Fsrc%2Fapp%2Fpage.tsx%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
-      },
-      "layer": {
-        "app/page": "rsc"
-      }
-    }
-  },
+  "node": {},
   "edge": {},
-  "encryptionKey": "UdcqlUaS6RH4KPXPuB7ZeWuOcFwrOamqihJyV2x9s74="
+  "encryptionKey": "6p+WiDsmoESagYQwVKbeOVk7YXqexE+LpzJGoTGzYsQ="
 }
