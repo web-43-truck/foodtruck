@@ -1,8 +1,1 @@
-{
-<<<<<<< HEAD
-  "/page": "app/page.js",
-  "/AddTruck/page": "app/AddTruck/page.js"
-=======
-  "/page": "app/page.js"
->>>>>>> owner-landing
-}
+{}
