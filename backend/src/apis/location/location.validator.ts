@@ -33,13 +33,13 @@ export const LocationSchema = z.object({
     })
         .nullable(),
 
-    locationSunrise: z.coerce.number({
+    locationSunrise: z.string({
         required_error: 'locationSunrise is required',
         invalid_type_error: 'please provide a valid locationSunrise'
     })
         .nullable(),
 
-    locationSunset: z.coerce.number({
+    locationSunset: z.string({
         required_error: 'locationSunset is required',
         invalid_type_error: 'please provide a valid locationSunset'
     })
