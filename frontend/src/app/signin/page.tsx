@@ -3,11 +3,12 @@
 
 import {Field, Form, Formik, FormikHelpers, FormikProps} from "formik"
 import {toFormikValidationSchema} from "zod-formik-adapter"
-import {SignIn, SignInSchema} from "@/apis/signin"
+import {SignIn, SignInSchema} from "@/utils/models/SignIn"
 import React from "react"
-import {FormDebugger} from "@/components/formDebugger"
+
 import {DisplayError} from "@/components/signup/DisplayErrors";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
+import {FormDebugger} from "@/components/signup/FormDebugger";
 
 
 
@@ -68,7 +69,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
         <>
             <form onSubmit={handleSubmit} className={""}>
                 <div className="form-control">
-                    <label className="label" htmlFor="profileEmail">email</label>
+                    <label className="label" htmlFor="profileEmail">Email</label>
                     <input
                         onBlur={handleBlur}
                         onChange={handleChange}
