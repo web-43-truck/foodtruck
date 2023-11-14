@@ -18,13 +18,14 @@ export default function SignUpForm() {
     }
 
     const handleSubmit = (values: SignUp, actions: FormikHelpers<SignUp>) => {
+        const submitValues = {...values, profileId: null, profileActivationToken: null, profileIsTruckOwner: false}
         const {setStatus, resetForm} = actions
-        const result: Promise<void> = fetch('/api/sign-up', {
+        const result: Promise<void> = fetch('/apis/sign-up', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(values)
+            body: JSON.stringify(submitValues)
         }).then(response => response.json()).then(json => {
             let type = 'ERROR'
             if(json.status === 200) {
