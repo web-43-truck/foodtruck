@@ -1,22 +1,5 @@
 {
-  "node": {
-    "6a01fdee0a36ab6388a9344ab9b7869f40b39f53": {
-      "workers": {
-        "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2F444lyssa%2FDesktop%2Fbootcamp%2Fgit%2Ffoodtruck%2Ffrontend%2Fsrc%2Fapp%2Fpage.tsx%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
-      },
-      "layer": {
-        "app/page": "rsc"
-      }
-    },
-    "780117d193d9b4ce04bd8f275049c1889251b0ab": {
-      "workers": {
-        "app/truck/[truckId]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2F444lyssa%2FDesktop%2Fbootcamp%2Fgit%2Ffoodtruck%2Ffrontend%2Fsrc%2Fapp%2Ftruck%2F%5BtruckId%5D%2Fpage.tsx%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
-      },
-      "layer": {
-        "app/truck/[truckId]/page": "rsc"
-      }
-    }
-  },
+  "node": {},
   "edge": {},
-  "encryptionKey": "FMNn7W2p5WCYWAr6w8vDjHvb2NwqwnLgB+DwxOteKlc="
+  "encryptionKey": "Q4maM6xGkzATGAlemO3h+XXd44qYZRg83zp/8E7BLpQ="
 }
