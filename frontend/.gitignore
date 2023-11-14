@@ -38,3 +38,8 @@ next-env.d.ts
 
 /frontend/.env.development
 /frontend/.env.local
+<<<<<<< HEAD
+=======
+.env.development
+
+>>>>>>> owner-landing
