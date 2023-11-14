@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "foodtruck",
   "version": "1.0.0",
   "description": "",
@@ -8,10 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
-=======
+  "license": "ISC",
   "dependencies": {
     "geocodio-library-node": "^1.5.0"
   }
->>>>>>> development
 }

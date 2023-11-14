@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function TruckForm() {
     return (
         <div className="bg-grey-lighter mx-auto flex flex-col">
@@ -20,6 +22,12 @@ export default function TruckForm() {
                     <input
                         type="text"
                         className="block border border-red-light w-full p-3 rounded mb-4"
+                        name="description"
+                        placeholder="Description" />
+
+                    <input
+                        type="text"
+                        className="block border border-red-light w-full p-3 rounded mb-4"
                         name="open"
                         placeholder="Open" />
 
@@ -29,17 +37,24 @@ export default function TruckForm() {
                         name="close"
                         placeholder="Close" />
 
-                    <input
-                        type="text"
-                        className="block border border-red-light w-full p-3 rounded mb-4"
-                        name="description"
-                        placeholder="Description" />
 
-                    <input
-                        type="text"
-                        className="block border border-red-light w-full p-3 rounded mb-4"
-                        name="food type"
-                        placeholder="Food Type" />
+                    <div className="form-control  grid align-self-center px-6 md:px-0 py-6 md:py-0">
+                        <label className="label max-w-xl" htmlFor={"truckFoodCategory"}>
+                            <span className="label-text">Pick A Food Category</span>
+                        </label>
+                        <select id={"truckFoodCategory"} name={"truckFoodCategory"}  className="select select-bordered">
+                            <option disabled value={''}>Pick one</option>
+                            <option value={"American"}>American</option>
+                            <option value={"Asian"}>Asian</option>
+                            <option value={"Cuban"}>Cuban</option>
+                            <option value={"French"}>French</option>
+                            <option value={"Greek"}>Greek</option>
+                            <option value={"Indian"}>Indian</option>
+                            <option value={"Italian"}>Italian</option>
+                            <option value={"Mexican"}>Mexican</option>
+                            <option value={"Other"}>Other</option>
+                        </select>
+                    </div>
 
                     <button
                         type="submit"

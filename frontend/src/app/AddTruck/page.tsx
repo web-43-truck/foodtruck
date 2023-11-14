@@ -2,6 +2,7 @@ import React from 'react';
 import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
 import TruckForm from "@/components/TruckForm";
+import {Picture} from "@/components/Picture";
 
 
 export default function AddTruck() {

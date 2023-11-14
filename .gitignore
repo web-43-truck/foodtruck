@@ -24,3 +24,5 @@ project.env
 */yarn-debug.log*
 */yarn-error.log*
 
+/frontend/.env.development
+/frontend/.env.local
