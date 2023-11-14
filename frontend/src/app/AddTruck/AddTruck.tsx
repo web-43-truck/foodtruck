@@ -1,8 +1,70 @@
-import React from "react";
+import React, {useCallback} from "react";
+import {Formik, FormikHelpers, FormikProps} from 'formik';
+import {Session} from "@/utils/FetchSession";
+import {Truck} from "@/utils/models/Truck";
+import {toFormikValidationSchema} from "zod-formik-adapter";
+import {ProfileSchema} from "@/utils/models/Profile";
+import { Dropzone } from "dropzone";
 
-export default function TruckForm() {
+type AddTruckProps = {
+    session: Session
+}
+
+export default function AddTruck({session}:AddTruckProps) {
+    const initialValues: any = {
+
+        truckId: null,
+        truckProfileId: session.profile.profileId,
+        truckDescription: null,
+        truckFoodCategory: '',
+        truckName: '',
+
+    }
+
+    const handleSubmit = (values: Truck, actions: FormikHelpers<Truck>) => {
+        const {setStatus, resetForm} = actions
+        const result = fetch('/api/truck', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values)
+        }).then(response => response.json()).then(json => {
+            let type = 'alert alert-danger'
+            if (json.status === 200) {
+                resetForm()
+                type = 'alert alert-success'
+            }
+            setStatus({type, message: json.message})
+        })
+    }
+
     return (
-        <div className="bg-grey-lighter mx-auto flex flex-col">
+        <>
+            <Formik
+                initialValues={initialValues}
+                onSubmit={handleSubmit}
+                validationSchema={toFormikValidationSchema(ProfileSchema)}
+            >
+                {TruckFormContent}
+            </Formik>
+        </>
+    )
+}
+
+function TruckFormContent(props: FormikProps<Truck>) {
+
+    const onDrop = useCallback(acceptedFiles => {
+
+        // Do something with the files
+    }, [])
+
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
+    return(
+        <>
+
+    <div className="bg-grey-lighter mx-auto flex flex-col">
             <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
                     <h1 className="mb-8 text-3xl text-center"></h1>
@@ -37,11 +99,20 @@ export default function TruckForm() {
                         name="close"
                         placeholder="Close Time" />
 
-                    <input
+                    <div {...getInputProps}>
+                    <input {...getInputProps}
                         type="file"
                         className="block border border-red-light w-full p-3 rounded mb-4"
                         name="upload"
                         placeholder="Upload Photos" />
+
+                        {
+                            isDragActive ?
+                                <p>Drop the files here ...</p> :
+                                <p>Drag 'n' drop some files here, or click to select files</p>
+                        }
+
+                    </div>
 
                     <button
                         type="submit"
@@ -74,5 +145,6 @@ export default function TruckForm() {
                     </div>
                 </div>
             </div>
+        </>
     )
 }

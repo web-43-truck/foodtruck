@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavBar} from "@/components/NavBar";
 import {Footer} from "@/components/Footer";
-import TruckForm from "@/app/AddTruck/TruckForm";
+import AddTruck from "@/app/AddTruck/AddTruck";
 import {Picture} from "@/components/Picture";
 
 
@@ -13,7 +13,7 @@ export default function AddTruck() {
     return(
         <>
             <NavBar links={links}/>
-            <TruckForm/>
+            <AddTruck/>
             <Footer/>
         </>
     )
