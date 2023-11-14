@@ -15,8 +15,8 @@ import {DisplayStatus} from "@/components/signup/DisplayStatus";
 export default function SignInFormComponent() {
 
     const initialValues : any = {
-        Email: '',
-        Password: ''
+        profileEmail: '',
+        profilePassword: ''
     }
 
     const handleSubmit = (values: SignIn, actions: FormikHelpers<SignIn>) => {
@@ -86,8 +86,8 @@ function SignInFormContent(props: FormikProps<SignIn>) {
                         className="input input-bordered w-full max"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values?.password}
-                        type="text"
+                        value={values.password}
+                        type="password"
                         name="Password"
                         id="password"
                     />

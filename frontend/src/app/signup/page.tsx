@@ -1,19 +1,20 @@
 'use client'
 import React, {ReactNode} from "react"
 import { Formik, FormikHelpers, FormikProps} from 'formik'
-import {SignUp, SignUpSchema} from "@utils/models/"
+
 import {toFormikValidationSchema} from "zod-formik-adapter"
 import {FormDebugger} from "@/components/signup/FormDebugger";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
 import {DisplayError} from "@/components/signup/DisplayErrors";
+import {SignUp, SignUpSchema} from "@/utils/models/SignUp";
 
 export default function SignUpForm() {
 
-    const initialValues : any = {
-        FullName: '',
-        Email: '',
-        Password: '',
-        ConfirmPassword: ''
+    const initialValues : SignUp = {
+        profileName: '',
+        profileEmail: '',
+        profilePassword: '',
+        profilePasswordConfirm: ''
     }
 
     const handleSubmit = (values: SignUp, actions: FormikHelpers<SignUp>) => {
@@ -58,61 +59,61 @@ function SignUpContent(props: FormikProps<SignUp>) {
     return(
         <>
             <form onSubmit={handleSubmit} className={""}>
-
+<h1> I am here </h1>
                 <div className="form-control">
-                    <label className="label" htmlFor="fullName">Full Name</label>
+                    <label className="label" htmlFor="profileName">Full Name</label>
                     <input
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.fullName}
+                        value={values.profileName}
                         className="input input-bordered w-full max"
                         type="text"
-                        name="fullName"
-                        id="fullName"
+                        name="profileName"
+                        id="profileName"
                     />
-                    <DisplayError errors={errors} touched={touched} field={"fullName"} />
+                    <DisplayError errors={errors} touched={touched} field={"profileName"} />
                 </div>
 
                 <div className="form-control">
-                    <label className="label" htmlFor="profileEmail">email</label>
+                    <label className="label" htmlFor="profileEmail">Email</label>
                     <input
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.email}
+                        value={values.profileEmail}
                         className="input input-bordered w-full max"
                         type="text"
-                        name="email"
-                        id="email"
+                        name="profileEmail"
+                        id="profileEmail"
                     />
-                    <DisplayError errors={errors} touched={touched} field={"email"} />
+                    <DisplayError errors={errors} touched={touched} field={"profileEmail"} />
                 </div>
 
                 <div className=" form-control">
-                    <label className={" label"} htmlFor="password">Password</label>
+                    <label className={" label"} htmlFor="profilePassword">Password</label>
                     <input
                         className="input input-bordered w-full max"
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.password}
+                        value={values.profilePassword}
                         type="password"
-                        name="Password"
-                        id="password"
+                        name="profilePassword"
+                        id="profilePassword"
                     />
-                    <DisplayError errors={errors} touched={touched} field={"password"} />
+                    <DisplayError errors={errors} touched={touched} field={"profilePassword"} />
                 </div>
 
                 <div className="form-control">
-                    <label className="label" htmlFor="password">ConfirmPassword</label>
+                    <label className="label" htmlFor="profilePassword">PasswordConfirm</label>
                     <input
                         onBlur={handleBlur}
                         onChange={handleChange}
-                        value={values.confirmPassword}
+                        value={values.profilePasswordConfirm}
                         className="input input-bordered w-full max"
-                        type="text"
-                        name="confirmPassword"
-                        id="confirmPassword"
+                        type="password"
+                        name="profilePasswordConfirm"
+                        id="profilePasswordConfirm"
                     />
-                    <DisplayError errors={errors} touched={touched} field={"password"} />
+                    <DisplayError errors={errors} touched={touched} field={"profilePassword"} />
                 </div>
 
                 <div className="py-2 flex gap-2">
@@ -121,6 +122,7 @@ function SignUpContent(props: FormikProps<SignUp>) {
                 </div>
                 <DisplayStatus status={status} />
             </form>
+            <FormDebugger {...props}/>
         </>
     )
 }

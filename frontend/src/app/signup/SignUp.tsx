@@ -6,6 +6,7 @@ import {toFormikValidationSchema} from "zod-formik-adapter"
 import {FormDebugger} from "@/components/signup/FormDebugger";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
 import {DisplayError} from "@/components/signup/DisplayErrors";
+import {SignUp} from "@/utils/models/SignUp";
 
 export default function SignUpForm() {
 
@@ -58,7 +59,7 @@ function SignUpContent(props: FormikProps<SignUp>) {
     return(
         <>
             <form onSubmit={handleSubmit} className={""}>
-
+<p className="text-4xl">I am here</p>
                 <div className="form-control">
                     <label className="label" htmlFor="fullName">fullName</label>
                     <input
@@ -108,7 +109,7 @@ function SignUpContent(props: FormikProps<SignUp>) {
                         onChange={handleChange}
                         value={values.confirmPassword}
                         className="input input-bordered w-full max"
-                        type="text"
+                        type="password"
                         name="confirmPassword"
                         id="confirmPassword"
                     />
