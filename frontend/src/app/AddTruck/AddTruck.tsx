@@ -1,4 +1,3 @@
-import React, {useCallback} from "react";
 import {Formik, FormikHelpers, FormikProps} from 'formik';
 import {Session} from "@/utils/FetchSession";
 import {Truck} from "@/utils/models/Truck";
@@ -54,12 +53,12 @@ export default function AddTruck({session}:AddTruckProps) {
 
 function TruckFormContent(props: FormikProps<Truck>) {
 
-    const onDrop = useCallback(acceptedFiles => {
-
-        // Do something with the files
-    }, [])
-
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+    // const onDrop = useCallback(acceptedFiles => {
+    //
+    //     // Do something with the files
+    // }, [])
+    //
+    // const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
     return(
         <>
@@ -99,25 +98,25 @@ function TruckFormContent(props: FormikProps<Truck>) {
                         name="close"
                         placeholder="Close Time" />
 
-                    <div {...getInputProps}>
-                    <input {...getInputProps}
-                        type="file"
-                        className="block border border-red-light w-full p-3 rounded mb-4"
-                        name="upload"
-                        placeholder="Upload Photos" />
+                    {/*<div {...getInputProps}>*/}
+                    {/*<input {...getInputProps}*/}
+                    {/*    type="file"*/}
+                    {/*    className="block border border-red-light w-full p-3 rounded mb-4"*/}
+                    {/*    name="upload"*/}
+                    {/*    placeholder="Upload Photos" />*/}
 
-                        {
-                            isDragActive ?
-                                <p>Drop the files here ...</p> :
-                                <p>Drag 'n' drop some files here, or click to select files</p>
-                        }
+                    {/*    {*/}
+                    {/*        isDragActive ?*/}
+                    {/*            <p>Drop the files here ...</p> :*/}
+                    {/*            <p>Drag 'n' drop some files here, or click to select files</p>*/}
+                    {/*    }*/}
 
-                    </div>
+                    {/*</div>*/}
 
-                    <button
-                        type="submit"
-                        className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
-                    >Upload Picture(s)</button>
+                    {/*<button*/}
+                    {/*    type="submit"*/}
+                    {/*    className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"*/}
+                    {/*>Upload Picture(s)</button>*/}
 
                     <div className="form-control  grid align-self-center px-6 md:px-0 py-6 md:py-0">
                         <label className="label max-w-xl" htmlFor={"truckFoodCategory"}>
