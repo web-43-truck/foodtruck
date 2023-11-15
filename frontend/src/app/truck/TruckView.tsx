@@ -52,6 +52,7 @@ export async function TruckComponent({truck, locations}: TruckComponentProps) {
                         <p>
                             {locations.map((location) => location.locationAddress)}
                         </p>
+                        <Toggle/>
                     </div>
                 </section>
             </section>
