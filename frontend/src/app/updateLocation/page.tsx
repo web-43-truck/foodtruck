@@ -1,14 +1,13 @@
 'use client'
-import React, {ReactNode} from "react"
+import React from "react"
 import { Formik, FormikHelpers, FormikProps} from 'formik'
 
 import {toFormikValidationSchema} from "zod-formik-adapter"
 import {FormDebugger} from "@/components/signup/FormDebugger";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
-import {DisplayError} from "@/components/signup/DisplayErrors";
 import {Location, LocationSchema} from "@/utils/models/Location";
 import {boolean} from "zod";
-import {Session, session} from "@/utils/FetchSession";
+import {Session} from "@/utils/FetchSession";
 
 type LocationForm = {
     session: Session}
@@ -16,7 +15,7 @@ type LocationForm = {
     export default function LocationForm(props: LocationForm) {
     const {session} = props
     if (!session || !session?.profile.profileIsTruckOwner) return <></>
-    const {profile: any , authorization: string} = session
+    const {profile , authorization} = session
 
 
 
@@ -93,22 +92,12 @@ type LocationForm = {
                                     value={values.locationAddress}
                                     type="text"
                                     className="block border border-red-light w-full p-3 rounded mb-4"
-                                    name="locationLat"
-                                    id="locationLat"
-                                    placeholder="Location Latitude"
+                                    name="locationAddress"
+                                    id="locationAddress"
+                                    placeholder="Location"
                                 />
 
-                                <label className="label" htmlFor="locationLng">Location Longitude</label>
-                                <input
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.locationLng}
-                                    type="text"
-                                    className="block border border-red-light w-full p-3 rounded mb-4 h-20"
-                                    name="locationLng"
-                                    placeholder="Location"
-                                    id="locationLng"
-                                />
+
 
                                 <label className="label" htmlFor="locationSunrise">Start Time</label>
                                 <input
@@ -165,4 +154,5 @@ type LocationForm = {
             </>
         )
 
-    }
+    }}
+
