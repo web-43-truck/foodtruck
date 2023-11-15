@@ -9,6 +9,7 @@ import {FormDebugger} from "@/components/signup/FormDebugger";
 import React from "react";
 import {Session} from "@/utils/FetchSession";
 import {useDropzone} from "react-dropzone";
+import {Picture} from "@/utils/models/Picture";
 
 
 type AddTruckProps = {
@@ -21,7 +22,7 @@ export function AddTruck(props: AddTruckProps) {
     const {profile,authorization} = session
     const initialValues = {
 
-        images: '',
+        images: [],
         truckId: null,
         truckProfileId: profile.profileId,
         truckDescription: '',
@@ -45,10 +46,12 @@ export function AddTruck(props: AddTruckProps) {
             }) .then(response => response.json()).then(body => {
                 if (body.status === 200) {
                const truck = {truckId: null, truckProfileId: values.truckProfileId, truckDescription: values.truckDescription, truckFoodCategory: values.truckFoodCategory, truckName: values.truckName }
-                    createTruck(truck)
+                    const images = body.message
+
+                    createTruck(truck, [images])
                 }
         })
-       function createTruck(truck : Truck) {
+       function createTruck(truck : Truck, pictures: string[]) {
            const result = fetch('/apis/truck', {
                method: "POST",
                headers: {
@@ -59,12 +62,34 @@ export function AddTruck(props: AddTruckProps) {
            }).then(response => response.json()).then(json => {
                let type = 'alert alert-danger'
                if (json.status === 200) {
-                   resetForm()
+                   for (let image of pictures) {
+                       const picture = {pictureId: null, pictureProfileId: values.truckProfileId, pictureTruckId: json.data, pictureType: "menu", pictureUrl: image}
+                       createImage(picture)
+                   }
                    type = 'alert alert-success'
                }
                setStatus({type, message: json.message})
            })
        }
+
+        function createImage(picture:Picture) {
+            fetch('/apis/picture', {
+                method: "POST",
+                headers: {
+                    "authorization": authorization,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(picture)
+            }).then(response => response.json()).then(json => {
+                let type = 'alert alert-danger'
+                if (json.status === 200) {
+                    resetForm()
+                    type = 'alert alert-success'
+                }
+                setStatus({type, message: json.message})
+            })
+        }
+
     }
         return (
             <>
@@ -178,8 +203,8 @@ function ImageDropZone (props: ImageDropZoneProps) {
 
         const formData = new FormData()
         formData.append('image', acceptedFiles[0])
-
-        formikProps.setFieldValue(formikProps.fieldValue, formData)
+        formikProps.values[formikProps.fieldValue].push
+        formikProps.setFieldValue(formikProps.fieldValue)
 
     }, [formikProps])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
