@@ -3,6 +3,7 @@ import {NavBar} from "@/components/NavBar";
 import {HomePage} from "@/app/HomePage";
 import {Truck, TruckSchema} from "@/utils/models/Truck";
 
+
 type HomeProps = {
     searchParams: {
         name: string
@@ -11,6 +12,7 @@ type HomeProps = {
 
 export default async function Home({searchParams}: HomeProps) {
     const trucks = await getData(searchParams.name)
+
     const links = [
         {linkName: 'Sign-in', href: '/signin'},
         {linkName: 'Sign-up', href: '/signup'},
@@ -21,7 +23,9 @@ export default async function Home({searchParams}: HomeProps) {
             <section>
                 <NavBar links={links}/>
             </section>
+
             <HomePage trucks={trucks} initialSearch={searchParams.name}/>
+
         </>
     )
 }

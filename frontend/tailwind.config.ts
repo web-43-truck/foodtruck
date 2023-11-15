@@ -16,5 +16,5 @@ const config: Config = {
     themes: ["cupcake"],
   }
 }
-
 export default config
+

@@ -1,4 +1,3 @@
-
 import CheckBoxTruck from "@/components/checkboxTruck";
 
 export default function Form() {
