@@ -11,6 +11,7 @@ export async function imageUploadController (request: Request, response: Respons
       const message: string = await uploadToCloudinary(request.file)
       return response.json({status: 200, data: null, message: message})
     } catch (error: any) {
+        console.log(error)
       return response.json({status: 400, data: null, message: error.message})
     }
 }

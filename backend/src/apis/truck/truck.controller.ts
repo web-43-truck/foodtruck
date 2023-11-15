@@ -110,10 +110,9 @@ export async function postTruckController (request: Request, response: Response)
 
         const truck: Truck = { truckId: null, truckProfileId, truckDescription, truckFoodCategory, truckName }
 
-        const message: string = await insertTruck(truck)
+        const data: string = await insertTruck(truck)
 
-        return response.json({ status: 200, data: null, message })
-
+        return response.json({ status: 200, data, message: "Truck created successfully" })
     } catch (error) {
         return response.json({
             status: 500,

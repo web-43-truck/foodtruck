@@ -8,9 +8,9 @@ export type Truck = z.infer<typeof TruckSchema>
 export async function insertTruck (truck: Truck): Promise<string> {
     const {truckProfileId, truckDescription, truckFoodCategory, truckName} = truck
 
-    await sql`INSERT INTO truck(truck_id, truck_profile_id, truck_description, truck_food_category, truck_name) VALUES (gen_random_uuid(), ${truckProfileId}, ${truckDescription}, ${truckFoodCategory}, ${truckName})`
+    const result = await sql`INSERT INTO truck(truck_id, truck_profile_id, truck_description, truck_food_category, truck_name) VALUES (gen_random_uuid(), ${truckProfileId}, ${truckDescription}, ${truckFoodCategory}, ${truckName}) returning truck_id`
 
-    return 'Truck added successfully'
+    return result [0].truckId
 }
 
 export async function updateTruck (truck: Truck): Promise<string> {

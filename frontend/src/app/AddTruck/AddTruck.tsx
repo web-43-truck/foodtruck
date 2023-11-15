@@ -6,7 +6,7 @@ import {ProfileSchema} from "@/utils/models/Profile";
 // import { Dropzone } from "dropzone";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
 import {FormDebugger} from "@/components/signup/FormDebugger";
-import React from "react";
+import React, {useState} from "react";
 import {Session} from "@/utils/FetchSession";
 import {useDropzone} from "react-dropzone";
 import {Picture} from "@/utils/models/Picture";
@@ -17,6 +17,8 @@ type AddTruckProps = {
 }
 
 export function AddTruck(props: AddTruckProps) {
+    const [submitPhotos, setSubmitPhotos] = useState <string[]> ([])
+    const [isImagesSubmitting, setIsImagesSubmitting] = useState(true)
     const {session} = props
     if (!session || !session?.profile.profileIsTruckOwner) return <></>
     const {profile,authorization} = session
@@ -33,27 +35,49 @@ export function AddTruck(props: AddTruckProps) {
     const handleSubmit = (values: any, actions: FormikHelpers<any>) => {
         console.log(values.images)
         const {setStatus, resetForm, setErrors} = actions
-        if (values.images instanceof FormData === false) {
-            setErrors({images: "you are required to upload at least 3 images"})
+        if (values.images.length > 3) {
+            setErrors({images: "you can only upload 3 images, you may need to reset the form"}
+            )
         }
-        fetch('/apis/image',
-            {
-            method: "POST",
-            headers: {
-                "authorization": `${session.authorization}`
-            },
-            body: values.images
-            }) .then(response => response.json()).then(body => {
-                if (body.status === 200) {
-               const truck = {truckId: null, truckProfileId: values.truckProfileId, truckDescription: values.truckDescription, truckFoodCategory: values.truckFoodCategory, truckName: values.truckName }
-                    const images = body.message
 
-                    createTruck(truck, [images])
+        for (let i = 0 ; i < values.images.length; i++) {
+            if (values.images [i] instanceof FormData === false) {
+                setErrors({images: "an image is malformed, you may need to reset the form"})
+            }
+            let crr = i
+            if (crr +1 === values.images.length) {
+                uploadImage(values.images[i], true)
+            } else {
+                uploadImage(values.images[i], false)
+            }
+        }
+
+        function uploadImage (image: any, isFinalImage: any) {
+            console.log(isFinalImage)
+            fetch('/apis/image',
+                {
+                    method: "POST",
+                    headers: {
+                        "authorization": `${session.authorization}`
+                    },
+                    body: image
+                }) .then(response => response.json()).then(body => {
+                if (body.status === 200) {
+                    // @ts-ignore
+                    console.log(body.message)
+                    setSubmitPhotos(submitPhotos.push(body.message))
+                    if (isFinalImage) {
+                        const truck = {truckId: null, truckProfileId: values.truckProfileId, truckDescription: values.truckDescription, truckFoodCategory: values.truckFoodCategory, truckName: values.truckName }
+                        createTruck(truck, submitPhotos)
+                    }
                 }
-        })
+            })
+        }
+
        function createTruck(truck : Truck, pictures: string[]) {
            const result = fetch('/apis/truck', {
                method: "POST",
+               next: {revalidate: 0},
                headers: {
                    "authorization": authorization,
                    "Content-Type": "application/json",
@@ -63,6 +87,7 @@ export function AddTruck(props: AddTruckProps) {
                let type = 'alert alert-danger'
                if (json.status === 200) {
                    for (let image of pictures) {
+                       console.log(image)
                        const picture = {pictureId: null, pictureProfileId: values.truckProfileId, pictureTruckId: json.data, pictureType: "menu", pictureUrl: image}
                        createImage(picture)
                    }
@@ -181,7 +206,7 @@ export function AddTruck(props: AddTruckProps) {
                                         type="submit"
                                         className="py-2 flex gap-2 mt-2 btn btn-success"
                                     >Save</button>
-                                    {/*<button className='btn btn-danger' onClick={handleReset} type="reset">reset</button>*/}
+                                    <button className='btn btn-danger' type="reset">Clear</button>
                                 </div>
                             </div>
                         </div>
@@ -200,11 +225,14 @@ type ImageDropZoneProps = {
 function ImageDropZone (props: ImageDropZoneProps) {
     const {formikProps}=props
     const onDrop = React.useCallback((acceptedFiles: any) => {
-
         const formData = new FormData()
         formData.append('image', acceptedFiles[0])
-        formikProps.values[formikProps.fieldValue].push
-        formikProps.setFieldValue(formikProps.fieldValue)
+        if (formikProps.values[formikProps.fieldValue] === undefined ) {
+            formikProps.setFieldValue(formikProps.fieldValue, [formData])
+        }
+        else {
+            formikProps.values[formikProps.fieldValue].push(formData)
+        }
 
     }, [formikProps])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
