@@ -4,12 +4,16 @@ import React, {useState} from "react"
 import { Truck } from "@/utils/models/Truck"
 import {SearchItem} from "@/components/SearchItem";
 import {useRouter} from "next/navigation";
+import {Session} from "@/utils/FetchSession";
+import {Favorite} from "@/utils/models/Favorite";
 
 type SearchViewProps = {
     trucks: Truck[],
     initialSearch: string
+    session: Session | undefined
+    favorites: Favorite[]
 }
-export  function HomePage({trucks, initialSearch}: SearchViewProps) {
+export  function HomePage({trucks, initialSearch, favorites, session}: SearchViewProps) {
     const [truckFoodCategory, setTruckFoodCategory] = useState('')
     const router = useRouter()
     const handleSearchChange =(
@@ -78,7 +82,7 @@ export  function HomePage({trucks, initialSearch}: SearchViewProps) {
                 {trucks
                     .filter((truck) => truck.truckFoodCategory === truckFoodCategory || truckFoodCategory === '')
                     .map((truck) => (
-                        <SearchItem key={truck.truckId} truck={truck}/>
+                        <SearchItem key={truck.truckId } favorites={favorites.filter(favorite=>favorite.favoriteTruckId===truck.truckId)} session={session} truck={truck}/>
                     ))}
             </div>
 
