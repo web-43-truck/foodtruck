@@ -14,7 +14,9 @@ type AddTruckProps = {
     session: Session
 }
 
-    export default function UpdateLocation(props: UpdateLocation) {
+
+
+export default function LocationForm(props: LocationForm) {
         const {session} = props
         if (!session || !session?.profile.profileIsTruckOwner) return <></>
         const {profile,authorization} = session
@@ -22,8 +24,6 @@ type AddTruckProps = {
 
 
             locationAddress: '',
-            locationLat: '',
-            locationLng: '',
             locationSunset: '',
             locationSunrise: '',
             locationIsActive: boolean,
@@ -82,11 +82,11 @@ type AddTruckProps = {
                             <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
                                 <h1 className="mb-8 text-3xl text-center"></h1>
 
-                                <label className="label" htmlFor="locationLat">Location</label>
+                                <label className="label" htmlFor="locationAddress">Location</label>
                                 <input
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    value={values.locationLat}
+                                    value={values.locationAddress}
                                     type="text"
                                     className="block border border-red-light w-full p-3 rounded mb-4"
                                     name="locationLat"
@@ -106,11 +106,42 @@ type AddTruckProps = {
                                     id="locationLng"
                                 />
 
+                                <label className="label" htmlFor="locationSunrise">Start Time</label>
+                                <input
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    value={values.locationSunrise}
+                                    type="text"
+                                    className="block border border-red-light w-full p-3 rounded mb-4 h-20"
+                                    name="locationSunrise"
+                                    placeholder="Location Start Time"
+                                    id="locationSunrise"
+                                />
 
 
+                                <label className="label" htmlFor="locationSunset">End Time</label>
+                                <input
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    value={values.locationSunset}
+                                    type="text"
+                                    className="block border border-red-light w-full p-3 rounded mb-4 h-20"
+                                    name="locationSunset"
+                                    placeholder="Location End Time"
+                                    id="locationSunset"
+                                />
 
-
-
+                                <label className="label" htmlFor="locationIsActive">Active?</label>
+                                <input
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    value={values.locationIsActive}
+                                    type="text"
+                                    className="block border border-red-light w-full p-3 rounded mb-4 h-20"
+                                    name="locationIsActive"
+                                    placeholder="Location End Time"
+                                    id="locationIsActive"
+                                />
 
                                 </div>
 
@@ -123,7 +154,7 @@ type AddTruckProps = {
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                     <DisplayStatus status={status}/>
                 </form>
                 <FormDebugger {...props}/>

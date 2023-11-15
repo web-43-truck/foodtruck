@@ -39,13 +39,13 @@ export default function SignUpForm() {
         <>
             <h1 className="text-3xl pb-0 font-bold">Sign Up</h1>
             <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={toFormikValidationSchema(SignUpSchema)} >
-                {SignUpContent}
+                {SignUpForm}
             </Formik>
         </>
     )
 }
 
-function SignUpContent(props: FormikProps<SignUp>) {
+function SignUpFormContent(props: FormikProps<SignUp>) {
     const {
         status,
         values,
