@@ -1,6 +1,8 @@
 import {ListItem} from "@/components/ListItem";
+import {getSession} from "@/utils/FetchSession";
 
-export function NavBar(props:{links: LinkItem[] }){
+export async function NavBar(props:{links: LinkItem[] }){
+    const session = await getSession()
     return (
         <>
             <div className="navbar bg-accent shadow-inner flex basis-11/12 rounded-2xl">
@@ -11,6 +13,9 @@ export function NavBar(props:{links: LinkItem[] }){
                                     <a href={link.href}>{link.linkName}</a>
                                 </li>
                             ))}
+                            <li>
+                                <p> {session?.profile?.profileName}</p>
+                            </li>
                         </ul>
                     </div>
                 <NavBarTitle/>
