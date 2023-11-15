@@ -60,7 +60,7 @@ export function FavoriteButton (props:favoriteButtonProps) {
 
     return (
         <>
-            <button className="btn btn-accent" onClick={submitFavorite}>
+            <button className="btn btn-accent btn-xs" onClick={submitFavorite}>
                 {favorites.length ? "Unfavorite" : "favorite"}
 
             </button>
