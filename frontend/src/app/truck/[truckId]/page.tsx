@@ -12,8 +12,8 @@ type TruckPageProps = {
 export default async function TruckPage(props: TruckPageProps){
     console.log("line 12", props.params)
     const links = [
-        {linkName: "Sign-in", href: "/"},
-        {linkName: "Sign-up", href: "SignUp"},
+        {linkName: "Sign-in", href: "/signin"},
+        {linkName: "Sign-up", href: "/signup"},
     ]
 
     const {truckId} = props.params

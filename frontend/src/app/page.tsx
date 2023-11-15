@@ -12,8 +12,8 @@ type HomeProps = {
 export default async function Home({searchParams}: HomeProps) {
     const trucks = await getData(searchParams.name)
     const links = [
-        {linkName: 'Sign-in', href: '/'},
-        {linkName: 'Sign-up', href: 'SignUp'},
+        {linkName: 'Sign-in', href: '/signin'},
+        {linkName: 'Sign-up', href: '/signup'},
     ]
 
     return (
