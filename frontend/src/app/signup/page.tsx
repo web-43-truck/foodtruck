@@ -20,7 +20,7 @@ export default function SignUpForm() {
     const handleSubmit = (values: SignUp, actions: FormikHelpers<SignUp>) => {
         const submitValues = {...values, profileId: null, profileActivationToken: null, profileIsTruckOwner: false}
         const {setStatus, resetForm} = actions
-        const result: Promise<void> = fetch('/apis/sign-up', {
+        const result: Promise<void> = fetch('/api/sign-up', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -39,13 +39,17 @@ export default function SignUpForm() {
         <>
             <h1 className="text-3xl pb-0 font-bold px-14 pt-14 mx-auto">Sign Up</h1>
             <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={toFormikValidationSchema(SignUpSchema)} >
-                {SignUpContent}
+                {SignUpForm}
             </Formik>
         </>
     )
 }
 
+<<<<<<< HEAD
 export const SignUpContent = (props: FormikProps<SignUp>) => {
+=======
+function SignUpFormContent(props: FormikProps<SignUp>) {
+>>>>>>> favorite
     const {
         status,
         values,
