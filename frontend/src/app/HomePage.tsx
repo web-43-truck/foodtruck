@@ -61,7 +61,7 @@ export  function HomePage({trucks, initialSearch}: SearchViewProps) {
                         onChange={handleChange}
                         className="select select-bordered"
                     >
-                        <option disabled value={''}>Pick one</option>
+                        <option value={''}>Pick one</option>
                         <option value={"American"}>American</option>
                         <option value={"Asian"}>Asian</option>
                         <option value={"Cuban"}>Cuban</option>

@@ -20,7 +20,7 @@ export async function TruckComponent({truck, locations}: TruckComponentProps) {
                 {truck.truckName ? truck.truckName : "No Truck Name"}
             </h1>
             <section className="container mx-auto">
-                <div className="flex md:justify-evenly rounded-xl">
+                <div className="md:flex md:justify-evenly rounded-xl">
                     <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
                     <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
                     <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>

@@ -39,7 +39,7 @@ export default function SignInFormComponent() {
     }
     return(
         <>
-            <h1 className="text-3xl pb-0 font-bold">Sign In</h1>
+            <h1 className="text-3xl font-bold container mx-auto pt-10 px-8">Sign In</h1>
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
@@ -67,7 +67,7 @@ function SignInFormContent(props: FormikProps<SignIn>) {
 
     return(
         <>
-            <form onSubmit={handleSubmit} className={""}>
+            <form onSubmit={handleSubmit} className={"container mx-auto px-8 py-14"}>
                 <div className="form-control">
                     <label className="label" htmlFor="profileEmail">Email</label>
                     <input
