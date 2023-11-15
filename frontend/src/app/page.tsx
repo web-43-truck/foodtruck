@@ -35,9 +35,10 @@ async function getData(name: string): Promise<Truck[]> {
     const response = await fetch(`${process.env.REST_API_URL}/apis/truck/truckSearch/?name=${assignedName}`, {
         next: {revalidate: 0},
     })
-
+    console.log(response)
     if (response.status === 200 || response.status === 304) {
         const result = await response.json()
+        console.log(result)
         const trucks = TruckSchema.array().parse(result?.data)
         return trucks
     } else {

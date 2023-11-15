@@ -8,6 +8,7 @@ import {DisplayStatus} from "@/components/signup/DisplayStatus";
 import {FormDebugger} from "@/components/signup/FormDebugger";
 import React from "react";
 import {Session} from "@/utils/FetchSession";
+import {useDropzone} from "react-dropzone";
 
 
 type AddTruckProps = {
@@ -20,6 +21,7 @@ export function AddTruck(props: AddTruckProps) {
     const {profile,authorization} = session
     const initialValues = {
 
+        images: '',
         truckId: null,
         truckProfileId: profile.profileId,
         truckDescription: '',
@@ -28,22 +30,41 @@ export function AddTruck(props: AddTruckProps) {
     }
 
     const handleSubmit = (values: any, actions: FormikHelpers<any>) => {
-        const {setStatus, resetForm} = actions
-        const result = fetch('/apis/truck', {
+        console.log(values.images)
+        const {setStatus, resetForm, setErrors} = actions
+        if (values.images instanceof FormData === false) {
+            setErrors({images: "you are required to upload at least 3 images"})
+        }
+        fetch('/apis/image',
+            {
             method: "POST",
             headers: {
-                "authorization": authorization,
-                "Content-Type": "application/json",
+                "authorization": `${session.authorization}`
             },
-            body: JSON.stringify(values)
-        }).then(response => response.json()).then(json => {
-            let type = 'alert alert-danger'
-            if (json.status === 200) {
-                resetForm()
-                type = 'alert alert-success'
-            }
-            setStatus({type, message: json.message})
+            body: values.images
+            }) .then(response => response.json()).then(body => {
+                if (body.status === 200) {
+               const truck = {truckId: null, truckProfileId: values.truckProfileId, truckDescription: values.truckDescription, truckFoodCategory: values.truckFoodCategory, truckName: values.truckName }
+                    createTruck(truck)
+                }
         })
+       function createTruck(truck : Truck) {
+           const result = fetch('/apis/truck', {
+               method: "POST",
+               headers: {
+                   "authorization": authorization,
+                   "Content-Type": "application/json",
+               },
+               body: JSON.stringify(truck)
+           }).then(response => response.json()).then(json => {
+               let type = 'alert alert-danger'
+               if (json.status === 200) {
+                   resetForm()
+                   type = 'alert alert-success'
+               }
+               setStatus({type, message: json.message})
+           })
+       }
     }
         return (
             <>
@@ -66,7 +87,7 @@ export function AddTruck(props: AddTruckProps) {
             handleChange,
             handleBlur,
             handleSubmit,
-            handleReset
+            setFieldValue
         } = props
 
         // const onDrop = useCallback(acceptedFiles => {
@@ -108,39 +129,7 @@ export function AddTruck(props: AddTruckProps) {
                                     placeholder="Description"
                                     id="truckDescription"
                                 />
-
-
-                                {/*<div {...getInputProps}>*/}
-                                {/*<input {...getInputProps}*/}
-                                {/*    type="file"*/}
-                                {/*    className="block border border-red-light w-full p-3 rounded mb-4"*/}
-                                {/*    name="upload"*/}
-                                {/*    placeholder="Upload Photos" />*/}
-
-                                {/*<input*/}
-                                {/*    onBlur={handleBlur}*/}
-                                {/*    onChange={handleChange}*/}
-                                {/*    value={values.upload}*/}
-                                {/*    type="file"*/}
-                                {/*    className="block border border-red-light w-full p-3 rounded mb-4"*/}
-                                {/*    name="upload"*/}
-                                {/*    placeholder="Upload Photos"*/}
-                                {/*    id="upload"*/}
-                                {/*/>*/}
-
-                                {/*    {*/}
-                                {/*        isDragActive ?*/}
-                                {/*            <p>Drop the files here ...</p> :*/}
-                                {/*            <p>Drag 'n' drop some files here, or click to select files</p>*/}
-                                {/*    }*/}
-
-                                {/*</div>*/}
-
-                                {/*<button*/}
-                                {/*    type="submit"*/}
-                                {/*    className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"*/}
-                                {/*>Upload Picture(s)</button>*/}
-
+<ImageDropZone formikProps={{values, handleChange, handleBlur, setFieldValue, fieldValue: "images"}}/>
                                 <div className="form-control  grid align-self-center px-6 md:px-0 py-6 md:py-0">
                                     <label className="label max-w-xl" htmlFor={"truckFoodCategory"}>
                                         <span className="label-text">Pick A Food Category</span>
@@ -178,4 +167,43 @@ export function AddTruck(props: AddTruckProps) {
             </>
         )
 
+}
+
+type ImageDropZoneProps = {
+    formikProps: any
+}
+function ImageDropZone (props: ImageDropZoneProps) {
+    const {formikProps}=props
+    const onDrop = React.useCallback((acceptedFiles: any) => {
+
+        const formData = new FormData()
+        formData.append('image', acceptedFiles[0])
+
+        formikProps.setFieldValue(formikProps.fieldValue, formData)
+
+    }, [formikProps])
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+
+    return (
+        <div className={"mb-3"} {...getRootProps()}>
+            <label>User Avatar</label>
+
+                <div className="d-flex flex-fill bg-light justify-content-center align-items-center border rounded">
+                    <input
+                        aria-label="profile avatar file drag and drop area"
+                        aria-describedby="image drag drop area"
+                        className="form-control-file"
+                        accept="image/*"
+                        onChange={formikProps.handleChange}
+                        onBlur={formikProps.handleBlur}
+                        {...getInputProps()}
+                    />
+                    {
+                        isDragActive ?
+                            <span className="align-items-center" >Drop image here</span> :
+                            <span className="align-items-center" >Drag and drop image here, or click here to select an image</span>
+                    }
+                </div>
+        </div>
+    )
 }
