@@ -45,7 +45,7 @@ export default function SignUpForm() {
     )
 }
 
-function SignUpContent(props: FormikProps<SignUp>) {
+export const SignUpContent = (props: FormikProps<SignUp>) => {
     const {
         status,
         values,
@@ -126,7 +126,7 @@ function SignUpContent(props: FormikProps<SignUp>) {
             <FormDebugger {...props}/>
         </>
     )
-}
+};
 
 
 // export default function SignUpPage() {
