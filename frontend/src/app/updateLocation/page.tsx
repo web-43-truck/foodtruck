@@ -1,44 +1,37 @@
 'use client'
-import React, {ReactNode} from "react"
+import React from "react"
 import { Formik, FormikHelpers, FormikProps} from 'formik'
+import {ProfileSchema} from "@/utils/models/Profile";
 
 import {toFormikValidationSchema} from "zod-formik-adapter"
 import {FormDebugger} from "@/components/signup/FormDebugger";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
-import {DisplayError} from "@/components/signup/DisplayErrors";
 import {Location, LocationSchema} from "@/utils/models/Location";
 import {boolean} from "zod";
-import {Session, session} from "@/utils/FetchSession";
+import {Session} from "@/utils/FetchSession";
 
-type LocationForm = {
+type LocationFormProps = {
     session: Session}
 
-    export default function LocationForm(props: LocationForm) {
+    export default function LocationForm(props: LocationFormProps) {
     const {session} = props
     if (!session || !session?.profile.profileIsTruckOwner) return <></>
-    const {profile: any , authorization: string} = session
-
-
-
- function LocationForm(props: LocationForm) {
-        const {session} = props
-        if (!session || !session?.profile.profileIsTruckOwner) return <></>
-        const {profile,authorization} = session
         const initialValues = {
-
-
             locationAddress: '',
             locationSunset: '',
             locationSunrise: '',
             locationIsActive: boolean,
         }
 
+
+
+
         const handleSubmit = (values: any, actions: FormikHelpers<any>) => {
             const {setStatus, resetForm} = actions
-            const result = fetch('/apis/location', {
+            const result = fetch('/api/location', {
                 method: "POST",
                 headers: {
-                    "authorization": authorization,
+                    "authorization": session.authorization,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(values)
@@ -86,29 +79,19 @@ type LocationForm = {
                             <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
                                 <h1 className="mb-8 text-3xl text-center"></h1>
 
-                                <label className="label" htmlFor="locationAddress">Location</label>
+                                <label className="label" htmlFor="locationAddress">Location Address</label>
                                 <input
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     value={values.locationAddress}
                                     type="text"
                                     className="block border border-red-light w-full p-3 rounded mb-4"
-                                    name="locationLat"
-                                    id="locationLat"
-                                    placeholder="Location Latitude"
+                                    name="locationAddress"
+                                    id="locationAddress"
+                                    placeholder="Location"
                                 />
 
-                                <label className="label" htmlFor="locationLng">Location Longitude</label>
-                                <input
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    value={values.locationLng}
-                                    type="text"
-                                    className="block border border-red-light w-full p-3 rounded mb-4 h-20"
-                                    name="locationLng"
-                                    placeholder="Location"
-                                    id="locationLng"
-                                />
+
 
                                 <label className="label" htmlFor="locationSunrise">Start Time</label>
                                 <input
@@ -166,3 +149,4 @@ type LocationForm = {
         )
 
     }
+

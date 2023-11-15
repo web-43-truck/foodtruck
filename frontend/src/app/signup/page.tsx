@@ -57,7 +57,7 @@ function SignUpFormContent(props: FormikProps<SignUp>) {
         handleReset
     } = props
 
-    return(
+    return (
         <>
             <form onSubmit={handleSubmit} className={""}>
 
@@ -72,7 +72,7 @@ function SignUpFormContent(props: FormikProps<SignUp>) {
                         name="profileName"
                         id="profileName"
                     />
-                    <DisplayError errors={errors} touched={touched} field={"profileName"} />
+                    <DisplayError errors={errors} touched={touched} field={"profileName"}/>
                 </div>
 
                 <div className="form-control">
@@ -86,7 +86,7 @@ function SignUpFormContent(props: FormikProps<SignUp>) {
                         name="profileEmail"
                         id="profileEmail"
                     />
-                    <DisplayError errors={errors} touched={touched} field={"profileEmail"} />
+                    <DisplayError errors={errors} touched={touched} field={"profileEmail"}/>
                 </div>
 
                 <div className=" form-control">
@@ -100,7 +100,7 @@ function SignUpFormContent(props: FormikProps<SignUp>) {
                         name="profilePassword"
                         id="profilePassword"
                     />
-                    <DisplayError errors={errors} touched={touched} field={"profilePassword"} />
+                    <DisplayError errors={errors} touched={touched} field={"profilePassword"}/>
                 </div>
 
                 <div className="form-control">
@@ -114,33 +114,16 @@ function SignUpFormContent(props: FormikProps<SignUp>) {
                         name="profilePasswordConfirm"
                         id="profilePasswordConfirm"
                     />
-                    <DisplayError errors={errors} touched={touched} field={"profilePassword"} />
+                    <DisplayError errors={errors} touched={touched} field={"profilePassword"}/>
                 </div>
 
                 <div className="py-2 flex gap-2">
                     <button className='btn btn-success' type="submit">Sign Up</button>
                     <button className='btn btn-danger' onClick={handleReset} type="reset">reset</button>
                 </div>
-                <DisplayStatus status={status} />
+                <DisplayStatus status={status}/>
             </form>
             <FormDebugger {...props}/>
         </>
     )
 }
-
-
-// export default function SignUpPage() {
-//     const links = [
-//         {linkName: 'Home', href: '/'},
-//
-//     ]
-//     return(
-//         <>
-//             <section>
-//             <NavBar links={links}/>
-//             </section>
-//             <SignUp/>
-//             <Footer/>
-//         </>
-//     )
-// }
