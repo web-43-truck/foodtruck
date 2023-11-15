@@ -8,15 +8,19 @@ import {DisplayStatus} from "@/components/signup/DisplayStatus";
 import {DisplayError} from "@/components/signup/DisplayErrors";
 import {Location, LocationSchema} from "@/utils/models/Location";
 import {boolean} from "zod";
-import {Session} from "@/utils/FetchSession";
+import {Session, session} from "@/utils/FetchSession";
 
-type AddTruckProps = {
-    session: Session
-}
+type LocationForm = {
+    session: Session}
+
+    export default function LocationForm(props: LocationForm) {
+    const {session} = props
+    if (!session || !session?.profile.profileIsTruckOwner) return <></>
+    const {profile: any , authorization: string} = session
 
 
 
-export default function LocationForm(props: LocationForm) {
+ function LocationForm(props: LocationForm) {
         const {session} = props
         if (!session || !session?.profile.profileIsTruckOwner) return <></>
         const {profile,authorization} = session
