@@ -8,7 +8,7 @@ import {DisplayStatus} from "@/components/signup/DisplayStatus";
 import {DisplayError} from "@/components/signup/DisplayErrors";
 import {SignUp, SignUpSchema} from "@/utils/models/SignUp";
 
-export default function SignUpForm() {
+export default function SignUp() {
 
     const initialValues : SignUp = {
         profileName: '',
@@ -20,7 +20,7 @@ export default function SignUpForm() {
     const handleSubmit = (values: SignUp, actions: FormikHelpers<SignUp>) => {
         const submitValues = {...values, profileId: null, profileActivationToken: null, profileIsTruckOwner: false}
         const {setStatus, resetForm} = actions
-        const result: Promise<void> = fetch('/api/sign-up', {
+        const result: Promise<void> = fetch('/apis/sign-up', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -39,13 +39,13 @@ export default function SignUpForm() {
         <>
             <h1 className="text-3xl pb-0 font-bold">Sign Up</h1>
             <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={toFormikValidationSchema(SignUpSchema)} >
-                {SignUpForm}
+                {SignUp}
             </Formik>
         </>
     )
 }
 
-function SignUpFormContent(props: FormikProps<SignUp>) {
+function SignUpContent(props: FormikProps<SignUp>) {
     const {
         status,
         values,
@@ -104,7 +104,7 @@ function SignUpFormContent(props: FormikProps<SignUp>) {
                 </div>
 
                 <div className="form-control">
-                    <label className="label" htmlFor="profilePassword">PasswordConfirm</label>
+                    <label className="label" htmlFor="profilePassword">Password Confirm</label>
                     <input
                         onBlur={handleBlur}
                         onChange={handleChange}

@@ -4,11 +4,11 @@ import { Formik, FormikHelpers, FormikProps} from 'formik'
 import {ProfileSchema} from "@/utils/models/Profile";
 
 import {toFormikValidationSchema} from "zod-formik-adapter"
-import {FormDebugger} from "@/components/signup/FormDebugger";
-import {DisplayStatus} from "@/components/signup/DisplayStatus";
-import {Location, LocationSchema} from "@/utils/models/Location";
-import {boolean} from "zod";
-import {Session} from "@/utils/FetchSession";
+import {FormDebugger} from "@/components/signup/FormDebugger"
+import {DisplayStatus} from "@/components/signup/DisplayStatus"
+import {Location, LocationSchema} from "@/utils/models/Location"
+import {boolean} from "zod"
+import {Session} from "@/utils/FetchSession"
 
 type LocationFormProps = {
     session: Session}
@@ -28,7 +28,7 @@ type LocationFormProps = {
 
         const handleSubmit = (values: any, actions: FormikHelpers<any>) => {
             const {setStatus, resetForm} = actions
-            const result = fetch('/api/location', {
+            const result = fetch('/apis/location', {
                 method: "POST",
                 headers: {
                     "authorization": session.authorization,
