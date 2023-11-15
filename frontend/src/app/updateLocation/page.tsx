@@ -7,15 +7,16 @@ import {FormDebugger} from "@/components/signup/FormDebugger";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
 import {DisplayError} from "@/components/signup/DisplayErrors";
 import {Location, LocationSchema} from "@/utils/models/Location";
+import {boolean} from "zod";
 
 
 export default function LocationForm() {
     const initialValues : any = {
         locationAddress: '',
-        locationLat: decimal,
-        locationLng: decimal,
-        locationSunset: time,
-        locationSunrise: time,
+        locationLat: '',
+        locationLng: '',
+        locationSunset: '',
+        locationSunrise: '',
         locationIsActive: boolean,
     }
 const handleSubmit = ()}
