@@ -1,33 +1,38 @@
-import {Formik, FormikHelpers, FormikProps} from 'formik';
-import {Session} from "@/utils/FetchSession";
-import {Truck} from "@/utils/models/Truck";
+'use client'
+import {Formik, FormikHelpers, FormikProps} from 'formik'
+import {Truck, TruckSchema} from "@/utils/models/Truck";
 import {toFormikValidationSchema} from "zod-formik-adapter";
 import {ProfileSchema} from "@/utils/models/Profile";
 // import { Dropzone } from "dropzone";
 import {DisplayStatus} from "@/components/signup/DisplayStatus";
 import {FormDebugger} from "@/components/signup/FormDebugger";
 import React from "react";
+import {Session} from "@/utils/FetchSession";
+
 
 type AddTruckProps = {
     session: Session
 }
 
-export default function AddTruck({session}:AddTruckProps) {
+export function AddTruck(props: AddTruckProps) {
+    const {session} = props
+    if (!session || !session?.profile.profileIsTruckOwner) return <></>
+    const {profile,authorization} = session
     const initialValues = {
 
         truckId: null,
-        truckProfileId: '',
+        truckProfileId: profile.profileId,
         truckDescription: '',
         truckFoodCategory: '',
         truckName: '',
-
     }
 
-    const handleSubmit = (values: Truck, actions: FormikHelpers<any>) => {
+    const handleSubmit = (values: any, actions: FormikHelpers<any>) => {
         const {setStatus, resetForm} = actions
-        const result = fetch('/api/truck', {
+        const result = fetch('/apis/truck', {
             method: "POST",
             headers: {
+                "authorization": authorization,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(values)
@@ -45,7 +50,7 @@ export default function AddTruck({session}:AddTruckProps) {
                 <Formik
                     initialValues={initialValues}
                     onSubmit={handleSubmit}
-                    validationSchema={toFormikValidationSchema(ProfileSchema)}>
+                    validationSchema={toFormikValidationSchema(TruckSchema)}>
                     {TruckFormContent}
                 </Formik>
             </>
@@ -92,16 +97,16 @@ export default function AddTruck({session}:AddTruckProps) {
                                     placeholder="Truck Name"
                                 />
 
-                                <label className="label" htmlFor="description">Description</label>
+                                <label className="label" htmlFor="truckDescription">Description</label>
                                 <input
                                     onBlur={handleBlur}
                                     onChange={handleChange}
                                     value={values.truckDescription}
                                     type="text"
                                     className="block border border-red-light w-full p-3 rounded mb-4 h-20"
-                                    name="description"
+                                    name="truckDescription"
                                     placeholder="Description"
-                                    id="description"
+                                    id="truckDescription"
                                 />
 
 
@@ -140,9 +145,11 @@ export default function AddTruck({session}:AddTruckProps) {
                                     <label className="label max-w-xl" htmlFor={"truckFoodCategory"}>
                                         <span className="label-text">Pick A Food Category</span>
                                     </label>
-                                    <select id={"truckFoodCategory"} name={"truckFoodCategory"}
-                                            className="select select-bordered">
-                                        <option disabled value={''}>Pick one</option>
+                                    <select  onBlur={handleBlur}
+                                             onChange={handleChange}
+                                             id={"truckFoodCategory"} name={"truckFoodCategory"}
+                                            className="select select-bordered" value={values.truckFoodCategory}>
+                                        <option value={''}>Pick one</option>
                                         <option value={"American"}>American</option>
                                         <option value={"Asian"}>Asian</option>
                                         <option value={"Cuban"}>Cuban</option>
@@ -158,10 +165,9 @@ export default function AddTruck({session}:AddTruckProps) {
                                 <div>
                                     <button
                                         type="submit"
-                                        className="w-full text-center py-3 rounded bg-green text-black hover:bg-blue-dark focus:outline-none my-1"
-                                    >Save
-                                    </button>
-                                    <button className='btn btn-danger' onClick={handleReset} type="reset">reset</button>
+                                        className="py-2 flex gap-2 mt-2 btn btn-success"
+                                    >Save</button>
+                                    {/*<button className='btn btn-danger' onClick={handleReset} type="reset">reset</button>*/}
                                 </div>
                             </div>
                         </div>
