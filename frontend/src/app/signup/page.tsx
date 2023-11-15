@@ -37,7 +37,7 @@ export default function SignUpForm() {
     }
     return(
         <>
-            <h1 className="text-3xl pb-0 font-bold">Sign Up</h1>
+            <h1 className="text-3xl pb-0 font-bold px-14 pt-14 mx-auto">Sign Up</h1>
             <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={toFormikValidationSchema(SignUpSchema)} >
                 {SignUpContent}
             </Formik>
@@ -59,7 +59,7 @@ function SignUpContent(props: FormikProps<SignUp>) {
 
     return(
         <>
-            <form onSubmit={handleSubmit} className={""}>
+            <form onSubmit={handleSubmit} className={"mx-auto px-14 py-10"}>
 
                 <div className="form-control">
                     <label className="label" htmlFor="profileName">Full Name</label>
