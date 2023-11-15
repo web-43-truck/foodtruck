@@ -1,5 +1,4 @@
 {
-  "/signin/page": "app/signin/page.js",
-  "/api/sign-in/route": "app/api/sign-in/route.js",
-  "/signup/page": "app/signup/page.js"
+  "/signup/page": "app/signup/page.js",
+  "/signin/page": "app/signin/page.js"
 }
