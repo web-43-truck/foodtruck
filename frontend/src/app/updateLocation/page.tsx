@@ -9,32 +9,26 @@ import {Location, LocationSchema} from "@/utils/models/Location";
 import {boolean} from "zod";
 import {Session} from "@/utils/FetchSession";
 
-type LocationForm = {
+type LocationFormProps = {
     session: Session}
 
-    export default function LocationForm(props: LocationForm) {
+    export default function LocationForm(props: LocationFormProps) {
     const {session} = props
     if (!session || !session?.profile.profileIsTruckOwner) return <></>
     const {profile , authorization} = session
-
-
-
- function LocationForm(props: LocationForm) {
-        const {session} = props
-        if (!session || !session?.profile.profileIsTruckOwner) return <></>
-        const {profile,authorization} = session
         const initialValues = {
-
-
             locationAddress: '',
             locationSunset: '',
             locationSunrise: '',
             locationIsActive: boolean,
         }
 
+
+
+
         const handleSubmit = (values: any, actions: FormikHelpers<any>) => {
             const {setStatus, resetForm} = actions
-            const result = fetch('/apis/location', {
+            const result = fetch('/api/location', {
                 method: "POST",
                 headers: {
                     "authorization": authorization,
@@ -85,7 +79,7 @@ type LocationForm = {
                             <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
                                 <h1 className="mb-8 text-3xl text-center"></h1>
 
-                                <label className="label" htmlFor="locationAddress">Location</label>
+                                <label className="label" htmlFor="locationAddress">Location Address</label>
                                 <input
                                     onBlur={handleBlur}
                                     onChange={handleChange}
@@ -154,5 +148,5 @@ type LocationForm = {
             </>
         )
 
-    }}
+    }
 
