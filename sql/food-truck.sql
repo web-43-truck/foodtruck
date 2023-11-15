@@ -50,7 +50,8 @@ create table if not exists favorite(
                                        favorite_truck_id UUID NOT NULL,
                                        favorite_profile_id UUID NOT NULL,
                                        FOREIGN KEY (favorite_truck_id) references truck(truck_id),
-                                       FOREIGN KEY (favorite_profile_id) references profile(profile_id)
+                                       FOREIGN KEY (favorite_profile_id) references profile(profile_id),
+                                      Primary Key (favorite_truck_id, favorite_profile_id)
 );
 
 -- DELETE FROM location WHERE location_id = 'a8b921bc-5b0d-490a-b207-3b41906adeff'
