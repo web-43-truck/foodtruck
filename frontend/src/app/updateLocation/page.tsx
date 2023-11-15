@@ -1,6 +1,7 @@
 'use client'
 import React from "react"
 import { Formik, FormikHelpers, FormikProps} from 'formik'
+import {ProfileSchema} from "@/utils/models/Profile";
 
 import {toFormikValidationSchema} from "zod-formik-adapter"
 import {FormDebugger} from "@/components/signup/FormDebugger";
@@ -15,7 +16,6 @@ type LocationFormProps = {
     export default function LocationForm(props: LocationFormProps) {
     const {session} = props
     if (!session || !session?.profile.profileIsTruckOwner) return <></>
-    const {profile , authorization} = session
         const initialValues = {
             locationAddress: '',
             locationSunset: '',
@@ -31,7 +31,7 @@ type LocationFormProps = {
             const result = fetch('/api/location', {
                 method: "POST",
                 headers: {
-                    "authorization": authorization,
+                    "authorization": session.authorization,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(values)
