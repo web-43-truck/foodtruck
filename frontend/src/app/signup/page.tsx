@@ -8,7 +8,7 @@ import {DisplayStatus} from "@/components/signup/DisplayStatus";
 import {DisplayError} from "@/components/signup/DisplayErrors";
 import {SignUp, SignUpSchema} from "@/utils/models/SignUp";
 
-export default function SignUp() {
+export default function () {
 
     const initialValues : SignUp = {
         profileName: '',
@@ -20,7 +20,7 @@ export default function SignUp() {
     const handleSubmit = (values: SignUp, actions: FormikHelpers<SignUp>) => {
         const submitValues = {...values, profileId: null, profileActivationToken: null, profileIsTruckOwner: false}
         const {setStatus, resetForm} = actions
-        const result: Promise<void> = fetch('/apis/sign-up', {
+        const result: Promise<void> = fetch('/api/sign-up', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export default function SignUp() {
         <>
             <h1 className="text-3xl pb-0 font-bold">Sign Up</h1>
             <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={toFormikValidationSchema(SignUpSchema)} >
-                {SignUp}
+                {SignUpContent}
             </Formik>
         </>
     )

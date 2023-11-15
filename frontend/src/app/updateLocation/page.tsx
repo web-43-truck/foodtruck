@@ -16,8 +16,11 @@ type LocationFormProps = {
     export default function LocationForm(props: LocationFormProps) {
     const {session} = props
     if (!session || !session?.profile.profileIsTruckOwner) return <></>
+        const {profile, authorization} = session
         const initialValues = {
-            locationAddress: '',
+        locationAddress: '',
+            locationLat: '',
+            locationLng: '',
             locationSunset: '',
             locationSunrise: '',
             locationIsActive: boolean,
@@ -31,8 +34,9 @@ type LocationFormProps = {
             const result = fetch('/apis/location', {
                 method: "POST",
                 headers: {
-                    "authorization": session.authorization,
-                    "Content-Type": "application/json",
+                    "authorization": authorization,
+                    "Content-Type": "application/json"
+
                 },
                 body: JSON.stringify(values)
             }).then(response => response.json()).then(json => {
@@ -88,10 +92,30 @@ type LocationFormProps = {
                                     className="block border border-red-light w-full p-3 rounded mb-4"
                                     name="locationAddress"
                                     id="locationAddress"
-                                    placeholder="Location"
+                                    placeholder="Location Address"
                                 />
 
+                                {/*<input*/}
+                                {/*    onBlur={handleBlur}*/}
+                                {/*    onChange={handleChange}*/}
+                                {/*    value={values.locationLat}*/}
+                                {/*    type="text"*/}
+                                {/*    className="block border border-red-light w-full p-3 rounded mb-4"*/}
+                                {/*    name="locationLat"*/}
+                                {/*    id="locationLat"*/}
 
+                                {/*/>*/}
+
+                                {/*<input*/}
+                                {/*    onBlur={handleBlur}*/}
+                                {/*    onChange={handleChange}*/}
+                                {/*    value={values.locationLng}*/}
+                                {/*    type="text"*/}
+                                {/*    className="block border border-red-light w-full p-3 rounded mb-4"*/}
+                                {/*    name="locationLng"*/}
+                                {/*    id="locationLng"*/}
+                                {/*   */}
+                                {/*/>*/}
 
                                 <label className="label" htmlFor="locationSunrise">Start Time</label>
                                 <input
@@ -118,7 +142,7 @@ type LocationFormProps = {
                                     id="locationSunset"
                                 />
 
-                                <label className="label" htmlFor="locationIsActive">Active?</label>
+                                <label className="label" htmlFor="locationIsActive">Are you open now?</label>
                                 <input
                                     onBlur={handleBlur}
                                     onChange={handleChange}
@@ -126,7 +150,7 @@ type LocationFormProps = {
                                     type="text"
                                     className="block border border-red-light w-full p-3 rounded mb-4 h-20"
                                     name="locationIsActive"
-                                    placeholder="Location End Time"
+
                                     id="locationIsActive"
                                 />
 
