@@ -10,13 +10,8 @@ export default async function () {
     const session = await getSession()
     if (!session || !session?.profile.profileIsTruckOwner) return <></>
 
-    const links = [
-        {linkName: 'Home', href: '/'},
-        {linkName: 'Favorites', href: '/'}
-    ]
     return(
         <>
-            <NavBar links={links}/>
             <AddTruck session={session}/>
             <Footer/>
         </>

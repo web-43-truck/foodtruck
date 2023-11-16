@@ -16,16 +16,10 @@ export default async function Home({searchParams}: HomeProps) {
     const {trucks, favorites} = await getData(searchParams.name)
     console.log(favorites)
     const session = await getSession()
-    const links = [
-        {linkName: 'Sign-in', href: '/signin'},
-        {linkName: 'Sign-up', href: '/signup'},
-    ]
+
 
     return (
         <>
-            <section>
-                <NavBar links={links}/>
-            </section>
 
             <HomePage trucks={trucks} session={session} favorites={favorites} initialSearch={searchParams.name}/>
 
