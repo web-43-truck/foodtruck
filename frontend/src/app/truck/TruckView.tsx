@@ -21,9 +21,9 @@ export async function TruckComponent({truck, locations}: TruckComponentProps) {
             </h1>
             <section className="container mx-auto">
                 <div className="md:flex md:justify-evenly rounded-xl">
-                    <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
-                    <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
-                    <Picture text={"https://placekitten.com/400/400"} alt={"placeholder"}/>
+                    <Picture text={"/truck.jpg"} alt={"truck"}/>
+                    <Picture text={"/torta.jpg"} alt={"torta"}/>
+                    <Picture text={"/tacos.jpg"} alt={"tacos"}/>
                 </div>
             </section>
             <section className="bg-primary rounded-lg py-10 shadow-lg">

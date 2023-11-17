@@ -6,9 +6,9 @@ import {toFormikValidationSchema} from "zod-formik-adapter"
 import {SignIn, SignInSchema} from "@/utils/models/SignIn"
 import React from "react"
 
-import {DisplayError} from "@/components/signup/DisplayErrors";
-import {DisplayStatus} from "@/components/signup/DisplayStatus";
-import {FormDebugger} from "@/components/signup/FormDebugger";
+import {DisplayError} from "@/components/DisplayErrors";
+import {DisplayStatus} from "@/components/DisplayStatus";
+import {FormDebugger} from "@/components/FormDebugger";
 
 
 

@@ -9,7 +9,7 @@ import {useRouter} from "next/navigation";
 
 type favoriteButtonProps= {
     favorites: Favorite[]
-    truckId: string
+    truckId: string | null
     session : Session
 }
 export function FavoriteButton (props:favoriteButtonProps) {

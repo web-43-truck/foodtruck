@@ -55,3 +55,4 @@ create table if not exists favorite(
 );
 
 -- DELETE FROM location WHERE location_id = 'a8b921bc-5b0d-490a-b207-3b41906adeff'
+

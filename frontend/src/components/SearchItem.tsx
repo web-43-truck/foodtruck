@@ -18,7 +18,7 @@ export function SearchItem(props: SearchItemProps) {
 
     return (
         <>
-            <section className="py-6 px-20">
+            <section className="py-6 md:px-20">
                 <Link href={`/truck/${truckId}`}><h2 className="text-2xl underline text-accent-content">{truckName}</h2></Link>
                 <p className="text-lg">{truckDescription}</p>
                 {session ? ( <FavoriteButton favorites={favorites} truckId={truckId} session={session}/>) : ''}

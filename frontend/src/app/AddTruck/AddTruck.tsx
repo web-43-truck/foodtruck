@@ -4,8 +4,8 @@ import {Truck, TruckSchema} from "@/utils/models/Truck";
 import {toFormikValidationSchema} from "zod-formik-adapter";
 import {ProfileSchema} from "@/utils/models/Profile";
 // import { Dropzone } from "dropzone";
-import {DisplayStatus} from "@/components/signup/DisplayStatus";
-import {FormDebugger} from "@/components/signup/FormDebugger";
+import {DisplayStatus} from "@/components/DisplayStatus";
+import {FormDebugger} from "@/components/FormDebugger";
 import React, {useState} from "react";
 import {Session} from "@/utils/FetchSession";
 import {useDropzone} from "react-dropzone";
@@ -65,6 +65,7 @@ export function AddTruck(props: AddTruckProps) {
                 if (body.status === 200) {
                     // @ts-ignore
                     console.log(body.message)
+                    // @ts-ignore
                     setSubmitPhotos(submitPhotos.push(body.message))
                     if (isFinalImage) {
                         const truck = {truckId: null, truckProfileId: values.truckProfileId, truckDescription: values.truckDescription, truckFoodCategory: values.truckFoodCategory, truckName: values.truckName }

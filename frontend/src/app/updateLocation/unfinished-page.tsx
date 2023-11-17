@@ -4,8 +4,8 @@ import { Formik, FormikHelpers, FormikProps} from 'formik'
 import {ProfileSchema} from "@/utils/models/Profile";
 
 import {toFormikValidationSchema} from "zod-formik-adapter"
-import {FormDebugger} from "@/components/signup/FormDebugger";
-import {DisplayStatus} from "@/components/signup/DisplayStatus";
+import {FormDebugger} from "@/components/FormDebugger";
+import {DisplayStatus} from "@/components/DisplayStatus";
 import {Location, LocationSchema} from "@/utils/models/Location";
 import {boolean} from "zod";
 import {Session} from "@/utils/FetchSession";

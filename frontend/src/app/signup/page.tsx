@@ -3,9 +3,9 @@ import React, {ReactNode} from "react"
 import { Formik, FormikHelpers, FormikProps} from 'formik'
 
 import {toFormikValidationSchema} from "zod-formik-adapter"
-import {FormDebugger} from "@/components/signup/FormDebugger";
-import {DisplayStatus} from "@/components/signup/DisplayStatus";
-import {DisplayError} from "@/components/signup/DisplayErrors";
+import {FormDebugger} from "@/components/FormDebugger";
+import {DisplayStatus} from "@/components/DisplayStatus";
+import {DisplayError} from "@/components/DisplayErrors";
 import {SignUp, SignUpSchema} from "@/utils/models/SignUp";
 
 export default function SignUpForm() {
